@@ -9,13 +9,13 @@ import {
   Input,
   InputGroup,
   Link,
-  Text,
   Stack,
   Checkbox,
 } from "@chakra-ui/react";
 import { TitlesForm } from "./titles-form";
 import { IoIosMail } from "react-icons/io";
 import { RiUser3Fill } from "react-icons/ri";
+import { AuthRedirectForm } from "./auth-redirect-form";
 
 interface FormValues {
   email: string;
@@ -130,12 +130,11 @@ export const RegisterForm = () => {
           <Button className="w-full" type="submit" colorPalette={"gray"}>
             Создать Аккаунт
           </Button>
-          <Text textStyle="sm">
-            Уже есть аккаунт?{" "}
-            <Link href="/login" color={"rose.700"}>
-              [Войти]
-            </Link>
-          </Text>
+          <AuthRedirectForm
+            text={"Уже есть аккаунт?"}
+            linkText={"Войти"}
+            href={"/login"}
+          />
         </Stack>
       </form>
     </Flex>

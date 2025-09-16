@@ -10,10 +10,10 @@ import {
   InputGroup,
   Link,
   Stack,
-  Text,
 } from "@chakra-ui/react";
 import { IoIosMail } from "react-icons/io";
 import { TitlesForm } from "./titles-form";
+import { AuthRedirectForm } from "./auth-redirect-form";
 
 interface FormValues {
   email: string;
@@ -94,12 +94,11 @@ export const LoginForm = () => {
           <Button className="w-full" type="submit" colorPalette={"gray"}>
             Войти
           </Button>
-          <Text textStyle="sm">
-            Ещё нет аккаунта?{" "}
-            <Link href="/register" color={"rose.700"}>
-              [Зарегистрируйтесь]
-            </Link>
-          </Text>
+          <AuthRedirectForm
+            text={"Ещё нет аккаунта?"}
+            linkText={"Зарегистрируйтесь"}
+            href={"/register"}
+          />
         </Stack>
       </form>
     </Flex>
