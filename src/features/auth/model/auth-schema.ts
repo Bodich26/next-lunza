@@ -1,0 +1,33 @@
+import * as z from "zod";
+
+export const loginSchema = z.object({
+  email: z.email({
+    message: "Пожалуйста, укажите вашу почту",
+  }),
+  password: z.string().min(8, {
+    message: "Минимум 8 символов",
+  }),
+});
+
+export const registerSchema = z.object({
+  email: z.email({
+    message: "Пожалуйста, укажите вашу почту",
+  }),
+  name: z.string().min(3, {
+    message: "Минимум 3 символа",
+  }),
+  password: z
+    .string()
+    .min(8, {
+      message: "Минимум 8 символов",
+    })
+    .regex(/^[A-Za-z0-9]+$/, {
+      message: "Только латинские буквы и цифры",
+    }),
+  politics: z.boolean().refine((val) => val === true, {
+    message: "Вы должны согласиться с правилами",
+  }),
+});
+
+export type LoginFormData = z.infer<typeof loginSchema>;
+export type RegisterFormData = z.infer<typeof registerSchema>;

@@ -1,4 +1,5 @@
 "use client";
+import { signUp } from "../api/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { PasswordInput } from "@/shared";
@@ -16,28 +17,21 @@ import { TitlesForm } from "./titles-form";
 import { IoIosMail } from "react-icons/io";
 import { RiUser3Fill } from "react-icons/ri";
 import { AuthRedirectForm } from "./auth-redirect-form";
-
-interface FormValues {
-  email: string;
-  password: string;
-  nick: string;
-}
+import { RegisterFormData, registerSchema } from "../model/auth-schema";
 
 export const RegisterForm = () => {
-  const RegisterUserForm = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-      nick: "",
-    },
-  });
   const {
     register,
-    handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
-
-  const onSubmit = handleSubmit((data) => console.log(data));
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      email: "",
+      name: "",
+      password: "",
+      politics: false,
+    },
+  });
 
   return (
     <Flex gap={"5"} flexDirection={"column"} className="max-w-[487px]">
@@ -45,7 +39,7 @@ export const RegisterForm = () => {
         titles={"Регистрация"}
         text={"Твое новое пространство для общения и вдохновения"}
       />
-      <form onSubmit={onSubmit}>
+      <form action={signUp}>
         <Stack
           gap="4"
           align="flex-start"
@@ -77,20 +71,20 @@ export const RegisterForm = () => {
 
           {/* Nick */}
 
-          <Field.Root required invalid={!!errors.email}>
+          <Field.Root required invalid={!!errors.name}>
             <Field.Label>
               Псевдоним <Field.RequiredIndicator />
             </Field.Label>
             <InputGroup startElement={<RiUser3Fill />}>
               <Input
                 type="text"
-                {...register("nick")}
+                {...register("name")}
                 required
                 placeholder="Введите псевдоним"
               />
             </InputGroup>
 
-            <Field.ErrorText>{errors.email?.message}</Field.ErrorText>
+            <Field.ErrorText>{errors.name?.message}</Field.ErrorText>
           </Field.Root>
 
           {/* Password */}
@@ -105,12 +99,16 @@ export const RegisterForm = () => {
               required
               placeholder="********"
             />
-            <Field.HelperText>Минимум 8 символов</Field.HelperText>
-            <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
+            {errors.password ? (
+              <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
+            ) : (
+              <Field.HelperText>Минимум 8 символов</Field.HelperText>
+            )}
           </Field.Root>
 
           {/* Rule */}
-          <Checkbox.Root required variant={"solid"} value="accept rules">
+
+          <Checkbox.Root {...register("politics")} variant={"solid"} required>
             <Checkbox.HiddenInput />
             <Checkbox.Control />
             <Checkbox.Label fontSize={"sm"}>

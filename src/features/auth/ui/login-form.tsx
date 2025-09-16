@@ -14,26 +14,24 @@ import {
 import { IoIosMail } from "react-icons/io";
 import { TitlesForm } from "./titles-form";
 import { AuthRedirectForm } from "./auth-redirect-form";
-
-interface FormValues {
-  email: string;
-  password: string;
-}
+import { LoginFormData, loginSchema } from "../model/auth-schema";
 
 export const LoginForm = () => {
-  const loginUserForm = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>();
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
 
   return (
     <Flex gap={"5"} flexDirection={"column"} className="max-w-[487px]">
