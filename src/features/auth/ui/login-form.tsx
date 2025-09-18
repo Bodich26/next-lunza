@@ -15,11 +15,11 @@ import { IoIosMail } from "react-icons/io";
 import { TitlesForm } from "./titles-form";
 import { AuthRedirectForm } from "./auth-redirect-form";
 import { LoginFormData, loginSchema } from "../model/auth-schema";
+import { signIn } from "../api/actions";
 
 export const LoginForm = () => {
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -29,17 +29,13 @@ export const LoginForm = () => {
     },
   });
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-  });
-
   return (
     <Flex gap={"5"} flexDirection={"column"} className="max-w-[487px]">
       <TitlesForm
         titles={"Вход в аккаунт"}
         text={"Твое новое пространство для общения и вдохновения"}
       />
-      <form onSubmit={onSubmit}>
+      <form action={signIn}>
         <Stack
           gap="4"
           align="flex-start"
