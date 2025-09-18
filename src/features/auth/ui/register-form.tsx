@@ -2,7 +2,7 @@
 import { signUp } from "../api/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { PasswordInput } from "@/shared";
+import { ObjectFormData, PasswordInput } from "@/shared";
 import {
   Button,
   Field,
@@ -22,6 +22,7 @@ import { RegisterFormData, registerSchema } from "../model/auth-schema";
 export const RegisterForm = () => {
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
@@ -29,9 +30,12 @@ export const RegisterForm = () => {
       email: "",
       name: "",
       password: "",
-      politics: false,
     },
   });
+
+  const onSubmit = async (data: RegisterFormData) => {
+    return signUp(ObjectFormData(data));
+  };
 
   return (
     <Flex gap={"5"} flexDirection={"column"} className="max-w-[487px]">
@@ -39,7 +43,7 @@ export const RegisterForm = () => {
         titles={"Регистрация"}
         text={"Твое новое пространство для общения и вдохновения"}
       />
-      <form action={signUp}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Stack
           gap="4"
           align="flex-start"
@@ -108,7 +112,7 @@ export const RegisterForm = () => {
 
           {/* Rule */}
 
-          <Checkbox.Root {...register("politics")} variant={"solid"} required>
+          <Checkbox.Root variant={"solid"} required>
             <Checkbox.HiddenInput />
             <Checkbox.Control />
             <Checkbox.Label fontSize={"sm"}>

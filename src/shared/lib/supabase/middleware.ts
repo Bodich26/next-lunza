@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { DEFAULT_AUTH, DEFAULT_LOGIN_REDIRECT, AUTH_ROUTES } from "routes";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -41,13 +42,19 @@ export async function updateSession(request: NextRequest) {
 
   if (
     !user &&
-    !request.nextUrl.pathname.startsWith("/login") &&
-    !request.nextUrl.pathname.startsWith("/auth") &&
-    !request.nextUrl.pathname.startsWith("/error")
+    !AUTH_ROUTES.some((path) => request.nextUrl.pathname.startsWith(path))
   ) {
-    // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone();
-    url.pathname = "/login";
+    url.pathname = DEFAULT_AUTH;
+    return NextResponse.redirect(url);
+  }
+
+  if (
+    user &&
+    AUTH_ROUTES.some((path) => request.nextUrl.pathname.startsWith(path))
+  ) {
+    const url = request.nextUrl.clone();
+    url.pathname = DEFAULT_LOGIN_REDIRECT;
     return NextResponse.redirect(url);
   }
 

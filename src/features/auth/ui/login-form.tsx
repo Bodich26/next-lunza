@@ -1,7 +1,8 @@
 "use client";
+import { signIn } from "../api/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { PasswordInput } from "@/shared";
+import { ObjectFormData, PasswordInput } from "@/shared";
 import {
   Button,
   Field,
@@ -15,11 +16,11 @@ import { IoIosMail } from "react-icons/io";
 import { TitlesForm } from "./titles-form";
 import { AuthRedirectForm } from "./auth-redirect-form";
 import { LoginFormData, loginSchema } from "../model/auth-schema";
-import { signIn } from "../api/actions";
 
 export const LoginForm = () => {
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -29,13 +30,17 @@ export const LoginForm = () => {
     },
   });
 
+  const onSubmit = async (data: LoginFormData) => {
+    return signIn(ObjectFormData(data));
+  };
+
   return (
     <Flex gap={"5"} flexDirection={"column"} className="max-w-[487px]">
       <TitlesForm
         titles={"Вход в аккаунт"}
         text={"Твое новое пространство для общения и вдохновения"}
       />
-      <form action={signIn}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Stack
           gap="4"
           align="flex-start"

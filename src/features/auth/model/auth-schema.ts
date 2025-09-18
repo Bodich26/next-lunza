@@ -24,9 +24,6 @@ export const registerSchema = z.object({
     .regex(/^[A-Za-z0-9]+$/, {
       message: "Только латинские буквы и цифры",
     }),
-  politics: z.boolean().refine((val) => val === true, {
-    message: "Вы должны согласиться с правилами",
-  }),
 });
 
 export type LoginFormData = z.infer<typeof loginSchema>;
