@@ -11,15 +11,23 @@ import { IoIosMail } from "react-icons/io";
 import { TitlesForm } from "./titles-form";
 import { AuthRedirectForm } from "./auth-redirect-form";
 import { useForgotPassword } from "../model/use-forgot-password";
+import { NoticeForm } from "@/shared";
 
 export const ForgotPasswordFrom = () => {
-  const { handleSubmitForm, emailErrors, register } = useForgotPassword();
+  const {
+    handleSubmitForm,
+    emailErrors,
+    resError,
+    resSuccess,
+    register,
+    isLoading,
+  } = useForgotPassword();
 
   return (
     <Flex gap={"5"} flexDirection={"column"} className="max-w-[487px]">
       <TitlesForm
-        titles={"Вход в аккаунт"}
-        text={"Твое новое пространство для общения и вдохновения"}
+        titles={"Сброс пароля"}
+        text={"Введите почту, привязанную к вашему аккаунту"}
       />
       <form onSubmit={handleSubmitForm}>
         <Stack
@@ -35,7 +43,7 @@ export const ForgotPasswordFrom = () => {
         >
           {/* Email */}
 
-          <Field.Root required invalid={!!emailErrors.email}>
+          <Field.Root required invalid={!!emailErrors}>
             <Field.Label>
               Почта <Field.RequiredIndicator />
             </Field.Label>
@@ -48,12 +56,20 @@ export const ForgotPasswordFrom = () => {
               />
             </InputGroup>
 
-            <Field.ErrorText>{emailErrors.email?.message}</Field.ErrorText>
+            <Field.ErrorText>{emailErrors?.message}</Field.ErrorText>
           </Field.Root>
+
+          {/*Notice*/}
+          <NoticeForm success={resSuccess} error={resError} />
 
           {/* Button */}
 
-          <Button className="w-full" type="submit" colorPalette={"gray"}>
+          <Button
+            className="w-full"
+            type="submit"
+            colorPalette={"gray"}
+            loading={isLoading}
+          >
             Восстановить пароль
           </Button>
           <AuthRedirectForm

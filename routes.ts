@@ -3,17 +3,22 @@
  * These routes do not require authentication
  * @type {string[]}
  */
-export const DEFAULT_AUTH = "/login";
+export const DEFAULT_AUTH = process.env.NEXT_PUBLIC_URL_LOGIN!;
 
 /**
  * Used for authentication
  * These routes will redirect logged in users to /dashboard
  * @type {string[]}
  */
-export const AUTH_ROUTES = ["/login", "/register"];
+export const AUTH_ROUTES = [
+  process.env.NEXT_PUBLIC_URL_LOGIN!,
+  process.env.NEXT_PUBLIC_URL_REGISTER!,
+  process.env.NEXT_PUBLIC_URL_FORGOT_PASSWORD!,
+  process.env.NEXT_PUBLIC_URL_UPDATE_PASSWORD!,
+];
 
 /**
  * The default redirect path after logging in
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = "/home";
+export const DEFAULT_LOGIN_REDIRECT = process.env.NEXT_PUBLIC_URL_MAIN!;

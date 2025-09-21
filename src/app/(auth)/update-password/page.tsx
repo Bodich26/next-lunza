@@ -1,5 +1,5 @@
-import { UpdatePasswordForm } from "@/features/auth";
+import { UpdatePasswordForm } from "@/features/auth/ui/update-password-form";
 
-export default function UpdatePassword() {
+export default async function UpdatePassword() {
   return <UpdatePasswordForm />;
 }

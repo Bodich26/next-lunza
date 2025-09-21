@@ -1,11 +1,11 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/shared/lib/supabase/server";
 import { registerSchema } from "../../model/auth-schema";
 
 export async function signUp(formData: FormData) {
+  const supabase = await createClient();
   const data = Object.fromEntries(formData);
   const result = registerSchema.safeParse(data);
 
@@ -17,9 +17,8 @@ export async function signUp(formData: FormData) {
   }
 
   const { email, name, password } = result.data;
-  const supabase = await createClient();
 
-  const { error: signUpError } = await supabase.auth.signUp({
+  const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -29,12 +28,8 @@ export async function signUp(formData: FormData) {
     },
   });
 
-  if (signUpError) {
-    // В случае ошибки от Supabase, перенаправляем с сообщением
-    return redirect(`/register?message=${signUpError.message}`);
+  if (error) {
+    return { error: "Произошла ошибка при регистрации" };
   }
-
-  // 3. Успешный редирект и обновление кэша
-  revalidatePath("/", "layout");
-  redirect("/home");
+  return { success: "Регистрация успешна, подтвердите почту" };
 }

@@ -2,50 +2,47 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { UpdateFormData, updatePasswordSchema } from "./auth-schema";
+import { LoginFormData, loginSchema } from "./auth-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { updatePassword } from "../api/actions";
 import { ObjectFormData } from "@/shared";
-import { useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "../api/actions";
 import { DEFAULT_LOGIN_REDIRECT } from "routes";
+import { useRouter } from "next/navigation";
 
-export const useUpdatePassword = () => {
-  const searchParams = useSearchParams();
-  const code = searchParams.get("code");
-  const router = useRouter();
-
+export const useLogin = () => {
   const [resError, setResError] = React.useState<string>("");
   const [resSuccess, setResSuccess] = React.useState<string>("");
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const router = useRouter();
+
   const [redirectTimer, setRedirectTimer] =
     React.useState<NodeJS.Timeout | null>(null);
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UpdateFormData>({
-    resolver: zodResolver(updatePasswordSchema),
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
+      email: "",
       password: "",
     },
   });
+
+  const emailErrors = errors.email;
   const passwordErrors = errors.password;
 
-  const handleSubmitForm = handleSubmit(async (data: UpdateFormData) => {
+  const handleSubmitForm = handleSubmit(async (data: LoginFormData) => {
     setIsLoading(true);
-    if (!code) {
-      setIsLoading(false);
-      setResError("Код восстановления отсутствует");
-      return;
-    }
-
-    const res = await updatePassword(ObjectFormData(data), code);
+    const res = await signIn(ObjectFormData(data));
 
     if (res.error) {
       setResError(res.error);
       setIsLoading(false);
       return;
     }
+
     if (res.success) {
       setResSuccess(res.success);
       const timer = setTimeout(() => {
@@ -67,6 +64,7 @@ export const useUpdatePassword = () => {
   return {
     register,
     handleSubmitForm,
+    emailErrors,
     passwordErrors,
     resError,
     resSuccess,

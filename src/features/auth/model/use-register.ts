@@ -2,12 +2,12 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ForgotFormData, forgotPasswordSchema } from "./auth-schema";
+import { RegisterFormData, registerSchema } from "./auth-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ObjectFormData } from "@/shared";
-import { forgotPassword } from "../api/actions";
+import { signUp } from "../api/actions";
 
-export const useForgotPassword = () => {
+export const useRegister = () => {
   const [resError, setResError] = React.useState<string>("");
   const [resSuccess, setResSuccess] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -16,17 +16,22 @@ export const useForgotPassword = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ForgotFormData>({
-    resolver: zodResolver(forgotPasswordSchema),
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       email: "",
+      name: "",
+      password: "",
     },
   });
-  const emailErrors = errors.email;
 
-  const handleSubmitForm = handleSubmit(async (data: ForgotFormData) => {
+  const emailErrors = errors.email;
+  const nameErrors = errors.name;
+  const passwordErrors = errors.password;
+
+  const handleSubmitForm = handleSubmit(async (data: RegisterFormData) => {
     setIsLoading(true);
-    const res = await forgotPassword(ObjectFormData(data));
+    const res = await signUp(ObjectFormData(data));
 
     if (res.error) {
       setResError(res.error);
@@ -39,10 +44,13 @@ export const useForgotPassword = () => {
       setIsLoading(false);
     }
   });
+
   return {
     register,
     handleSubmitForm,
     emailErrors,
+    passwordErrors,
+    nameErrors,
     resError,
     resSuccess,
     isLoading,

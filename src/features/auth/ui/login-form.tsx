@@ -1,8 +1,6 @@
 "use client";
-import { signIn } from "../api/actions";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { ObjectFormData, PasswordInput } from "@/shared";
+
+import { NoticeForm, PasswordInput } from "@/shared";
 import {
   Button,
   Field,
@@ -15,24 +13,19 @@ import {
 import { IoIosMail } from "react-icons/io";
 import { TitlesForm } from "./titles-form";
 import { AuthRedirectForm } from "./auth-redirect-form";
-import { LoginFormData, loginSchema } from "../model/auth-schema";
+
+import { useLogin } from "../model/use-login";
 
 export const LoginForm = () => {
   const {
     register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormData>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
-
-  const onSubmit = async (data: LoginFormData) => {
-    return signIn(ObjectFormData(data));
-  };
+    handleSubmitForm,
+    emailErrors,
+    passwordErrors,
+    isLoading,
+    resSuccess,
+    resError,
+  } = useLogin();
 
   return (
     <Flex gap={"5"} flexDirection={"column"} className="max-w-[487px]">
@@ -40,7 +33,7 @@ export const LoginForm = () => {
         titles={"Вход в аккаунт"}
         text={"Твое новое пространство для общения и вдохновения"}
       />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmitForm}>
         <Stack
           gap="4"
           align="flex-start"
@@ -54,7 +47,7 @@ export const LoginForm = () => {
         >
           {/* Email */}
 
-          <Field.Root required invalid={!!errors.email}>
+          <Field.Root required invalid={!!emailErrors}>
             <Field.Label>
               Почта <Field.RequiredIndicator />
             </Field.Label>
@@ -67,12 +60,12 @@ export const LoginForm = () => {
               />
             </InputGroup>
 
-            <Field.ErrorText>{errors.email?.message}</Field.ErrorText>
+            <Field.ErrorText>{emailErrors?.message}</Field.ErrorText>
           </Field.Root>
 
           {/* Password */}
 
-          <Field.Root required invalid={!!errors.password}>
+          <Field.Root required invalid={!!passwordErrors}>
             <Field.Label>
               Пароль <Field.RequiredIndicator />
             </Field.Label>
@@ -82,15 +75,23 @@ export const LoginForm = () => {
               required
               placeholder="********"
             />
-            <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
+            <Field.ErrorText>{passwordErrors?.message}</Field.ErrorText>
           </Field.Root>
-          <Link fontSize={14} marginLeft={"auto"} href="...">
-            Забыл пароль?
+          <Link fontSize={14} marginLeft={"auto"} href="/forgot-password">
+            Забыли пароль?
           </Link>
+
+          {/*Notice*/}
+          <NoticeForm success={resSuccess} error={resError} />
 
           {/* Button */}
 
-          <Button className="w-full" type="submit" colorPalette={"gray"}>
+          <Button
+            className="w-full"
+            type="submit"
+            colorPalette={"gray"}
+            loading={isLoading}
+          >
             Войти
           </Button>
           <AuthRedirectForm

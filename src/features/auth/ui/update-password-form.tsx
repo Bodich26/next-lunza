@@ -2,17 +2,24 @@
 import { Button, Field, Flex, Stack } from "@chakra-ui/react";
 import { TitlesForm } from "./titles-form";
 import { AuthRedirectForm } from "./auth-redirect-form";
-import { PasswordInput } from "@/shared";
+import { NoticeForm, PasswordInput } from "@/shared";
 import { useUpdatePassword } from "../model/use-update-password";
 
 export const UpdatePasswordForm = () => {
-  const { handleSubmitForm, passwordErrors, register } = useUpdatePassword();
+  const {
+    handleSubmitForm,
+    passwordErrors,
+    register,
+    resError,
+    resSuccess,
+    isLoading,
+  } = useUpdatePassword();
 
   return (
     <Flex gap={"5"} flexDirection={"column"} className="max-w-[487px]">
       <TitlesForm
-        titles={"Вход в аккаунт"}
-        text={"Твое новое пространство для общения и вдохновения"}
+        titles={"Сброс пароля"}
+        text={"Теперь вы можете ввести новый пароль для своего аккаунта"}
       />
       <form onSubmit={handleSubmitForm}>
         <Stack
@@ -28,7 +35,7 @@ export const UpdatePasswordForm = () => {
         >
           {/* Password */}
 
-          <Field.Root required invalid={!!passwordErrors.password}>
+          <Field.Root required invalid={!!passwordErrors}>
             <Field.Label>
               Пароль <Field.RequiredIndicator />
             </Field.Label>
@@ -38,14 +45,20 @@ export const UpdatePasswordForm = () => {
               required
               placeholder="********"
             />
-            <Field.ErrorText>
-              {passwordErrors.password?.message}
-            </Field.ErrorText>
+            <Field.ErrorText>{passwordErrors?.message}</Field.ErrorText>
           </Field.Root>
+
+          {/*Notice*/}
+          <NoticeForm success={resSuccess} error={resError} />
 
           {/* Button */}
 
-          <Button className="w-full" type="submit" colorPalette={"gray"}>
+          <Button
+            className="w-full"
+            type="submit"
+            colorPalette={"gray"}
+            loading={isLoading}
+          >
             Обновить пароль
           </Button>
           <AuthRedirectForm

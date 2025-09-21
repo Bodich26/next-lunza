@@ -1,8 +1,6 @@
 "use client";
-import { signUp } from "../api/actions";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { ObjectFormData, PasswordInput } from "@/shared";
+
+import { NoticeForm, PasswordInput } from "@/shared";
 import {
   Button,
   Field,
@@ -17,25 +15,19 @@ import { TitlesForm } from "./titles-form";
 import { IoIosMail } from "react-icons/io";
 import { RiUser3Fill } from "react-icons/ri";
 import { AuthRedirectForm } from "./auth-redirect-form";
-import { RegisterFormData, registerSchema } from "../model/auth-schema";
+import { useRegister } from "../model/use-register";
 
 export const RegisterForm = () => {
   const {
     register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<RegisterFormData>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: {
-      email: "",
-      name: "",
-      password: "",
-    },
-  });
-
-  const onSubmit = async (data: RegisterFormData) => {
-    return signUp(ObjectFormData(data));
-  };
+    handleSubmitForm,
+    emailErrors,
+    passwordErrors,
+    nameErrors,
+    resError,
+    resSuccess,
+    isLoading,
+  } = useRegister();
 
   return (
     <Flex gap={"5"} flexDirection={"column"} className="max-w-[487px]">
@@ -43,7 +35,7 @@ export const RegisterForm = () => {
         titles={"Регистрация"}
         text={"Твое новое пространство для общения и вдохновения"}
       />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmitForm}>
         <Stack
           gap="4"
           align="flex-start"
@@ -57,7 +49,7 @@ export const RegisterForm = () => {
         >
           {/* Email */}
 
-          <Field.Root required invalid={!!errors.email}>
+          <Field.Root required invalid={!!emailErrors}>
             <Field.Label>
               Почта <Field.RequiredIndicator />
             </Field.Label>
@@ -70,12 +62,12 @@ export const RegisterForm = () => {
               />
             </InputGroup>
 
-            <Field.ErrorText>{errors.email?.message}</Field.ErrorText>
+            <Field.ErrorText>{emailErrors?.message}</Field.ErrorText>
           </Field.Root>
 
           {/* Nick */}
 
-          <Field.Root required invalid={!!errors.name}>
+          <Field.Root required invalid={!!nameErrors}>
             <Field.Label>
               Псевдоним <Field.RequiredIndicator />
             </Field.Label>
@@ -88,12 +80,12 @@ export const RegisterForm = () => {
               />
             </InputGroup>
 
-            <Field.ErrorText>{errors.name?.message}</Field.ErrorText>
+            <Field.ErrorText>{nameErrors?.message}</Field.ErrorText>
           </Field.Root>
 
           {/* Password */}
 
-          <Field.Root required invalid={!!errors.password}>
+          <Field.Root required invalid={!!passwordErrors}>
             <Field.Label>
               Пароль <Field.RequiredIndicator />
             </Field.Label>
@@ -103,12 +95,15 @@ export const RegisterForm = () => {
               required
               placeholder="********"
             />
-            {errors.password ? (
-              <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
+            {passwordErrors ? (
+              <Field.ErrorText>{passwordErrors?.message}</Field.ErrorText>
             ) : (
               <Field.HelperText>Минимум 8 символов</Field.HelperText>
             )}
           </Field.Root>
+
+          {/*Notice*/}
+          <NoticeForm success={resSuccess} error={resError} />
 
           {/* Rule */}
 
@@ -129,7 +124,12 @@ export const RegisterForm = () => {
 
           {/* Button */}
 
-          <Button className="w-full" type="submit" colorPalette={"gray"}>
+          <Button
+            className="w-full"
+            type="submit"
+            colorPalette={"gray"}
+            loading={isLoading}
+          >
             Создать Аккаунт
           </Button>
           <AuthRedirectForm

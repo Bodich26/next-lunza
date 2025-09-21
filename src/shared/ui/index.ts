@@ -4,3 +4,4 @@ export { Toaster } from "./toaster";
 export { Tooltip } from "./tooltip";
 export { DecorCircle } from "./decor-circle";
 export * from "./password-input";
+export { NoticeForm } from "./notice-form";

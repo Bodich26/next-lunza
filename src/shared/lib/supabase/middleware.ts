@@ -36,27 +36,27 @@ export async function updateSession(request: NextRequest) {
 
   // IMPORTANT: DO NOT REMOVE auth.getUser()
 
-  // const {
-  //   data: { user },
-  // } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  // if (
-  //   !user &&
-  //   !AUTH_ROUTES.some((path) => request.nextUrl.pathname.startsWith(path))
-  // ) {
-  //   const url = request.nextUrl.clone();
-  //   url.pathname = DEFAULT_AUTH;
-  //   return NextResponse.redirect(url);
-  // }
+  if (
+    !user &&
+    !AUTH_ROUTES.some((path) => request.nextUrl.pathname.startsWith(path!))
+  ) {
+    const url = request.nextUrl.clone();
+    url.pathname = DEFAULT_AUTH!;
+    return NextResponse.redirect(url);
+  }
 
-  // if (
-  //   user &&
-  //   AUTH_ROUTES.some((path) => request.nextUrl.pathname.startsWith(path))
-  // ) {
-  //   const url = request.nextUrl.clone();
-  //   url.pathname = DEFAULT_LOGIN_REDIRECT;
-  //   return NextResponse.redirect(url);
-  // }
+  if (
+    user &&
+    AUTH_ROUTES.some((path) => request.nextUrl.pathname.startsWith(path!))
+  ) {
+    const url = request.nextUrl.clone();
+    url.pathname = DEFAULT_LOGIN_REDIRECT!;
+    return NextResponse.redirect(url);
+  }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   // If you're creating a new response object with NextResponse.next() make sure to:
