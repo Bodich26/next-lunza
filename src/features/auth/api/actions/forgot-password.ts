@@ -22,6 +22,10 @@ export async function forgotPassword(formData: FormData) {
   const { error } = await supabase.auth.resetPasswordForEmail(email);
 
   if (error) {
+    if (error.code === "email_address_invalid") {
+      return { error: "Некорректный формат email" };
+    }
+
     return { error: "Неверные данные или email не найден" };
   }
 

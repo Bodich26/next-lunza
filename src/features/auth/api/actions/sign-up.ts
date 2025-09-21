@@ -13,7 +13,9 @@ export async function signUp(formData: FormData) {
     const message = result.error.issues
       .map((issue) => issue.message)
       .join(", ");
-    return redirect(`/register?message=${message}`);
+    return redirect(
+      `${process.env.NEXT_PUBLIC_URL_REGISTER}?message=${message}`
+    );
   }
 
   const { email, name, password } = result.data;
@@ -29,7 +31,12 @@ export async function signUp(formData: FormData) {
   });
 
   if (error) {
+    if (error.code === "email_address_invalid") {
+      return { error: "Некорректный формат email" };
+    }
+
     return { error: "Произошла ошибка при регистрации" };
   }
+
   return { success: "Регистрация успешна, подтвердите почту" };
 }

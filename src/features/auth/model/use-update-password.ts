@@ -50,7 +50,7 @@ export const useUpdatePassword = () => {
       setResSuccess(res.success);
       const timer = setTimeout(() => {
         router.push(DEFAULT_LOGIN_REDIRECT);
-      }, 2000);
+      }, 1000);
       setRedirectTimer(timer);
     }
   });
