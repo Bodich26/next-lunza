@@ -5,20 +5,19 @@ import { useForm } from "react-hook-form";
 import { UpdateFormData, updatePasswordSchema } from "./auth-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updatePassword } from "../api/actions";
-import { objectFormData } from "@/shared";
-import { useRouter, useSearchParams } from "next/navigation";
+import { objectFormData, useRedirectTimer } from "@/shared";
+import { useSearchParams } from "next/navigation";
 import { DEFAULT_LOGIN_REDIRECT } from "routes";
 
 export const useUpdatePassword = () => {
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
-  const router = useRouter();
 
   const [resError, setResError] = React.useState<string>("");
   const [resSuccess, setResSuccess] = React.useState<string>("");
-  const [redirectTimer, setRedirectTimer] =
-    React.useState<NodeJS.Timeout | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const { startRedirect } = useRedirectTimer(DEFAULT_LOGIN_REDIRECT, 1000);
+
   const {
     register,
     handleSubmit,
@@ -48,21 +47,9 @@ export const useUpdatePassword = () => {
     }
     if (res.success) {
       setResSuccess(res.success);
-      const timer = setTimeout(() => {
-        router.push(DEFAULT_LOGIN_REDIRECT);
-      }, 1000);
-      setRedirectTimer(timer);
+      startRedirect();
     }
   });
-
-  React.useEffect(() => {
-    return () => {
-      if (redirectTimer) {
-        clearTimeout(redirectTimer);
-        setIsLoading(false);
-      }
-    };
-  }, [redirectTimer]);
 
   return {
     register,

@@ -1,6 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { updatePasswordSchema } from "../../model/auth-schema";
 import { createClient } from "@/shared/lib/supabase/server";
 import { validationData } from "@/shared";

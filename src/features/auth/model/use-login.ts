@@ -4,19 +4,15 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { LoginFormData, loginSchema } from "./auth-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { objectFormData } from "@/shared";
+import { objectFormData, useRedirectTimer } from "@/shared";
 import { signIn } from "../api/actions";
 import { DEFAULT_LOGIN_REDIRECT } from "routes";
-import { useRouter } from "next/navigation";
 
 export const useLogin = () => {
   const [resError, setResError] = React.useState<string>("");
   const [resSuccess, setResSuccess] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const router = useRouter();
-
-  const [redirectTimer, setRedirectTimer] =
-    React.useState<NodeJS.Timeout | null>(null);
+  const { startRedirect } = useRedirectTimer(DEFAULT_LOGIN_REDIRECT, 1000);
 
   const {
     register,
@@ -45,21 +41,9 @@ export const useLogin = () => {
 
     if (res.success) {
       setResSuccess(res.success);
-      const timer = setTimeout(() => {
-        router.push(DEFAULT_LOGIN_REDIRECT);
-      }, 1000);
-      setRedirectTimer(timer);
+      startRedirect();
     }
   });
-
-  React.useEffect(() => {
-    return () => {
-      if (redirectTimer) {
-        clearTimeout(redirectTimer);
-        setIsLoading(false);
-      }
-    };
-  }, [redirectTimer]);
 
   return {
     register,
