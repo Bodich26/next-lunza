@@ -1,24 +1,19 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { forgotPasswordSchema } from "../../model/auth-schema";
 import { createClient } from "@/shared/lib/supabase/server";
+import { validationData } from "@/shared";
 
 export async function forgotPassword(formData: FormData) {
   const supabase = await createClient();
   const userData = Object.fromEntries(formData);
-  const result = forgotPasswordSchema.safeParse(userData);
 
-  if (!result.success) {
-    const message = result.error.issues
-      .map((issue) => issue.message)
-      .join(", ");
-    return redirect(
-      `${process.env.NEXT_PUBLIC_URL_FORGOT_PASSWORD}?message=${message}`
-    );
-  }
+  const { email } = validationData(
+    forgotPasswordSchema,
+    userData,
+    process.env.NEXT_PUBLIC_URL_FORGOT_PASSWORD!
+  );
 
-  const { email } = result.data;
   const { error } = await supabase.auth.resetPasswordForEmail(email);
 
   if (error) {

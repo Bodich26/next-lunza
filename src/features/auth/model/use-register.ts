@@ -4,7 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { RegisterFormData, registerSchema } from "./auth-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ObjectFormData } from "@/shared";
+import { objectFormData } from "@/shared";
 import { signUp } from "../api/actions";
 
 export const useRegister = () => {
@@ -31,7 +31,7 @@ export const useRegister = () => {
 
   const handleSubmitForm = handleSubmit(async (data: RegisterFormData) => {
     setIsLoading(true);
-    const res = await signUp(ObjectFormData(data));
+    const res = await signUp(objectFormData(data));
 
     if (res.error) {
       setResError(res.error);

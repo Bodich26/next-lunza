@@ -4,7 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { ForgotFormData, forgotPasswordSchema } from "./auth-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ObjectFormData } from "@/shared";
+import { objectFormData } from "@/shared";
 import { forgotPassword } from "../api/actions";
 
 export const useForgotPassword = () => {
@@ -26,7 +26,7 @@ export const useForgotPassword = () => {
 
   const handleSubmitForm = handleSubmit(async (data: ForgotFormData) => {
     setIsLoading(true);
-    const res = await forgotPassword(ObjectFormData(data));
+    const res = await forgotPassword(objectFormData(data));
 
     if (res.error) {
       setResError(res.error);

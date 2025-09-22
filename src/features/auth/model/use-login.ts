@@ -4,7 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { LoginFormData, loginSchema } from "./auth-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ObjectFormData } from "@/shared";
+import { objectFormData } from "@/shared";
 import { signIn } from "../api/actions";
 import { DEFAULT_LOGIN_REDIRECT } from "routes";
 import { useRouter } from "next/navigation";
@@ -35,7 +35,7 @@ export const useLogin = () => {
 
   const handleSubmitForm = handleSubmit(async (data: LoginFormData) => {
     setIsLoading(true);
-    const res = await signIn(ObjectFormData(data));
+    const res = await signIn(objectFormData(data));
 
     if (res.error) {
       setResError(res.error);

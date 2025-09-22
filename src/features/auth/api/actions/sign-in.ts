@@ -1,22 +1,18 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { loginSchema } from "../../model/auth-schema";
 import { createClient } from "@/shared/lib/supabase/server";
+import { validationData } from "@/shared";
 
 export async function signIn(formData: FormData) {
   const supabase = await createClient();
-  const data = Object.fromEntries(formData);
-  const result = loginSchema.safeParse(data);
+  const userData = Object.fromEntries(formData);
 
-  if (!result.success) {
-    const message = result.error.issues
-      .map((issue) => issue.message)
-      .join(", ");
-    return redirect(`${process.env.NEXT_PUBLIC_URL_LOGIN}?message=${message}`);
-  }
-
-  const { email, password } = result.data;
+  const { email, password } = validationData(
+    loginSchema,
+    userData,
+    process.env.NEXT_PUBLIC_URL_LOGIN!
+  );
 
   const { error } = await supabase.auth.signInWithPassword({
     email,

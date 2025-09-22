@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { UpdateFormData, updatePasswordSchema } from "./auth-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updatePassword } from "../api/actions";
-import { ObjectFormData } from "@/shared";
+import { objectFormData } from "@/shared";
 import { useRouter, useSearchParams } from "next/navigation";
 import { DEFAULT_LOGIN_REDIRECT } from "routes";
 
@@ -39,7 +39,7 @@ export const useUpdatePassword = () => {
       return;
     }
 
-    const res = await updatePassword(ObjectFormData(data), code);
+    const res = await updatePassword(objectFormData(data), code);
 
     if (res.error) {
       setResError(res.error);
