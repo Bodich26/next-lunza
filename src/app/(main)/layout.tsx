@@ -1,3 +1,5 @@
+import { Header } from "@/widgets/header";
+import { Container } from "@chakra-ui/react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,8 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <header>Header</header>
-      <main>{children}</main>
+      <Header />
+      <main>
+        <Container maxW={"1360px"}>{children}</Container>
+      </main>
       <footer>Footer</footer>
     </>
   );

@@ -22,3 +22,4 @@ export const AUTH_ROUTES = [
  * @type {string}
  */
 export const DEFAULT_LOGIN_REDIRECT = process.env.NEXT_PUBLIC_URL_MAIN!;
+export const PUBLIC_URL_MAIN = process.env.NEXT_PUBLIC_URL_MAIN!;

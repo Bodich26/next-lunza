@@ -36,6 +36,12 @@ const config = defineConfig({
     },
     semanticTokens: {
       colors: {
+        colorGrayWhite: {
+          value: {
+            base: "{colors.gray.200}",
+            _dark: "{colors.white}",
+          },
+        },
         borderColors: {
           value: {
             base: "{colors.border.light}",
