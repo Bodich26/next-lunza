@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Provider } from "@/shared";
 import "./globals.css";
+import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -21,6 +22,15 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
+        <NextTopLoader
+          color={"#be123c"}
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          showSpinner={false}
+          easing="ease"
+          speed={300}
+        />
         <Provider>{children}</Provider>
       </body>
     </html>

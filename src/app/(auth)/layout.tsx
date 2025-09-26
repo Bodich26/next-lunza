@@ -13,75 +13,73 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <div className="flex flex-col h-screen bg-cover bg-center bg-auth-image max-md:bg-none! overflow-x-hidden">
-        <header></header>
-        <main className="flex justify-between flex-grow">
-          <Flex
-            display={{ base: "none", md: "flex" }}
-            gap={"3"}
-            flexDirection={"column"}
-            justifyContent={"end"}
-            basis={"auto"}
-            flexGrow={"1"}
-            padding={{ base: "20px", md: "28px", lg: "72px" }}
+    <div className="flex flex-col h-screen bg-cover bg-center bg-auth-image max-md:bg-none! overflow-x-hidden">
+      <header></header>
+      <main className="flex justify-between flex-grow">
+        <Flex
+          display={{ base: "none", md: "flex" }}
+          gap={"3"}
+          flexDirection={"column"}
+          justifyContent={"end"}
+          basis={"auto"}
+          flexGrow={"1"}
+          padding={{ base: "20px", md: "28px", lg: "72px" }}
+        >
+          <Text
+            as={"h1"}
+            textTransform={"uppercase"}
+            fontSize={{ base: "7xl", lg: "8xl", xl: "9xl" }}
+            textAlign={"start"}
+            fontWeight={"bold"}
+            lineHeight={"0.82em"}
+            letterSpacing={"0.22em"}
+            color={"textWhite"}
           >
-            <Text
-              as={"h1"}
-              textTransform={"uppercase"}
-              fontSize={{ base: "7xl", lg: "8xl", xl: "9xl" }}
-              textAlign={"start"}
-              fontWeight={"bold"}
-              lineHeight={"0.82em"}
-              letterSpacing={"0.22em"}
-              color={"textWhite"}
-            >
-              Lunza
-            </Text>
+            Lunza
+          </Text>
 
-            <Text
-              as={"p"}
-              fontSize={{ base: "lg", lg: "2xl", xl: "3xl" }}
-              color={"textWhite"}
-            >
-              Общайся. Делись. Вдохновляй.
-            </Text>
-          </Flex>
+          <Text
+            as={"p"}
+            fontSize={{ base: "lg", lg: "2xl", xl: "3xl" }}
+            color={"textWhite"}
+          >
+            Общайся. Делись. Вдохновляй.
+          </Text>
+        </Flex>
+        <Flex
+          gap={"5"}
+          position={"relative"}
+          background={"backgroundPrimary"}
+          basis={{ base: "100%", md: "55%", lg: "48%" }}
+          height={"full"}
+          roundedLeft={{ base: "none", md: "xl" }}
+          padding={{ base: "3", xs: "5" }}
+          justifyContent={"center"}
+          alignItems={"center"}
+          flexDirection={"column"}
+          overflowY={"visible"}
+        >
+          <DecorCircle />
           <Flex
-            gap={"5"}
-            position={"relative"}
-            background={"backgroundPrimary"}
-            basis={{ base: "100%", md: "55%", lg: "48%" }}
-            height={"full"}
-            roundedLeft={{ base: "none", md: "xl" }}
-            padding={{ base: "3", xs: "5" }}
+            flex={1}
             justifyContent={"center"}
             alignItems={"center"}
-            flexDirection={"column"}
-            overflowY={"visible"}
+            zIndex={2}
           >
-            <DecorCircle />
-            <Flex
-              flex={1}
-              justifyContent={"center"}
-              alignItems={"center"}
-              zIndex={2}
-            >
-              {children}
-            </Flex>
-
-            <Text
-              fontSize={"sm"}
-              fontWeight={"light"}
-              width={"full"}
-              textAlign={"center"}
-            >
-              Bodich © 2025 — LUNZA
-            </Text>
+            {children}
           </Flex>
-        </main>
-        <footer></footer>
-      </div>
-    </>
+
+          <Text
+            fontSize={"sm"}
+            fontWeight={"light"}
+            width={"full"}
+            textAlign={"center"}
+          >
+            Bodich © 2025 — LUNZA
+          </Text>
+        </Flex>
+      </main>
+      <footer></footer>
+    </div>
   );
 }
