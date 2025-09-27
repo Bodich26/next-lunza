@@ -1,7 +1,14 @@
-import { IconAvatar } from "@/shared";
-import { Box, Flex, Separator } from "@chakra-ui/react";
+"use client";
+
+import React from "react";
+import { activeLinkMenu, IconAvatar, SidebarMenu } from "@/shared";
+import { Box, Flex, List, Separator } from "@chakra-ui/react";
+import { usePathname } from "next/navigation";
+import { SidebarItem } from "./sidebar-item";
 
 export const Sidebar = () => {
+  const pathName = usePathname();
+
   return (
     <Box
       width={"60px"}
@@ -32,10 +39,23 @@ export const Sidebar = () => {
       </Flex>
 
       {/** Center */}
-      <Flex justifyContent={"flex-start"} flexDirection={"column"} flexGrow={1}>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
+      <Flex
+        justifyContent={"flex-start"}
+        alignItems={"center"}
+        flexDirection={"column"}
+        flexGrow={1}
+      >
+        <List.Root as="ul" variant={"plain"} gap={"6"}>
+          {SidebarMenu.map((group) =>
+            group.list.map((link, linkIndex) => {
+              const isActive = activeLinkMenu(pathName, link.path);
+
+              return (
+                <SidebarItem key={linkIndex} link={link} isActive={isActive} />
+              );
+            })
+          )}
+        </List.Root>
       </Flex>
 
       {/** Bottom */}
