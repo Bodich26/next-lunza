@@ -1,6 +1,7 @@
-import { Header } from "@/widgets/header";
-import { Container } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
+import { Header, Sidebar } from "@/widgets";
 import type { Metadata } from "next";
+import { widthContainer } from "@/shared";
 
 export const metadata: Metadata = {
   title: "Lunza",
@@ -14,11 +15,17 @@ export default function RootLayout({
 }>) {
   return (
     <>
+      <Sidebar />
       <Header />
-      <main>
-        <Container maxW={"1360px"}>{children}</Container>
-      </main>
-      <footer>Footer</footer>
+      <Box
+        background={"backgroundPrimary"}
+        as={"main"}
+        className="max-[1530px]:pl-[50px] max-md:pl-[60px] min-h-screen"
+      >
+        <Container maxW={widthContainer} paddingTop={"100px"}>
+          {children}
+        </Container>
+      </Box>
     </>
   );
 }

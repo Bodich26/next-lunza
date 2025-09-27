@@ -7,3 +7,4 @@ export * from "./password-input";
 export { NoticeForm } from "./notice-form";
 export { CustomIcon } from "./custom-icon";
 export { Logo } from "./logo";
+export { IconAvatar } from "./icon-avatar";
