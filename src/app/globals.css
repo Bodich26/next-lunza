@@ -7,10 +7,29 @@
   background-image: none;
 }
 
+.isHover-icon-background {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.light .isHover-icon-background:hover {
+  background: var(--color-gray-200);
+}
+
+.dark .isHover-icon-background:hover {
+  background: var(--color-gray-700);
+}
+
 .sidebar-item-line::before {
   content: "";
   position: absolute;
-  height: 26px;
+  height: 36px;
   width: 2px;
   display: inline;
   background-color: var(--color-rose-700);

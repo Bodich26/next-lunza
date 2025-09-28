@@ -1,2 +1,2 @@
 export { widthContainer } from "./width-container";
-export { SidebarMenu } from "./sidebar-menu";
+export { sidebarMenu } from "./sidebar-menu";

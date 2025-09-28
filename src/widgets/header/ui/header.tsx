@@ -59,7 +59,12 @@ export const Header = () => {
                 Создать <BiPlus />
               </Button>
 
-              <CustomIcon value={10} icon={Bell} />
+              <CustomIcon
+                value={10}
+                icon={Bell}
+                iconHeight={26}
+                iconWidth={26}
+              />
             </Box>
 
             {/** Separator*/}

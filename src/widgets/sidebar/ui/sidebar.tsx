@@ -1,7 +1,6 @@
 "use client";
-
 import React from "react";
-import { activeLinkMenu, IconAvatar, SidebarMenu } from "@/shared";
+import { activeLinkMenu, CustomIcon, IconAvatar, sidebarMenu } from "@/shared";
 import { Box, Flex, List, Separator } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 import { SidebarItem } from "./sidebar-item";
@@ -46,12 +45,19 @@ export const Sidebar = () => {
         flexGrow={1}
       >
         <List.Root as="ul" variant={"plain"} gap={"6"}>
-          {SidebarMenu.map((group) =>
+          {sidebarMenu.map((group) =>
             group.list.map((link, linkIndex) => {
               const isActive = activeLinkMenu(pathName, link.path);
-
               return (
-                <SidebarItem key={linkIndex} link={link} isActive={isActive} />
+                <SidebarItem key={linkIndex} link={link} isActive={isActive}>
+                  <CustomIcon
+                    icon={link.icon}
+                    iconHeight={26}
+                    iconWidth={26}
+                    hoverEffect={isActive}
+                    value={link.value!}
+                  />
+                </SidebarItem>
               );
             })
           )}

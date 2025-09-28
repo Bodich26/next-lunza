@@ -4,6 +4,7 @@ export interface MenuItem {
   title: string;
   path: string;
   icon: LucideIcon;
+  value?: number;
 }
 
 export interface MenuGroup {
