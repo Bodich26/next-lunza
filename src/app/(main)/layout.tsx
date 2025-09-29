@@ -2,6 +2,7 @@ import { Box, Container } from "@chakra-ui/react";
 import { Header, Sidebar } from "@/widgets";
 import type { Metadata } from "next";
 import { widthContainer } from "@/shared";
+import { SidebarProvider } from "@/features/toggle-sidebar";
 
 export const metadata: Metadata = {
   title: "Lunza",
@@ -14,18 +15,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <Sidebar />
+    <SidebarProvider>
       <Header />
+      <Sidebar />
       <Box
         background={"backgroundPrimary"}
         as={"main"}
-        className="max-[1530px]:pl-[50px] max-md:pl-[60px] min-h-screen"
+        className="max-[1530px]:pl-[50px] max-md:pl-[0] min-h-screen"
       >
         <Container maxW={widthContainer} paddingTop={"100px"}>
           {children}
         </Container>
       </Box>
-    </>
+    </SidebarProvider>
   );
 }

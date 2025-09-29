@@ -1,3 +1,4 @@
+"ise client";
 import { Avatar } from "@chakra-ui/react";
 import Link from "next/link";
 import { PUBLIC_URL_PROFILE } from "routes";

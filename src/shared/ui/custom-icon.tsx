@@ -24,17 +24,21 @@ export const CustomIcon = ({
     : "isHover-icon-background ";
 
   return (
-    <Box position="relative" onClick={onClick}>
-      <div className={cn("cursor-pointer", activeClass)}>
-        <Icon width={iconWidth} height={iconHeight} />
-        {displayValue && (
-          <Float offsetX="1.5" offsetY="1.5">
-            <Circle size="5" bg="rose.700" color="white" fontSize="xs">
-              {displayValue}
-            </Circle>
-          </Float>
-        )}
-      </div>
+    <Box
+      position="relative"
+      cursor={"pointer"}
+      onClick={onClick}
+      className={cn(activeClass)}
+      padding={"1"}
+    >
+      <Icon width={iconWidth} height={iconHeight} />
+      {displayValue && (
+        <Float offsetX="1.5" offsetY="1.5">
+          <Circle size="5" bg="rose.700" color="white" fontSize="xs">
+            {displayValue}
+          </Circle>
+        </Float>
+      )}
     </Box>
   );
 };

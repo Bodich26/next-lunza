@@ -1,40 +1,15 @@
 "use client";
 import React from "react";
-import { Box, Flex, List, Separator } from "@chakra-ui/react";
-
 import { activeLinkMenu, CustomIcon, IconAvatar, sidebarMenu } from "@/shared";
-import { LogoutButton } from "@/features/auth";
-import { SidebarItem } from "./sidebar-item";
+import { Box, Flex, List, Separator } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
-import { useToggleSidebar } from "@/features/toggle-sidebar";
+import { SidebarItem } from "./sidebar-item";
+import { LogoutButton } from "@/features/auth";
 
-export const Sidebar = () => {
-  const { isOpen } = useToggleSidebar();
+export const SidebarContent = () => {
   const pathName = usePathname();
-  const sidebarDisplay = {
-    base: isOpen ? "flex" : "none",
-    md: "flex",
-  };
-
   return (
-    <Box
-      as={"aside"}
-      width={"60px"}
-      background="cardBackground"
-      paddingY="3"
-      paddingX="2"
-      wordBreak="break-word"
-      position={"fixed"}
-      top={"0"}
-      left={"0"}
-      zIndex={"100"}
-      height={"100vh"}
-      flexDirection={"column"}
-      justifyContent={"space-between"}
-      gap={"5"}
-      roundedBottomRight={"md"}
-      display={sidebarDisplay}
-    >
+    <>
       {/** Top */}
       <Flex flexDirection={"column"} justifyContent={"space-between"} gap={"5"}>
         <IconAvatar />
@@ -93,6 +68,6 @@ export const Sidebar = () => {
           Mode
         </Box>
       </Flex>
-    </Box>
+    </>
   );
 };

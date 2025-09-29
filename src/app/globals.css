@@ -11,8 +11,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
   border-radius: 50%;
   transition: background 0.2s;
   position: relative;
@@ -29,11 +27,12 @@
 .sidebar-item-line::before {
   content: "";
   position: absolute;
-  height: 36px;
+  height: 34px;
   width: 2px;
   display: inline;
   background-color: var(--color-rose-700);
-  left: 8px;
+  left: -5px;
+  transform: translateY(1px);
 }
 
 body {

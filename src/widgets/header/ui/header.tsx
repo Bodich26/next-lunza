@@ -1,4 +1,5 @@
 import { LogoutButton } from "@/features/auth";
+import { ToggleSidebarButton } from "@/features/toggle-sidebar";
 import { CustomIcon, Logo, widthContainer } from "@/shared";
 import { Box, Button, Container, Separator } from "@chakra-ui/react";
 import { Bell } from "lucide-react";
@@ -16,7 +17,7 @@ export const Header = () => {
       top="0"
       left="0"
       zIndex="10"
-      className="max-[1530px]:pl-[50px]! max-md:pl-[60px]!"
+      className="max-[1530px]:pl-[50px]! max-md:pl-[0px]!"
     >
       <Container maxW={widthContainer}>
         <Box
@@ -26,6 +27,7 @@ export const Header = () => {
         >
           {/** Left*/}
           <Box display={"flex"} alignItems={"center"} gap={"4"}>
+            <ToggleSidebarButton />
             {/** Logo*/}
             <Logo
               width={44}
@@ -39,8 +41,9 @@ export const Header = () => {
             <Separator
               background={"colorGrayWhite"}
               width={"0.5"}
-              height={42}
+              height={"40px"}
               rounded={"full"}
+              display={{ base: "none", md: "inherit" }}
             />
           </Box>
 
@@ -71,12 +74,13 @@ export const Header = () => {
             <Separator
               background={"colorGrayWhite"}
               width={"0.5"}
-              height={42}
+              height={"40px"}
               rounded={"full"}
+              display={{ base: "none", md: "inherit" }}
             />
 
             {/** Log-Out*/}
-            <LogoutButton />
+            <LogoutButton className={"block max-md:hidden"} />
           </Box>
         </Box>
       </Container>
