@@ -33,6 +33,7 @@ export const Header = () => {
               width={44}
               height={41}
               href={PUBLIC_URL_MAIN}
+              name="Lunza"
               alt={"Logo"}
               src={"/logo.svg"}
             />

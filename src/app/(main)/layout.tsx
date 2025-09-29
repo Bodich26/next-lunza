@@ -18,6 +18,7 @@ export default function RootLayout({
     <SidebarProvider>
       <Header />
       <Sidebar />
+
       <Box
         background={"backgroundPrimary"}
         as={"main"}
