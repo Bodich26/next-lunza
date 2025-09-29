@@ -8,6 +8,7 @@ import { SidebarItem } from "./sidebar-item";
 import { usePathname } from "next/navigation";
 import { useToggleSidebar } from "@/features/toggle-sidebar";
 import { SidebarOverlay } from "./sidebar-overlay";
+import { ToggleDarkModeButton } from "@/features/dark-mode";
 
 export const Sidebar = () => {
   const { isOpen, handleToggleSidebar } = useToggleSidebar();
@@ -96,9 +97,8 @@ export const Sidebar = () => {
             w={"full"}
             rounded={"full"}
           />
-          <Box height={"86px"} background={"GrayText"} rounded={"lg"}>
-            Mode
-          </Box>
+
+          <ToggleDarkModeButton />
         </Flex>
       </Box>
     </>
