@@ -5,6 +5,7 @@ const config = defineConfig({
   theme: {
     breakpoints: {
       xs: "375px",
+      smPlus: "560px",
     },
     tokens: {
       colors: {

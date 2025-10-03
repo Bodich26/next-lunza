@@ -1,32 +1,102 @@
-export default function Profile() {
+import {
+  CopyIdButton,
+  UserAvatar,
+  UserDataReg,
+  UserDescription,
+  UserName,
+} from "@/entities/user";
+import { UpdateBannerButton } from "@/features/profile/update-banner";
+import { Box, Flex, Image } from "@chakra-ui/react";
+
+export default async function Profile() {
   return (
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod dolorem
-      praesentium error rerum, deleniti, dolores optio, debitis et cumque vel
-      minus eius illum explicabo magni vitae id. Sunt, officiis blanditiis!
-      Molestiae nulla maiores asperiores? Molestiae obcaecati sapiente eos
-      cupiditate, culpa aperiam dolorem, ratione perspiciatis possimus nulla,
-      perferendis assumenda dolorum vero. Earum, repellendus commodi. Animi
-      voluptatibus consequuntur reiciendis? Recusandae, non unde. Unde
-      temporibus qui pariatur minus ullam, dignissimos itaque fugiat ipsum
-      possimus laborum tempore libero voluptate sint nesciunt quae, blanditiis
-      voluptates, eligendi laboriosam sed officia hic officiis? Aspernatur totam
-      itaque eos. Expedita aperiam quos ea quas. Necessitatibus enim, quisquam
-      quis reiciendis deleniti cumque impedit, nesciunt consectetur quasi cum
-      saepe commodi iste? Obcaecati officiis nulla sequi et eum dolores
-      similique sit dolor? Error cum animi sint, illum ipsa veniam, impedit
-      fugiat nulla ipsum, dolor aliquid? Reprehenderit nostrum deserunt eligendi
-      quis, sunt perferendis dolorum ducimus id? Modi, libero. Consequatur,
-      voluptatem. Obcaecati, ipsa soluta? Aut quae unde ratione fugit veritatis
-      vitae assumenda adipisci neque. Blanditiis possimus nam, expedita fugiat
-      nesciunt, molestias saepe, doloribus animi in necessitatibus aperiam dolor
-      assumenda quo. Autem atque aut voluptatibus! Eveniet ad culpa, ab
-      laudantium quas eius. Cupiditate, nam dolor? Nobis, aperiam possimus.
-      Impedit corporis, dolores deleniti dolore ducimus modi delectus adipisci
-      praesentium quibusdam nostrum laboriosam in quod minima repudiandae!
-      Nesciunt eveniet odio, a maiores in temporibus similique quam! Soluta
-      debitis, vel quibusdam aperiam totam consequuntur error sit fugit est!
-      Iste omnis exercitationem aliquam, aspernatur distinctio neque. Commodi,
-    </p>
+    <>
+      <Box w={"full"} h={"192px"} position={"relative"}>
+        {/* Баннер */}
+        <Image
+          position={"absolute"}
+          roundedTop="md"
+          width={"full"}
+          height={"192px"}
+          objectFit={"cover"}
+          src="/profile-banner.jpg"
+          alt="Profile Banner"
+        />
+        <Flex
+          justifyContent={"end"}
+          padding={4}
+          position="absolute"
+          top={0}
+          right={0}
+          zIndex={1}
+        >
+          {/* Кнопка изменения баннера */}
+          <UpdateBannerButton />
+        </Flex>
+      </Box>
+      <Box
+        width={"full"}
+        position={"relative"}
+        background={"cardBackground"}
+        roundedBottom={"md"}
+        paddingX={4}
+        paddingBottom={4.5}
+        display={"flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        gap={7}
+      >
+        <Box
+          w={"960px"}
+          display={"flex"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          flexWrap={"wrap"}
+          position="relative"
+        >
+          {/* Аватарка */}
+          <Box
+            position="absolute"
+            top={{ base: "-60px", mdDown: "-110px" }}
+            left={{ mdDown: "50%" }}
+            transform={{ mdDown: "translateX(-50%)" }}
+            zIndex={2}
+            width={{ smPlusDown: "100%" }}
+            margin={{ smPlusDown: "0 auto" }}
+          >
+            <UserAvatar
+              altAvatar={"Profile Avatar"}
+              urlAvatar={"./avatar.jpg"}
+            />
+          </Box>
+
+          {/* Контент справа */}
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            gap={7}
+            justifyContent={"space-between"}
+            flexDirection={{ base: "column", smPlus: "row" }}
+            flexBasis={{ base: "100%", md: "80%" }}
+            marginLeft={{ base: "0px", md: "200px" }}
+            marginTop={{ base: "70px", md: "0px" }}
+          >
+            {/** User Info*/}
+
+            <Flex flexDirection={"column"} gap={"8px"}>
+              <UserName name="Эщькерешка" />
+              <UserDescription
+                text="Я люблю создавать, экспериментировать с идеями и постоянно
+                развиваюсь, открывая новое и необычное."
+              />
+              <UserDataReg data="01.10.2025" />
+            </Flex>
+
+            {/* Кнопка */}
+            <CopyIdButton />
+          </Box>
+        </Box>
+      </Box>
+    </>
   );
 }
