@@ -14,6 +14,17 @@ export async function signUp(formData: FormData) {
     process.env.NEXT_PUBLIC_URL_REGISTER!
   );
 
+  const { data: existingUser } = await supabase
+    .from("profiles")
+    .select("id")
+    .eq("username", name)
+    .limit(1)
+    .single();
+
+  if (existingUser) {
+    return { error: "Этот псевдоним уже занят, введите другой" };
+  }
+
   const { error } = await supabase.auth.signUp({
     email,
     password,
