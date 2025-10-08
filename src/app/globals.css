@@ -3,9 +3,6 @@
 .bg-auth-image {
   background-image: url("../../public/bg-auth-lunza.jpeg");
 }
-.bg-profile-banner {
-  background: url("../../public/profile-banner.jpg") no-repeat center / cover;
-}
 
 .shadow-black {
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.3);

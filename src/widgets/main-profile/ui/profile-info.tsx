@@ -5,14 +5,24 @@ import {
   UserDescription,
   UserName,
 } from "@/entities/user";
+import { formatDate } from "@/shared";
 import { Box, Flex } from "@chakra-ui/react";
 
 type Props = {
   username: string;
   avatarUrl: string;
+  avatarAlt: string;
+  about: string;
+  date: string;
 };
 
-export const ProfileInfo = ({ username, avatarUrl }: Props) => {
+export const ProfileInfo = ({
+  username,
+  avatarUrl,
+  avatarAlt,
+  about,
+  date,
+}: Props) => {
   return (
     <Box
       width={"full"}
@@ -37,14 +47,15 @@ export const ProfileInfo = ({ username, avatarUrl }: Props) => {
         {/* Аватарка */}
         <Box
           position="absolute"
-          top={{ base: "-60px", mdDown: "-110px" }}
+          bottom={"0"}
+          top={{ base: "none", mdDown: "-110px" }}
           left={{ mdDown: "50%" }}
           transform={{ mdDown: "translateX(-50%)" }}
           zIndex={2}
           width={{ smPlusDown: "100%" }}
           margin={{ smPlusDown: "0 auto" }}
         >
-          <UserAvatar altAvatar={"Profile Avatar"} urlAvatar={avatarUrl} />
+          <UserAvatar altAvatar={avatarAlt} urlAvatar={avatarUrl} />
         </Box>
 
         {/* Контент справа */}
@@ -60,13 +71,10 @@ export const ProfileInfo = ({ username, avatarUrl }: Props) => {
         >
           {/** User Info*/}
 
-          <Flex flexDirection={"column"} gap={"8px"}>
-            <UserName name={username} />
-            <UserDescription
-              text="Я люблю создавать, экспериментировать с идеями и постоянно
-                                развиваюсь, открывая новое и необычное."
-            />
-            <UserDataReg data="01.10.2025" />
+          <Flex flexDirection={"column"} gap={"8px"} width={"100%"}>
+            <UserName name={username || "Unknown"} />
+            <UserDescription text={about || ""} />
+            <UserDataReg date={formatDate(date) || "Ошибка даты"} />
           </Flex>
 
           {/* Кнопка */}

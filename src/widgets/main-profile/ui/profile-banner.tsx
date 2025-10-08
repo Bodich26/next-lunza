@@ -1,7 +1,11 @@
 import { UpdateBannerButton } from "@/features/profile/update-banner";
 import { Box, Flex, Image } from "@chakra-ui/react";
 
-export const ProfileBanner = () => {
+type Props = {
+  altBanner: string;
+  urlBanner: string;
+};
+export const ProfileBanner = ({ urlBanner, altBanner }: Props) => {
   return (
     <Box w={"full"} h={"192px"} position={"relative"}>
       {/* Баннер */}
@@ -11,8 +15,8 @@ export const ProfileBanner = () => {
         width={"full"}
         height={"192px"}
         objectFit={"cover"}
-        src="/profile-banner.jpg"
-        alt="Profile Banner"
+        src={urlBanner ?? "/default-banner-profile.jpg"}
+        alt={altBanner ?? "Profile Banner"}
       />
       <Flex
         justifyContent={"end"}

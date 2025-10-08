@@ -7,12 +7,12 @@ type Props = {
 export const UserAvatar = ({ urlAvatar, altAvatar }: Props) => {
   return (
     <Image
-      width={"176px"}
-      height={"176px"}
+      width={{ base: "176px", smPlusDown: "154px" }}
+      height={{ base: "176px", smPlusDown: "154px" }}
       rounded={"full"}
       objectFit={"cover"}
-      src={urlAvatar}
-      alt={altAvatar}
+      src={urlAvatar ?? "/user_default_avatar.svg"}
+      alt={altAvatar ?? "Profile Avatar"}
       borderColor={"cardBackground"}
       margin={{ smPlusDown: "0 auto" }}
       className="border-[5px] border-solid shadow-black"

@@ -1,12 +1,16 @@
 "use client";
 import { useMyProfileApi } from "@/entities/user";
-import { MainProfile } from "@/widgets/main-profile";
+import {
+  ProfileBanner,
+  ProfileInfo,
+  ProfileSkeleton,
+} from "@/widgets/main-profile";
 
 export default function Profile() {
   const { data: profile, isLoading, error } = useMyProfileApi();
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <ProfileSkeleton />;
   }
   if (error) {
     return <p>{error.message}</p>;
@@ -16,6 +20,18 @@ export default function Profile() {
   }
 
   return (
-    <MainProfile username={profile.username} avatar_url={profile.avatar_url} />
+    <>
+      <ProfileBanner
+        altBanner={"Profile Banner"}
+        urlBanner={profile.banner_url}
+      />
+      <ProfileInfo
+        username={profile.username}
+        avatarUrl={profile.avatar_url}
+        avatarAlt={"Avatar Profile"}
+        about="Я люблю создавать, экспериментировать с идеями и постоянно развиваюсь, открывая новое и необычное."
+        date={profile.created_at}
+      />
+    </>
   );
 }

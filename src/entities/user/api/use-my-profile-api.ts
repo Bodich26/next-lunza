@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import {
   TypeUserProfile,
   TypeUserProfileRes,
@@ -26,5 +26,7 @@ export const useMyProfileApi = () => {
     queryFn: fetchMyProfile,
     retry: 1,
     refetchOnReconnect: true,
+    refetchOnWindowFocus: true,
+    placeholderData: keepPreviousData,
   });
 };
