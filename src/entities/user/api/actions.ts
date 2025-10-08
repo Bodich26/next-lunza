@@ -1,38 +1,31 @@
 "use server";
 import { createClient } from "@/shared/lib/supabase/server";
 
-export async function getCurrentUserProfile(userId?: string) {
-  const supabase = await createClient();
-
+export async function getUserProfile(userId: string) {
   try {
-    let idToFetch = userId;
+    const supabase = await createClient();
 
-    if (!idToFetch) {
-      const { data: currentUserData, error: currentUserError } =
-        await supabase.auth.getUser();
-
-      if (currentUserError || !currentUserData?.user) {
-        return { error: "Не удалось определить текущего пользователя." };
-      }
-
-      idToFetch = currentUserData.user.id;
+    if (!userId) {
+      return {
+        error: "Не удалось получить профиль пользователя ID непередан.",
+      };
     }
 
     const { data: userProfile, error: userProfileError } = await supabase
       .from("profiles")
       .select("*")
-      .eq("id", idToFetch)
+      .eq("id", userId)
       .single();
 
-    if (userProfileError || !userProfile) {
+    if (!userProfile || userProfileError) {
       return {
         error: "Не удалось получить профиль пользователя.",
       };
     }
 
     return { success: true, data: userProfile };
-  } catch (err) {
-    console.log(err);
-    return { error: "Произошла непредвиденная ошибка. Попробуйте позже." };
+  } catch (error) {
+    console.error(error);
+    return { error: "Произошла непредвиденная ошибка, попробуйте позже." };
   }
 }

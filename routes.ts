@@ -1,5 +1,12 @@
 /**
  * Accessible to the public
+ * @type {string[]}
+ */
+export const BASE_ROUTE_API = process.env.NEXT_PUBLIC_API!;
+export const MY_PROFILE_ROUTE_API = process.env.NEXT_PUBLIC_API_MY_PROFILE!;
+
+/**
+ * Accessible to the public
  * These routes do not require authentication
  * @type {string[]}
  */

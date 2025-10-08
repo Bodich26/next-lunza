@@ -1,8 +1,21 @@
-import { getCurrentUserProfile } from "@/entities/user";
+"use client";
+import { useMyProfileApi } from "@/entities/user";
 import { MainProfile } from "@/widgets/main-profile";
-const { data: profile, error } = await getCurrentUserProfile();
-console.log(profile);
 
-export default async function Profile() {
-  return <MainProfile profile={profile} />;
+export default function Profile() {
+  const { data: profile, isLoading, error } = useMyProfileApi();
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>{error.message}</p>;
+  }
+  if (!profile) {
+    return <p>Профиль не найден</p>;
+  }
+
+  return (
+    <MainProfile username={profile.username} avatar_url={profile.avatar_url} />
+  );
 }
