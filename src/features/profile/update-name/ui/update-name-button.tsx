@@ -1,5 +1,12 @@
 import { PencilButton } from "@/shared";
+import { useUpdateName } from "../model/use-update-name";
 
-export const UpdateNameButton = () => {
-  return <PencilButton onClick={() => console.log("ff")} />;
+type Props = {
+  userId: string;
+  newName: string;
+};
+
+export const UpdateNameButton = ({ userId, newName }: Props) => {
+  const { handleSubmit } = useUpdateName(newName, userId);
+  return <PencilButton onClick={handleSubmit} />;
 };

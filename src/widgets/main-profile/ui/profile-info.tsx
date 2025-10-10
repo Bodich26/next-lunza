@@ -27,6 +27,8 @@ export const ProfileInfo = ({
   date,
   userId,
 }: Props) => {
+  console.log(userId);
+
   return (
     <Box
       width={"full"}
@@ -88,7 +90,7 @@ export const ProfileInfo = ({
           >
             <Box display={"flex"} alignItems={"center"} gap={3}>
               <UserName name={username || "Unknown"} />
-              <UpdateNameButton />
+              <UpdateNameButton userId={userId} newName={"Bodich Syper"} />
             </Box>
             <Box display={"flex"} alignItems={"flex-start"} gap={3}>
               <UserAbout text={about || ""} />

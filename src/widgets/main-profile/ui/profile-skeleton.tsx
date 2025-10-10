@@ -3,7 +3,7 @@ import { Box, Flex, Skeleton, SkeletonCircle } from "@chakra-ui/react";
 export const ProfileSkeleton = () => {
   return (
     <>
-      <Box w="full" h="187px" position="relative">
+      <Box w="full" h="192px" position="relative">
         <Skeleton
           position="absolute"
           roundedTop="md"
@@ -70,7 +70,7 @@ export const ProfileSkeleton = () => {
                 background={"graysColor"}
               />
               <Skeleton
-                h="46px"
+                h="65px"
                 w="85%"
                 variant={"shine"}
                 background={"graysColor"}
