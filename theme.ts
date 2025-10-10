@@ -30,6 +30,7 @@ const config = defineConfig({
         shadow: { value: "#242424" },
         light: { value: "#F2F0F1" },
         dark: { value: "#1c1c1c" },
+        silver: { value: "#2e2e2e" },
         border: {
           light: { value: "#DDDDE0" },
         },
@@ -86,6 +87,12 @@ const config = defineConfig({
           value: {
             base: "{colors.white}",
             _dark: "{colors.black}",
+          },
+        },
+        graysColor: {
+          value: {
+            base: "{colors.gray.200}",
+            _dark: "{colors.silver}",
           },
         },
       },

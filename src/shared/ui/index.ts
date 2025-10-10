@@ -8,3 +8,5 @@ export { NoticeForm } from "./notice-form";
 export { CustomIcon } from "./custom-icon";
 export { Logo } from "./logo";
 export { IconAvatar } from "./icon-avatar";
+export { ShowErrors } from "./show-errors";
+export { PencilButton } from "./pencil-button";

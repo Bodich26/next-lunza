@@ -3,12 +3,14 @@ import { Box, Flex, Skeleton, SkeletonCircle } from "@chakra-ui/react";
 export const ProfileSkeleton = () => {
   return (
     <>
-      <Box w="full" h="192px" position="relative">
+      <Box w="full" h="187px" position="relative">
         <Skeleton
           position="absolute"
           roundedTop="md"
           width="full"
           height="192px"
+          variant={"shine"}
+          background={"graysColor"}
         />
       </Box>
 
@@ -43,7 +45,11 @@ export const ProfileSkeleton = () => {
             width={{ base: "176px", smPlusDown: "154px" }}
             height={{ base: "176px", smPlusDown: "154px" }}
           >
-            <SkeletonCircle size={{ base: "176px", smPlusDown: "154px" }} />
+            <SkeletonCircle
+              size={{ base: "176px", smPlusDown: "154px" }}
+              variant={"shine"}
+              background={"graysColor"}
+            />
           </Box>
 
           <Box
@@ -57,15 +63,32 @@ export const ProfileSkeleton = () => {
             marginTop={{ base: "70px", md: "0px" }}
           >
             <Flex flexDirection="column" gap="8px" width="100%" mt={"10px"}>
-              <Skeleton h="38px" w="40%" /> {/* Имя */}
-              <Skeleton h="48px" w="85%" /> {/* Описание */}
-              <Skeleton h="24px" w="33%" /> {/* Дата регистрации */}
+              <Skeleton
+                h="36px"
+                w="40%"
+                variant={"shine"}
+                background={"graysColor"}
+              />
+              <Skeleton
+                h="46px"
+                w="85%"
+                variant={"shine"}
+                background={"graysColor"}
+              />
+              <Skeleton
+                h="23px"
+                w="33%"
+                variant={"shine"}
+                background={"graysColor"}
+              />
             </Flex>
 
             <Skeleton
-              h="40px"
+              h="38px"
               rounded="md"
               width={{ base: "134px", smDown: "full" }}
+              variant={"shine"}
+              background={"graysColor"}
             />
           </Box>
         </Box>

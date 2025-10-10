@@ -1,10 +1,12 @@
 import {
   CopyIdButton,
+  UserAbout,
   UserAvatar,
   UserDataReg,
-  UserDescription,
   UserName,
 } from "@/entities/user";
+import { UpdateAboutButton } from "@/features/profile/update-about";
+import { UpdateNameButton } from "@/features/profile/update-name";
 import { formatDate } from "@/shared";
 import { Box, Flex } from "@chakra-ui/react";
 
@@ -14,6 +16,7 @@ type Props = {
   avatarAlt: string;
   about: string;
   date: string;
+  userId: string;
 };
 
 export const ProfileInfo = ({
@@ -22,6 +25,7 @@ export const ProfileInfo = ({
   avatarAlt,
   about,
   date,
+  userId,
 }: Props) => {
   return (
     <Box
@@ -48,14 +52,20 @@ export const ProfileInfo = ({
         <Box
           position="absolute"
           bottom={"0"}
+          h={"176px"}
           top={{ base: "none", mdDown: "-110px" }}
           left={{ mdDown: "50%" }}
           transform={{ mdDown: "translateX(-50%)" }}
           zIndex={2}
-          width={{ smPlusDown: "100%" }}
           margin={{ smPlusDown: "0 auto" }}
         >
-          <UserAvatar altAvatar={avatarAlt} urlAvatar={avatarUrl} />
+          <UserAvatar
+            altAvatar={avatarAlt}
+            urlAvatar={avatarUrl}
+            size="md"
+            isOwner={true}
+            userId={userId}
+          />
         </Box>
 
         {/* Контент справа */}
@@ -71,9 +81,19 @@ export const ProfileInfo = ({
         >
           {/** User Info*/}
 
-          <Flex flexDirection={"column"} gap={"8px"} width={"100%"}>
-            <UserName name={username || "Unknown"} />
-            <UserDescription text={about || ""} />
+          <Flex
+            flexDirection={"column"}
+            gap={"8px"}
+            width={{ base: "60%", smPlusDown: "100%" }}
+          >
+            <Box display={"flex"} alignItems={"center"} gap={3}>
+              <UserName name={username || "Unknown"} />
+              <UpdateNameButton />
+            </Box>
+            <Box display={"flex"} alignItems={"flex-start"} gap={3}>
+              <UserAbout text={about || ""} />
+              <UpdateAboutButton />
+            </Box>
             <UserDataReg date={formatDate(date) || "Ошибка даты"} />
           </Flex>
 
