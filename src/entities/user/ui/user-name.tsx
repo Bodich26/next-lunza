@@ -5,7 +5,12 @@ type Props = {
 };
 export const UserName = ({ name }: Props) => {
   return (
-    <Heading as={"h3"} color={"textPrimary"} fontWeight={"medium"} size={"3xl"}>
+    <Heading
+      as={"h3"}
+      color={"textPrimary"}
+      fontWeight={"medium"}
+      size={{ base: "3xl", smDown: "2xl" }}
+    >
       {name}
     </Heading>
   );

@@ -3,11 +3,10 @@ import {
   UserAbout,
   UserAvatar,
   UserDataReg,
-  UserName,
 } from "@/entities/user";
 import { UpdateAboutButton } from "@/features/profile/update-about";
-import { UpdateNameButton } from "@/features/profile/update-name";
-import { formatDate } from "@/shared";
+import { EditingName } from "@/features/profile/update-name";
+import { formatDate, profileAboutHint } from "@/shared";
 import { Box, Flex } from "@chakra-ui/react";
 
 type Props = {
@@ -27,8 +26,6 @@ export const ProfileInfo = ({
   date,
   userId,
 }: Props) => {
-  console.log(userId);
-
   return (
     <Box
       width={"full"}
@@ -79,7 +76,7 @@ export const ProfileInfo = ({
           flexDirection={{ base: "column", smPlus: "row" }}
           flexBasis={{ base: "100%", md: "80%" }}
           marginLeft={{ base: "0px", md: "200px" }}
-          marginTop={{ base: "70px", md: "0px" }}
+          marginTop={{ base: "70px", md: "10px" }}
         >
           {/** User Info*/}
 
@@ -88,13 +85,10 @@ export const ProfileInfo = ({
             gap={"8px"}
             width={{ base: "60%", smPlusDown: "100%" }}
           >
-            <Box display={"flex"} alignItems={"center"} gap={3}>
-              <UserName name={username || "Unknown"} />
-              <UpdateNameButton userId={userId} newName={"Bodich Syper"} />
-            </Box>
+            <EditingName username={username} userId={userId} />
             <Box display={"flex"} alignItems={"flex-start"} gap={3}>
-              <UserAbout text={about || ""} />
-              <UpdateAboutButton />
+              <UserAbout text={about || profileAboutHint} />
+              <UpdateAboutButton userId={userId} text={""} />
             </Box>
             <UserDataReg date={formatDate(date) || "Ошибка даты"} />
           </Flex>

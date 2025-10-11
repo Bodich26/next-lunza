@@ -33,7 +33,7 @@ export default function Profile() {
         username={profile.username}
         avatarUrl={profile.avatar_url}
         avatarAlt={"Avatar Profile"}
-        about="Я люблю создавать, экспериментировать с идеями и постоянно развиваюсь, открывая новое и необычное."
+        about={profile.about}
         date={profile.created_at}
       />
     </>

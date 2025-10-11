@@ -2,16 +2,12 @@
 
 import { createClient } from "@/shared/lib/supabase/server";
 
-export async function updateName(userId: string, newName: string) {
+export async function updateAbout(userId: string, text: string) {
   try {
     const supabase = await createClient();
 
     if (!userId) {
       return { error: "Не удалось определить пользователя." };
-    }
-
-    if (!newName || !newName.trim()) {
-      return { error: "Имя не может быть пустым." };
     }
 
     const {
@@ -27,20 +23,9 @@ export async function updateName(userId: string, newName: string) {
       return { error: "Id текущего пользователя несовпадает с переданым Id." };
     }
 
-    const { data: existingUser } = await supabase
-      .from("profiles")
-      .select("id")
-      .eq("username", newName)
-      .limit(1)
-      .single();
-
-    if (existingUser) {
-      return { error: "Этот псевдоним уже занят, введите другой" };
-    }
-
     const { data, error: updateError } = await supabase
       .from("profiles")
-      .update({ username: newName })
+      .update({ about: text })
       .eq("id", userId);
 
     if (updateError) {

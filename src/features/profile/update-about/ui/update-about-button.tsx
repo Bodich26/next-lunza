@@ -1,5 +1,12 @@
 import { PencilButton } from "@/shared";
+import { useUpdateAbout } from "../model/use-update-about";
 
-export const UpdateAboutButton = () => {
-  return <PencilButton onClick={() => console.log("ff")} />;
+type Props = {
+  userId: string;
+  text: string;
+};
+
+export const UpdateAboutButton = ({ userId, text }: Props) => {
+  const { handleSubmit } = useUpdateAbout(text, userId);
+  return <PencilButton onClick={handleSubmit} />;
 };

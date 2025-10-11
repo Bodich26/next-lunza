@@ -1,6 +1,6 @@
 export * from "./color-mode";
 export { Provider } from "./provider";
-export { Toaster } from "./toaster";
+export { Toaster, toaster } from "./toaster";
 export { Tooltip } from "./tooltip";
 export { DecorCircle } from "./decor-circle";
 export * from "./password-input";
@@ -10,3 +10,4 @@ export { Logo } from "./logo";
 export { IconAvatar } from "./icon-avatar";
 export { ShowErrors } from "./show-errors";
 export { PencilButton } from "./pencil-button";
+export { FloatingLabelInput } from "./floating-label-input";

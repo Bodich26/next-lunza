@@ -1,7 +1,7 @@
 import { Box, Container } from "@chakra-ui/react";
 import { Header, Sidebar } from "@/widgets";
 import type { Metadata } from "next";
-import { widthContainer } from "@/shared";
+import { Toaster, widthContainer } from "@/shared";
 import { SidebarProvider } from "@/features/toggle-sidebar";
 
 export const metadata: Metadata = {
@@ -18,6 +18,7 @@ export default function RootLayout({
     <SidebarProvider>
       <Header />
       <Sidebar />
+      <Toaster />
 
       <Box
         background={"backgroundPrimary"}
