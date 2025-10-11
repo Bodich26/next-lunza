@@ -1,1 +1,1 @@
-export { UpdateAboutButton } from "./ui/update-about-button";
+export { EditingAbout } from "./ui/editing-about";
