@@ -80,7 +80,7 @@ export const ProfileInfo = ({
             gap={"8px"}
             width={{ base: "60%", smPlusDown: "100%" }}
           >
-            <EditingName username={username} userId={userId} />
+            <EditingName username={username} />
             <EditingAbout about={about} userId={userId} />
             <UserDataReg date={formatDate(date) || "Ошибка даты"} />
           </Flex>

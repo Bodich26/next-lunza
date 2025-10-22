@@ -2,9 +2,7 @@
 import { useEffect } from "react";
 
 type UseClickOutsideOptions = {
-  /** Срабатывает, если клик вне контейнера */
   onOutsideClick: () => void;
-  /** Флаг: активен ли обработчик (чтобы не слушать всегда) */
   enabled?: boolean;
 };
 

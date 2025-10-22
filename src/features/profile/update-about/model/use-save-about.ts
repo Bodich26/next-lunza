@@ -40,6 +40,7 @@ export const useSaveAbout = ({ about, userId }: Props) => {
         type: "success",
         closable: true,
       });
+      window.location.reload();
     }
   };
   return {

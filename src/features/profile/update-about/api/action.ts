@@ -1,5 +1,4 @@
 "use server";
-
 import { createClient } from "@/shared/lib/supabase/server";
 
 export async function updateAbout(userId: string, text: string) {

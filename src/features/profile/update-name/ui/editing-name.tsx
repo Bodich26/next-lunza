@@ -1,35 +1,37 @@
 "use client";
 import { UserName } from "@/entities/user";
 import { Box } from "@chakra-ui/react";
-import { InputName } from "./input-name";
-import { EditingNameButton } from "./editing-name-button";
-import { SaveNameButton } from "./save-name-button";
-import { useSaveName } from "../model/use-save-name";
+import { NewNameForm } from "./new-name-form";
+import React from "react";
+import { PencilButton, useClickOutside } from "@/shared";
 
 type Props = {
   username: string;
-  userId: string;
 };
 
-export const EditingName = ({ username, userId }: Props) => {
-  const utils = useSaveName({ username, userId });
+export const EditingName = ({ username }: Props) => {
+  const [isEditingName, setIsEditingName] = React.useState<boolean>(false);
+  const [newName, setNewName] = React.useState<string>(username);
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+
+  useClickOutside(containerRef, {
+    enabled: isEditingName,
+    onOutsideClick: () => {
+      setIsEditingName(false);
+      setNewName(username);
+    },
+  });
 
   return (
-    <Box
-      display={"flex"}
-      alignItems={"center"}
-      gap={3}
-      ref={utils.containerRef}
-    >
-      {!utils.isEditingName ? (
+    <Box display={"flex"} alignItems={"center"} gap={3} ref={containerRef}>
+      {!isEditingName ? (
         <>
           <UserName name={username || "Unknown"} />
-          <EditingNameButton onClick={() => utils.setIsEditingName(true)} />
+          <PencilButton onClick={() => setIsEditingName(true)} />
         </>
       ) : (
         <>
-          <InputName value={utils.newName} onChange={utils.setNewName} />
-          <SaveNameButton onClick={utils.handleSaveName} />
+          <NewNameForm value={newName} onChange={setNewName} />
         </>
       )}
     </Box>

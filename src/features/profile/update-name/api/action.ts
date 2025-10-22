@@ -1,10 +1,19 @@
 "use server";
 
 import { createClient } from "@/shared/lib/supabase/server";
+import { nameSchema } from "../model/name-schema";
 
-export async function updateName(userId: string, newName: string) {
+export async function updateName(formData: FormData, userId: string) {
   try {
     const supabase = await createClient();
+    const userData = Object.fromEntries(formData);
+    const validationFailed = nameSchema.safeParse(userData);
+
+    if (!validationFailed.success) {
+      return { error: "Данные невалидны" };
+    }
+
+    const { name: newName } = validationFailed.data;
 
     if (!userId) {
       return { error: "Не удалось определить пользователя." };
