@@ -1,9 +1,18 @@
 "use server";
 import { createClient } from "@/shared/lib/supabase/server";
+import { aboutSchema } from "../model/about-schema";
 
-export async function updateAbout(userId: string, text: string) {
+export async function updateAbout(formData: FormData, userId: string) {
   try {
     const supabase = await createClient();
+    const userData = Object.fromEntries(formData);
+    const validationFailed = aboutSchema.safeParse(userData);
+
+    if (!validationFailed.success) {
+      return { error: "Данные невалидны" };
+    }
+
+    const { about: text } = validationFailed.data;
 
     if (!userId) {
       return { error: "Не удалось определить пользователя." };

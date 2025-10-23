@@ -1,36 +1,37 @@
 "use client";
+import React from "react";
 import { UserAbout } from "@/entities/user";
 import { Box } from "@chakra-ui/react";
-import { useSaveAbout } from "../model/use-save-about";
-import { EditingAboutButton } from "./editing-about-button";
-import { InputAbout } from "./input-about";
-import { SaveAboutButton } from "./save-about-button";
-import { profileAboutHint } from "@/shared";
+import { PencilButton, profileAboutHint, useClickOutside } from "@/shared";
+import { NewAboutForm } from "./new-about-form";
 
 type Props = {
   about: string;
-  userId: string;
 };
 
-export const EditingAbout = ({ about, userId }: Props) => {
-  const utils = useSaveAbout({ about, userId });
+export const EditingAbout = ({ about }: Props) => {
+  const [isEditingAbout, setIsEditingAbout] = React.useState<boolean>(false);
+  const [newAbout, setNewAbout] = React.useState<string>(about);
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+
+  useClickOutside(containerRef, {
+    enabled: isEditingAbout,
+    onOutsideClick: () => {
+      setIsEditingAbout(false);
+      setNewAbout(about);
+    },
+  });
 
   return (
-    <Box
-      display={"flex"}
-      alignItems={"center"}
-      gap={3}
-      ref={utils.containerRef}
-    >
-      {!utils.isEditingText ? (
+    <Box display={"flex"} alignItems={"center"} gap={3} ref={containerRef}>
+      {!isEditingAbout ? (
         <>
           <UserAbout text={about || profileAboutHint} />
-          <EditingAboutButton onClick={() => utils.setIsEditingText(true)} />
+          <PencilButton onClick={() => setIsEditingAbout(true)} />
         </>
       ) : (
         <>
-          <InputAbout value={utils.newText} onChange={utils.setNewText} />
-          <SaveAboutButton onClick={utils.handleSaveText} />
+          <NewAboutForm value={newAbout} onChange={setNewAbout} />
         </>
       )}
     </Box>
