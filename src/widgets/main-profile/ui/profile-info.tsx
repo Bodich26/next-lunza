@@ -35,7 +35,7 @@ export const ProfileInfo = ({
       gap={7}
     >
       <Box
-        w={"960px"}
+        w={"1060px"}
         display={"flex"}
         justifyContent={"space-between"}
         alignItems={"center"}
@@ -47,7 +47,7 @@ export const ProfileInfo = ({
           position="absolute"
           bottom={"0"}
           h={"176px"}
-          top={{ base: "none", mdDown: "-110px" }}
+          top={{ base: "-40px", mdDown: "-110px" }}
           left={{ mdDown: "50%" }}
           transform={{ mdDown: "translateX(-50%)" }}
           zIndex={2}
@@ -69,7 +69,6 @@ export const ProfileInfo = ({
           gap={7}
           justifyContent={"space-between"}
           flexDirection={{ base: "column", smPlus: "row" }}
-          flexBasis={{ base: "100%", md: "80%" }}
           marginLeft={{ base: "0px", md: "200px" }}
           marginTop={{ base: "70px", md: "10px" }}
         >
@@ -78,7 +77,7 @@ export const ProfileInfo = ({
           <Flex
             flexDirection={"column"}
             gap={"8px"}
-            width={{ base: "60%", smPlusDown: "100%" }}
+            width={{ base: "54%", smPlusDown: "100%" }}
           >
             <EditingName username={username} />
             <EditingAbout about={about} userId={userId} />

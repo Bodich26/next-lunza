@@ -27,7 +27,7 @@ export const ProfileSkeleton = () => {
         gap={7}
       >
         <Box
-          w="960px"
+          w="1060px"
           display="flex"
           justifyContent="space-between"
           alignItems="center"
@@ -64,13 +64,13 @@ export const ProfileSkeleton = () => {
           >
             <Flex flexDirection="column" gap="8px" width="100%" mt={"10px"}>
               <Skeleton
-                h="36px"
+                h="30px"
                 w="40%"
                 variant={"shine"}
                 background={"graysColor"}
               />
               <Skeleton
-                h="65px"
+                h="57px"
                 w="85%"
                 variant={"shine"}
                 background={"graysColor"}

@@ -9,7 +9,7 @@ export const UpdateAvatarButton = ({ userId }: Props) => {
   return (
     <Box
       position={"absolute"}
-      right={{ base: "-5px", smPlusDown: "5px" }}
+      right={{ base: "9px", smPlusDown: "12px" }}
       bottom={{ base: "5px", smPlusDown: "12px" }}
     >
       <PencilButton onClick={() => console.log(userId)} />

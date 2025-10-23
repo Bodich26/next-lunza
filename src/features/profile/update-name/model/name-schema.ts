@@ -6,6 +6,9 @@ export const nameSchema = z.object({
     .min(3, {
       message: "Минимум 3 символа",
     })
+    .max(30, {
+      message: "Максимум 30 символа",
+    })
     .regex(/^[A-Za-z0-9]+$/, {
       message: "Только латинские буквы и цифры",
     }),
