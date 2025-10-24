@@ -33,11 +33,11 @@ export async function updateAvatar(imageFile: File, userId: string) {
 
     const fileName = `${user.id}/avatar.${imageFile.name.split(".").pop()}`;
 
-    const { error } = await supabase.storage
+    const { error: uploadError } = await supabase.storage
       .from("avatars")
       .upload(fileName, imageFile, { upsert: true });
 
-    if (error) {
+    if (uploadError) {
       return { error: "Неудалось загрузить изображение" };
     }
 
@@ -45,9 +45,11 @@ export async function updateAvatar(imageFile: File, userId: string) {
       data: { publicUrl },
     } = supabase.storage.from("avatars").getPublicUrl(fileName);
 
+    const urlWithCacheBuster = `${publicUrl}?v=${Date.now()}`;
+
     const { error: updateError } = await supabase
       .from("profiles")
-      .update({ avatar_url: publicUrl })
+      .update({ avatar_url: urlWithCacheBuster })
       .eq("id", userId);
 
     if (updateError) {

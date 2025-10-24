@@ -2,10 +2,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { objectFormData, toaster } from "@/shared";
+import { objectFormData, queryClient, toaster } from "@/shared";
 import { NameFormData, nameSchema } from "./name-schema";
 import { updateName } from "../api/action";
-import { useMyProfileApi } from "@/entities/user";
+import { profileQueryKeys, useMyProfileApi } from "@/entities/user";
 
 export const useNewName = () => {
   const { data: profile } = useMyProfileApi();
@@ -45,6 +45,10 @@ export const useNewName = () => {
         description: "Новое имя успешно сохранено!",
         type: "success",
         closable: true,
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: profileQueryKeys.myProfile,
       });
     }
 

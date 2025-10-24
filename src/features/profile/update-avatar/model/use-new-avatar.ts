@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { useMyProfileApi } from "@/entities/user";
-import { maxFileSize, toaster } from "@/shared";
+import { profileQueryKeys, useMyProfileApi } from "@/entities/user";
+import { maxFileSize, queryClient, toaster } from "@/shared";
 import { updateAvatar } from "../api/action";
 
 export const useNewAvatar = () => {
@@ -46,6 +46,10 @@ export const useNewAvatar = () => {
         description: "Новая аватарка успешно сохранена!",
         type: "success",
         closable: true,
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: profileQueryKeys.myProfile,
       });
     }
 

@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { objectFormData, toaster } from "@/shared";
+import { objectFormData, queryClient, toaster } from "@/shared";
 import { updateAbout } from "../api/action";
-import { useMyProfileApi } from "@/entities/user";
+import { profileQueryKeys, useMyProfileApi } from "@/entities/user";
 import { AboutFormData, aboutSchema } from "./about-schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -45,6 +45,10 @@ export const useNewAbout = () => {
         description: "Новое описание успешно сохранено!",
         type: "success",
         closable: true,
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: profileQueryKeys.myProfile,
       });
     }
 

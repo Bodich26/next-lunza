@@ -5,6 +5,10 @@ import {
 } from "../model/type-users-profile";
 import { BASE_ROUTE_API, MY_PROFILE_ROUTE_API } from "routes";
 
+export const profileQueryKeys = {
+  myProfile: ["myProfile"] as const,
+};
+
 export const useMyProfileApi = () => {
   const fetchMyProfile = async ({ signal }: { signal?: AbortSignal }) => {
     const res = await fetch(`${BASE_ROUTE_API}${MY_PROFILE_ROUTE_API}`, {
@@ -22,7 +26,7 @@ export const useMyProfileApi = () => {
   };
 
   return useQuery<TypeUserProfile, Error>({
-    queryKey: ["myProfile"],
+    queryKey: profileQueryKeys.myProfile,
     queryFn: fetchMyProfile,
     retry: 1,
     refetchOnReconnect: true,

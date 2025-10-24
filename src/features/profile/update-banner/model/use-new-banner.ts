@@ -1,6 +1,6 @@
 "use client";
-import { useMyProfileApi } from "@/entities/user";
-import { maxFileSize, toaster } from "@/shared";
+import { profileQueryKeys, useMyProfileApi } from "@/entities/user";
+import { maxFileSize, queryClient, toaster } from "@/shared";
 import React from "react";
 import { updateBanner } from "../api/action";
 
@@ -46,6 +46,10 @@ export const useNewBanner = () => {
         description: "Новый баннер успешно сохранен!",
         type: "success",
         closable: true,
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: profileQueryKeys.myProfile,
       });
     }
 

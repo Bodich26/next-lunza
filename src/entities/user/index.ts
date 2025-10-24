@@ -4,5 +4,5 @@ export { UserDataReg } from "./ui/user-data-reg";
 export { UserAvatar } from "./ui/user-avatar";
 export { CopyIdButton } from "./ui/copy-id-button";
 export { getUserProfile } from "./api/actions";
-export { useMyProfileApi } from "./api/use-my-profile-api";
+export { useMyProfileApi, profileQueryKeys } from "./api/use-my-profile-api";
 export * from "./model/type-users-profile";
