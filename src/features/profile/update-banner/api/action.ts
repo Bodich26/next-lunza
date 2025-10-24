@@ -2,7 +2,7 @@
 import { maxFileSize } from "@/shared";
 import { createClient } from "@/shared/lib/supabase/server";
 
-export async function updateAvatar(imageFile: File, userId: string) {
+export async function updateBanner(imageFile: File, userId: string) {
   try {
     const supabase = await createClient();
 
@@ -31,10 +31,10 @@ export async function updateAvatar(imageFile: File, userId: string) {
       return { error: "Id текущего пользователя несовпадает с переданым Id." };
     }
 
-    const fileName = `${user.id}/avatar.${imageFile.name.split(".").pop()}`;
+    const fileName = `${user.id}/banner.${imageFile.name.split(".").pop()}`;
 
     const { error } = await supabase.storage
-      .from("avatars")
+      .from("banners")
       .upload(fileName, imageFile, { upsert: true });
 
     if (error) {
@@ -43,15 +43,15 @@ export async function updateAvatar(imageFile: File, userId: string) {
 
     const {
       data: { publicUrl },
-    } = supabase.storage.from("avatars").getPublicUrl(fileName);
+    } = supabase.storage.from("banners").getPublicUrl(fileName);
 
     const { error: updateError } = await supabase
       .from("profiles")
-      .update({ avatar_url: publicUrl })
+      .update({ banner_url: publicUrl })
       .eq("id", userId);
 
     if (updateError) {
-      return { error: "Не удалось обновить аватар пользователя." };
+      return { error: "Не удалось обновить баннер пользователя." };
     }
 
     return { success: true };

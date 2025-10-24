@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
 import { useMyProfileApi } from "@/entities/user";
 import { maxFileSize, toaster } from "@/shared";
-import { updateAvatar } from "../api/action";
+import React from "react";
+import { updateBanner } from "../api/action";
 
-export const useNewAvatar = () => {
+export const useNewBanner = () => {
   const { data: profile } = useMyProfileApi();
   const userId = profile!.id;
 
@@ -31,7 +31,7 @@ export const useNewAvatar = () => {
       return;
     }
 
-    const res = await updateAvatar(file, userId);
+    const res = await updateBanner(file, userId);
 
     if (res.error) {
       toaster.create({
@@ -42,8 +42,8 @@ export const useNewAvatar = () => {
       });
     } else if (res.success) {
       toaster.create({
-        title: "Аватар обновлен",
-        description: "Новая аватарка успешно сохранена!",
+        title: "Баннер обновлен",
+        description: "Новый баннер успешно сохранен!",
         type: "success",
         closable: true,
       });

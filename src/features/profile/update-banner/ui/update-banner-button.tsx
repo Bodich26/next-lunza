@@ -1,19 +1,23 @@
-import { Box } from "@chakra-ui/react";
-import { SquarePen } from "lucide-react";
+import { PencilButton } from "@/shared";
+import { Box, FileUpload } from "@chakra-ui/react";
+import { useNewBanner } from "../model/use-new-banner";
 
 export const UpdateBannerButton = () => {
+  const { handleFileChange } = useNewBanner();
   return (
-    <Box
-      w={"34px"}
-      h={"34px"}
-      display={"inline-flex"}
-      justifyContent={"center"}
-      alignItems={"center"}
-      cursor={"pointer"}
-      background={"white"}
-      rounded={"md"}
-    >
-      <SquarePen width={24} height={24} color="black" />
-    </Box>
+    <FileUpload.Root accept="image/*">
+      <FileUpload.HiddenInput
+        onChange={(e) => handleFileChange(e.target.files!)}
+      />
+      <FileUpload.Trigger asChild>
+        <Box
+          position={"absolute"}
+          right={{ base: "9px", smPlusDown: "12px" }}
+          bottom={{ base: "5px", smPlusDown: "12px" }}
+        >
+          <PencilButton />
+        </Box>
+      </FileUpload.Trigger>
+    </FileUpload.Root>
   );
 };
