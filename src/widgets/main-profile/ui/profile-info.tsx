@@ -67,6 +67,7 @@ export const ProfileInfo = ({
           display={"flex"}
           alignItems={"center"}
           gap={7}
+          w={"full"}
           justifyContent={"space-between"}
           flexDirection={{ base: "column", smPlus: "row" }}
           marginLeft={{ base: "0px", md: "200px" }}

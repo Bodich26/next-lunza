@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { Pencil } from "lucide-react";
 
 type Props = {
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export const PencilButton = ({ onClick }: Props) => {

@@ -12,8 +12,11 @@ export const NewAboutForm = ({ value, onChange }: Props) => {
     useNewAbout();
 
   return (
-    <form onSubmit={handleSubmitForm} className="flex justify-between gap-3">
-      <Field.Root invalid={!!aboutNewErrors}>
+    <form
+      onSubmit={handleSubmitForm}
+      className="flex justify-between gap-3 w-[428px]"
+    >
+      <Field.Root invalid={!!aboutNewErrors} w={"428px"}>
         <FloatingLabelInput
           type="text"
           borderColor={"textPrimary"}

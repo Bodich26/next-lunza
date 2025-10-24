@@ -27,7 +27,9 @@ export const useNewName = () => {
   const nameNewErrors = errors.name;
 
   const handleSubmitForm = handleSubmit(async (data: NameFormData) => {
+    if (isLoading) return;
     setIsLoading(true);
+
     const res = await updateName(objectFormData(data), userId);
 
     if (res.error) {
@@ -37,19 +39,16 @@ export const useNewName = () => {
         type: "error",
         closable: true,
       });
-      setIsLoading(false);
-      return;
-    }
-
-    if (res.success) {
+    } else if (res.success) {
       toaster.create({
         title: "Имя обновлено",
         description: "Новое имя успешно сохранено!",
         type: "success",
         closable: true,
       });
-      setIsLoading(false);
     }
+
+    setIsLoading(false);
   });
 
   return {

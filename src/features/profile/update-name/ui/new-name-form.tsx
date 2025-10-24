@@ -11,7 +11,7 @@ export const NewNameForm = ({ value, onChange }: Props) => {
   const { handleSubmitForm, isLoading, nameNewErrors, register } = useNewName();
 
   return (
-    <form onSubmit={handleSubmitForm} className="flex justify-between gap-3">
+    <form onSubmit={handleSubmitForm} className="flex justify-between gap-3 ">
       <Field.Root required invalid={!!nameNewErrors}>
         <FloatingLabelInput
           type="text"

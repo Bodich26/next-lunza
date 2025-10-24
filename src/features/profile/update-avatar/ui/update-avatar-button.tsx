@@ -1,18 +1,23 @@
 import { PencilButton } from "@/shared";
-import { Box } from "@chakra-ui/react";
+import { Box, FileUpload } from "@chakra-ui/react";
+import { useNewAvatar } from "../model/use-new-avatar";
 
-type Props = {
-  userId: string;
-};
-
-export const UpdateAvatarButton = ({ userId }: Props) => {
+export const UpdateAvatarButton = () => {
+  const { handleFileChange } = useNewAvatar();
   return (
-    <Box
-      position={"absolute"}
-      right={{ base: "9px", smPlusDown: "12px" }}
-      bottom={{ base: "5px", smPlusDown: "12px" }}
-    >
-      <PencilButton onClick={() => console.log(userId)} />
-    </Box>
+    <FileUpload.Root accept="image/*">
+      <FileUpload.HiddenInput
+        onChange={(e) => handleFileChange(e.target.files!)}
+      />
+      <FileUpload.Trigger asChild>
+        <Box
+          position={"absolute"}
+          right={{ base: "9px", smPlusDown: "12px" }}
+          bottom={{ base: "5px", smPlusDown: "12px" }}
+        >
+          <PencilButton />
+        </Box>
+      </FileUpload.Trigger>
+    </FileUpload.Root>
   );
 };

@@ -27,7 +27,9 @@ export const useNewAbout = () => {
   const aboutNewErrors = errors.about;
 
   const handleSubmitForm = handleSubmit(async (data: AboutFormData) => {
+    if (isLoading) return;
     setIsLoading(true);
+
     const res = await updateAbout(objectFormData(data), userId);
 
     if (res.error) {
@@ -37,18 +39,16 @@ export const useNewAbout = () => {
         type: "error",
         closable: true,
       });
-      setIsLoading(false);
-      return;
-    }
-    if (res.success) {
+    } else if (res.success) {
       toaster.create({
         title: "Текст обновлен",
         description: "Новое описание успешно сохранено!",
         type: "success",
         closable: true,
       });
-      setIsLoading(false);
     }
+
+    setIsLoading(false);
   });
 
   return {
