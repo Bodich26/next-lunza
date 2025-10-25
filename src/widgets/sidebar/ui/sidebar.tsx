@@ -9,8 +9,10 @@ import { usePathname } from "next/navigation";
 import { useToggleSidebar } from "@/features/toggle-sidebar";
 import { SidebarOverlay } from "./sidebar-overlay";
 import { ToggleDarkModeButton } from "@/features/dark-mode";
+import { useMyProfileApi } from "@/entities/user";
 
 export const Sidebar = () => {
+  const { data: profile } = useMyProfileApi();
   const { isOpen, handleToggleSidebar } = useToggleSidebar();
   const pathName = usePathname();
   const sidebarDisplay = {
@@ -45,7 +47,11 @@ export const Sidebar = () => {
           justifyContent={"space-between"}
           gap={"5"}
         >
-          <IconAvatar />
+          <IconAvatar
+            urlAvatar={profile?.avatar_url ?? "/user_default_avatar.svg"}
+            userName={profile?.username ?? "Anon"}
+          />
+
           <Separator
             background={"colorGrayWhite"}
             h={"0.5"}

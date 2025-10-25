@@ -12,7 +12,7 @@ export const SidebarContent = () => {
     <>
       {/** Top */}
       <Flex flexDirection={"column"} justifyContent={"space-between"} gap={"5"}>
-        <IconAvatar />
+        <IconAvatar urlAvatar={""} userName={""} />
         <Separator
           background={"colorGrayWhite"}
           h={"0.5"}

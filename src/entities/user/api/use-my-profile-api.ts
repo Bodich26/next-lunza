@@ -29,8 +29,6 @@ export const useMyProfileApi = () => {
     queryKey: profileQueryKeys.myProfile,
     queryFn: fetchMyProfile,
     retry: 1,
-    refetchOnReconnect: true,
-    refetchOnWindowFocus: true,
     placeholderData: keepPreviousData,
   });
 };

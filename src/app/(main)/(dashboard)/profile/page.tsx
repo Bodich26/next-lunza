@@ -29,7 +29,6 @@ export default function Profile() {
         urlBanner={profile.banner_url}
       />
       <ProfileInfo
-        userId={profile.id}
         username={profile.username}
         avatarUrl={profile.avatar_url}
         avatarAlt={"Avatar Profile"}

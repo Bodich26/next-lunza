@@ -10,7 +10,6 @@ type Props = {
   avatarAlt: string;
   about: string;
   date: string;
-  userId: string;
 };
 
 export const ProfileInfo = ({
@@ -19,7 +18,6 @@ export const ProfileInfo = ({
   avatarAlt,
   about,
   date,
-  userId,
 }: Props) => {
   return (
     <Box
@@ -58,7 +56,6 @@ export const ProfileInfo = ({
             urlAvatar={avatarUrl}
             size="md"
             isOwner={true}
-            userId={userId}
           />
         </Box>
 
@@ -81,7 +78,7 @@ export const ProfileInfo = ({
             width={{ base: "54%", smPlusDown: "100%" }}
           >
             <EditingName username={username} />
-            <EditingAbout about={about} userId={userId} />
+            <EditingAbout about={about} />
             <UserDataReg date={formatDate(date) || "Ошибка даты"} />
           </Flex>
 

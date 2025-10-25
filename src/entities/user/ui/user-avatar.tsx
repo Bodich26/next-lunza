@@ -6,16 +6,9 @@ type Props = {
   urlAvatar: string;
   isOwner: boolean;
   size: "sm" | "md";
-  userId?: string;
 };
 
-export const UserAvatar = ({
-  urlAvatar,
-  altAvatar,
-  isOwner,
-  size,
-  userId,
-}: Props) => {
+export const UserAvatar = ({ urlAvatar, altAvatar, isOwner, size }: Props) => {
   const sizes =
     size === "md"
       ? {
@@ -42,7 +35,7 @@ export const UserAvatar = ({
         className="border-[5px] border-solid shadow-black"
         transition="filter 0.3s ease"
       />
-      {isOwner && <UpdateAvatarButton userId={userId!} />}
+      {isOwner && <UpdateAvatarButton />}
     </>
   );
 };

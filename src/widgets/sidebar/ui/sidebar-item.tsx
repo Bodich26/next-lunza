@@ -1,4 +1,5 @@
-import { List, Link } from "@chakra-ui/react";
+import { List, Link as ChakraLink } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { MenuItem } from "@/shared";
 
 type Props = {
@@ -20,7 +21,8 @@ export const SidebarItem = ({ link, isActive, children }: Props) => {
       outline={"none"}
       position={"relative"}
     >
-      <Link
+      <ChakraLink
+        as={NextLink}
         href={link.path}
         color={activeMenu}
         display={"inline-flex"}
@@ -28,7 +30,7 @@ export const SidebarItem = ({ link, isActive, children }: Props) => {
         outlineWidth={0}
       >
         {children}
-      </Link>
+      </ChakraLink>
     </List.Item>
   );
 };
