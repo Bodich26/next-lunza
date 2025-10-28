@@ -1,6 +1,10 @@
-import { CopyIdButton, UserAvatar, UserDataReg } from "@/entities/user";
-import { EditingAbout } from "@/features/profile/update-about";
-import { EditingName } from "@/features/profile/update-name";
+import {
+  CopyIdButton,
+  UserAbout,
+  UserAvatar,
+  UserDataReg,
+  UserName,
+} from "@/entities/user";
 import { formatDate } from "@/shared";
 import { Box, Flex } from "@chakra-ui/react";
 
@@ -12,7 +16,7 @@ type Props = {
   date: string;
 };
 
-export const ProfileInfo = ({
+export const UserInfo = ({
   username,
   avatarUrl,
   avatarAlt,
@@ -55,7 +59,7 @@ export const ProfileInfo = ({
             altAvatar={avatarAlt}
             urlAvatar={avatarUrl}
             size="md"
-            isOwner={true}
+            isOwner={false}
           />
         </Box>
 
@@ -77,8 +81,8 @@ export const ProfileInfo = ({
             gap={"8px"}
             width={{ base: "54%", smPlusDown: "100%" }}
           >
-            <EditingName username={username} />
-            <EditingAbout about={about} />
+            <UserName name={username} />
+            {about && <UserAbout text={about} />}
             <UserDataReg date={formatDate(date) || "Ошибка даты"} />
           </Flex>
 
