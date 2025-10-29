@@ -19,7 +19,6 @@ export default function RootLayout({
       <Header />
       <Sidebar />
       <Toaster />
-
       <Box
         background={"backgroundPrimary"}
         as={"main"}

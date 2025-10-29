@@ -1,6 +1,12 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { DEFAULT_AUTH, DEFAULT_LOGIN_REDIRECT, AUTH_ROUTES } from "routes";
+import {
+  DEFAULT_AUTH,
+  DEFAULT_LOGIN_REDIRECT,
+  AUTH_ROUTES,
+  PUBLIC_URL_PROFILE,
+  PUBLIC_URL_USER,
+} from "routes";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -56,6 +62,24 @@ export async function updateSession(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = DEFAULT_LOGIN_REDIRECT!;
     return NextResponse.redirect(url);
+  }
+
+  const slug =
+    request.nextUrl.pathname.startsWith(`${PUBLIC_URL_USER}/`) &&
+    request.nextUrl.pathname.split(`${PUBLIC_URL_USER}/`)[1];
+
+  if (slug && user) {
+    const { data: userProfile } = await supabase
+      .from("profiles")
+      .select("id, username")
+      .ilike("username", slug)
+      .single();
+
+    if (userProfile && userProfile.id === user.id) {
+      const url = request.nextUrl.clone();
+      url.pathname = PUBLIC_URL_PROFILE;
+      return NextResponse.redirect(url);
+    }
   }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.

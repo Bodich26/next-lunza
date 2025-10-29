@@ -1,6 +1,5 @@
 "use server";
 import { createClient } from "@/shared/lib/supabase/server";
-import { redirect, RedirectType } from "next/navigation";
 
 export async function getUserProfileApi(slug: string) {
   try {

@@ -15,7 +15,7 @@ export const ShowErrors = ({ errorMessage, type }: Props) => {
       <Box
         w={"full"}
         background={"cardBackground"}
-        roundedBottom={"md"}
+        rounded={"md"}
         padding={5}
         display={"flex"}
         flexDirection={"column"}

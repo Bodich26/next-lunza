@@ -14,6 +14,7 @@ export const useMyProfileApi = () => {
     const res = await fetch(`${BASE_ROUTE_API}${MY_PROFILE_ROUTE_API}`, {
       signal,
     });
+
     if (!res.ok) throw new Error(`Network error: ${res.status}`);
 
     const data: TypeUserProfileRes = await res.json();
