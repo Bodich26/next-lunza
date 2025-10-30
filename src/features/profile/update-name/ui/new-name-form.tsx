@@ -5,10 +5,12 @@ import { useNewName } from "../model/use-new-name";
 type Props = {
   value: string;
   onChange: (val: string) => void;
+  closeForm: () => void;
 };
 
-export const NewNameForm = ({ value, onChange }: Props) => {
-  const { handleSubmitForm, isLoading, nameNewErrors, register } = useNewName();
+export const NewNameForm = ({ value, onChange, closeForm }: Props) => {
+  const { handleSubmitForm, isLoading, nameNewErrors, register } =
+    useNewName(closeForm);
 
   return (
     <form onSubmit={handleSubmitForm} className="flex justify-between gap-3 ">

@@ -31,7 +31,11 @@ export const EditingName = ({ username }: Props) => {
         </>
       ) : (
         <>
-          <NewNameForm value={newName} onChange={setNewName} />
+          <NewNameForm
+            value={newName}
+            onChange={setNewName}
+            closeForm={() => setIsEditingName(false)}
+          />
         </>
       )}
     </Box>

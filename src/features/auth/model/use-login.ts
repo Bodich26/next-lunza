@@ -1,10 +1,9 @@
 "use client";
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import { LoginFormData, loginSchema } from "./auth-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { objectFormData, useRedirectTimer } from "@/shared";
+import { objectFormData, queryClient, useRedirectTimer } from "@/shared";
 import { signIn } from "../api/actions";
 import { DEFAULT_LOGIN_REDIRECT } from "routes";
 
@@ -40,6 +39,7 @@ export const useLogin = () => {
     }
 
     if (res.success) {
+      queryClient.clear();
       setResSuccess(res.success);
       startRedirect();
     }

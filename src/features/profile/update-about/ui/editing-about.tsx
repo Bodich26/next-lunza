@@ -31,7 +31,11 @@ export const EditingAbout = ({ about }: Props) => {
         </>
       ) : (
         <>
-          <NewAboutForm value={newAbout} onChange={setNewAbout} />
+          <NewAboutForm
+            value={newAbout}
+            onChange={setNewAbout}
+            closeForm={() => setIsEditingAbout(false)}
+          />
         </>
       )}
     </Box>

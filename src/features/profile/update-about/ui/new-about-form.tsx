@@ -5,11 +5,12 @@ import { useNewAbout } from "../model/use-new-about";
 type Props = {
   value: string;
   onChange: (val: string) => void;
+  closeForm: () => void;
 };
 
-export const NewAboutForm = ({ value, onChange }: Props) => {
+export const NewAboutForm = ({ value, onChange, closeForm }: Props) => {
   const { handleSubmitForm, isLoading, aboutNewErrors, register } =
-    useNewAbout();
+    useNewAbout(closeForm);
 
   return (
     <form

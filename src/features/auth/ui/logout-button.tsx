@@ -1,5 +1,4 @@
 "use client";
-
 import { signOut } from "../api/actions";
 import { CustomIcon } from "@/shared";
 import { Box } from "@chakra-ui/react";

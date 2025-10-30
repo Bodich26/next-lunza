@@ -7,7 +7,7 @@ import { NameFormData, nameSchema } from "./name-schema";
 import { updateName } from "../api/action";
 import { profileQueryKeys, useMyProfileApi } from "@/entities/user";
 
-export const useNewName = () => {
+export const useNewName = (closeForm: () => void) => {
   const { data: profile } = useMyProfileApi();
   const userId = profile!.id;
 
@@ -46,6 +46,8 @@ export const useNewName = () => {
         type: "success",
         closable: true,
       });
+
+      closeForm();
 
       queryClient.invalidateQueries({
         queryKey: profileQueryKeys.myProfile,

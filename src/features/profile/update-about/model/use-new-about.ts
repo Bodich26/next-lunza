@@ -7,7 +7,7 @@ import { AboutFormData, aboutSchema } from "./about-schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export const useNewAbout = () => {
+export const useNewAbout = (closeForm: () => void) => {
   const { data: profile } = useMyProfileApi();
   const userId = profile!.id;
 
@@ -46,6 +46,8 @@ export const useNewAbout = () => {
         type: "success",
         closable: true,
       });
+
+      closeForm();
 
       queryClient.invalidateQueries({
         queryKey: profileQueryKeys.myProfile,
