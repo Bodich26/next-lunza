@@ -3,6 +3,7 @@
 import { createClient } from "@/shared/lib/supabase/server";
 import { registerSchema } from "../../model/auth-schema";
 import { validationData } from "@/shared";
+import { AUTH_ROUTES } from "routes";
 
 export async function signUp(formData: FormData) {
   const supabase = await createClient();
@@ -11,7 +12,7 @@ export async function signUp(formData: FormData) {
   const { email, password, name } = validationData(
     registerSchema,
     userData,
-    process.env.NEXT_PUBLIC_URL_REGISTER!
+    AUTH_ROUTES.REGISTER
   );
 
   const { data: existingUser } = await supabase

@@ -2,7 +2,7 @@
 
 import { Box, Button, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { PUBLIC_URL_MAIN } from "routes";
+import { PUBLIC_ROUTES } from "routes";
 
 type Props = {
   errorMessage: string;
@@ -56,7 +56,7 @@ export const ShowErrors = ({ errorMessage, type }: Props) => {
         </Text>
 
         <Button
-          onClick={() => route.push(PUBLIC_URL_MAIN)}
+          onClick={() => route.push(PUBLIC_ROUTES.MAIN)}
           variant="solid"
           colorPalette={"gray"}
           color={"textWhite"}

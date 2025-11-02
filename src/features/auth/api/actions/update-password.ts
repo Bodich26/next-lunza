@@ -3,6 +3,7 @@
 import { updatePasswordSchema } from "../../model/auth-schema";
 import { createClient } from "@/shared/lib/supabase/server";
 import { validationData } from "@/shared";
+import { AUTH_ROUTES } from "routes";
 
 export async function updatePassword(formData: FormData, code: string) {
   const supabase = await createClient();
@@ -20,7 +21,7 @@ export async function updatePassword(formData: FormData, code: string) {
   const { password } = validationData(
     updatePasswordSchema,
     userData,
-    process.env.NEXT_PUBLIC_URL_UPDATE_PASSWORD!
+    AUTH_ROUTES.UPDATE_PASSWORD
   );
 
   const { error } = await supabase.auth.updateUser({ password });

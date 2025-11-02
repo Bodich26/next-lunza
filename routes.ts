@@ -1,35 +1,41 @@
 /**
- * Accessible to the public
- * @type {string[]}
+ * ============================
+ * 🌍 API ENDPOINTS
+ * ============================
+ * Серверные маршруты (используются для запросов)
  */
-export const BASE_ROUTE_API = process.env.NEXT_PUBLIC_API!;
-export const MY_PROFILE_ROUTE_API = process.env.NEXT_PUBLIC_API_MY_PROFILE!;
+export const API_ROUTES = {
+  BASE: process.env.NEXT_PUBLIC_API!,
+  MY_PROFILE: process.env.NEXT_PUBLIC_API_MY_PROFILE!,
+} as const;
 
 /**
- * Accessible to the public
- * These routes do not require authentication
- * @type {string[]}
+ * ============================
+ * 🔐 AUTH ROUTES
+ * ============================
+ * Маршруты, связанные с аутентификацией
  */
-export const DEFAULT_AUTH = process.env.NEXT_PUBLIC_URL_LOGIN!;
+export const AUTH_ROUTES = {
+  LOGIN: process.env.NEXT_PUBLIC_URL_LOGIN!,
+  REGISTER: process.env.NEXT_PUBLIC_URL_REGISTER!,
+  FORGOT_PASSWORD: process.env.NEXT_PUBLIC_URL_FORGOT_PASSWORD!,
+  UPDATE_PASSWORD: process.env.NEXT_PUBLIC_URL_UPDATE_PASSWORD!,
+} as const;
+
+export const AUTH_META = {
+  PUBLIC_ACCESS: process.env.NEXT_PUBLIC_URL_LOGIN!,
+  AFTER_LOGIN_REDIRECT: process.env.NEXT_PUBLIC_URL_MAIN!,
+} as const;
 
 /**
- * Used for authentication
- * These routes will redirect logged in users to /dashboard
- * @type {string[]}
+ * ============================
+ * 🌐 PUBLIC ROUTES
+ * ============================
+ * Основные публичные страницы (фронтенд)
  */
-export const AUTH_ROUTES = [
-  process.env.NEXT_PUBLIC_URL_LOGIN!,
-  process.env.NEXT_PUBLIC_URL_REGISTER!,
-  process.env.NEXT_PUBLIC_URL_FORGOT_PASSWORD!,
-  process.env.NEXT_PUBLIC_URL_UPDATE_PASSWORD!,
-];
-
-/**
- * The default redirect path after logging in
- * @type {string}
- */
-export const DEFAULT_LOGIN_REDIRECT = process.env.NEXT_PUBLIC_URL_MAIN!;
-export const PUBLIC_URL_MAIN = process.env.NEXT_PUBLIC_URL_MAIN!;
-export const PUBLIC_URL_PROFILE = process.env.NEXT_PUBLIC_URL_PROFILE!;
-export const PUBLIC_URL_MESSAGE = process.env.NEXT_PUBLIC_URL_MESSAGE!;
-export const PUBLIC_URL_USER = process.env.NEXT_PUBLIC_URL_USER!;
+export const PUBLIC_ROUTES = {
+  MAIN: process.env.NEXT_PUBLIC_URL_MAIN!,
+  PROFILE: process.env.NEXT_PUBLIC_URL_PROFILE!,
+  MESSAGE: process.env.NEXT_PUBLIC_URL_MESSAGE!,
+  USER: process.env.NEXT_PUBLIC_URL_USER!,
+} as const;

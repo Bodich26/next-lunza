@@ -4,7 +4,7 @@ import { CustomIcon, Logo, widthContainer } from "@/shared";
 import { Box, Button, Container, Separator } from "@chakra-ui/react";
 import { Bell } from "lucide-react";
 import { BiPlus } from "react-icons/bi";
-import { PUBLIC_URL_MAIN } from "routes";
+import { PUBLIC_ROUTES } from "routes";
 
 export const Header = () => {
   return (
@@ -32,7 +32,7 @@ export const Header = () => {
             <Logo
               width={44}
               height={41}
-              href={PUBLIC_URL_MAIN}
+              href={PUBLIC_ROUTES.MAIN}
               name="Lunza"
               alt={"Logo"}
               src={"/logo.svg"}

@@ -1,12 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import {
-  DEFAULT_AUTH,
-  DEFAULT_LOGIN_REDIRECT,
-  AUTH_ROUTES,
-  PUBLIC_URL_PROFILE,
-  PUBLIC_URL_USER,
-} from "routes";
+import { AUTH_META, AUTH_ROUTES, PUBLIC_ROUTES } from "routes";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -46,39 +40,57 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (
-    !user &&
-    !AUTH_ROUTES.some((path) => request.nextUrl.pathname.startsWith(path!))
-  ) {
+  const { pathname } = request.nextUrl;
+
+  /**
+   * ================
+   * 🔒 Защита приватных роутов
+   * ================
+   * Если пользователь не авторизован и пытается попасть на приватную страницу
+   */
+  const authPaths = Object.values(AUTH_ROUTES);
+
+  if (!user && !authPaths.some((path) => pathname.startsWith(path))) {
     const url = request.nextUrl.clone();
-    url.pathname = DEFAULT_AUTH!;
+    url.pathname = AUTH_ROUTES.LOGIN; // редирект на страницу входа
     return NextResponse.redirect(url);
   }
 
-  if (
-    user &&
-    AUTH_ROUTES.some((path) => request.nextUrl.pathname.startsWith(path!))
-  ) {
+  /**
+   * ================
+   * 🚫 Запрещаем доступ авторизованным к auth страницам
+   * ================
+   * Например: если пользователь уже вошёл, нет смысла открывать /login, /register и т.п.
+   */
+  if (user && authPaths.some((path) => pathname.startsWith(path))) {
     const url = request.nextUrl.clone();
-    url.pathname = DEFAULT_LOGIN_REDIRECT!;
+    url.pathname = AUTH_META.AFTER_LOGIN_REDIRECT;
     return NextResponse.redirect(url);
   }
 
-  const slug =
-    request.nextUrl.pathname.startsWith(`${PUBLIC_URL_USER}/`) &&
-    request.nextUrl.pathname.split(`${PUBLIC_URL_USER}/`)[1];
+  /**
+   * ================
+   * 👤 Проверка slug профиля
+   * ================
+   * Если пользователь заходит на /user/:username, и этот username принадлежит ему —
+   * перенаправляем на /profile
+   */
+  const isUserProfilePath = pathname.startsWith(`${PUBLIC_ROUTES.USER}/`);
+  if (isUserProfilePath && user) {
+    const slug = pathname.split(`${PUBLIC_ROUTES.USER}/`)[1];
 
-  if (slug && user) {
-    const { data: userProfile } = await supabase
-      .from("profiles")
-      .select("id, username")
-      .ilike("username", slug)
-      .single();
+    if (slug) {
+      const { data: userProfile } = await supabase
+        .from("profiles")
+        .select("id, username")
+        .ilike("username", slug)
+        .single();
 
-    if (userProfile && userProfile.id === user.id) {
-      const url = request.nextUrl.clone();
-      url.pathname = PUBLIC_URL_PROFILE;
-      return NextResponse.redirect(url);
+      if (userProfile && userProfile.id === user.id) {
+        const url = request.nextUrl.clone();
+        url.pathname = PUBLIC_ROUTES.PROFILE;
+        return NextResponse.redirect(url);
+      }
     }
   }
 

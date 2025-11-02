@@ -3,6 +3,7 @@
 import { loginSchema } from "../../model/auth-schema";
 import { createClient } from "@/shared/lib/supabase/server";
 import { validationData } from "@/shared";
+import { AUTH_ROUTES } from "routes";
 
 export async function signIn(formData: FormData) {
   const supabase = await createClient();
@@ -11,7 +12,7 @@ export async function signIn(formData: FormData) {
   const { email, password } = validationData(
     loginSchema,
     userData,
-    process.env.NEXT_PUBLIC_URL_LOGIN!
+    AUTH_ROUTES.LOGIN
   );
 
   const { error } = await supabase.auth.signInWithPassword({

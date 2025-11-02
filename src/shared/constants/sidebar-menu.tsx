@@ -1,6 +1,6 @@
 import { House, MessageSquareText } from "lucide-react";
 import { MenuGroup } from "../types";
-import { PUBLIC_URL_MAIN, PUBLIC_URL_MESSAGE } from "routes";
+import { PUBLIC_ROUTES } from "routes";
 
 export const sidebarMenu: MenuGroup[] = [
   {
@@ -8,12 +8,12 @@ export const sidebarMenu: MenuGroup[] = [
     list: [
       {
         title: "Главная",
-        path: PUBLIC_URL_MAIN,
+        path: PUBLIC_ROUTES.MAIN,
         icon: House,
       },
       {
         title: "Сообщения",
-        path: PUBLIC_URL_MESSAGE,
+        path: PUBLIC_ROUTES.MESSAGE,
         icon: MessageSquareText,
         value: 12,
       },
