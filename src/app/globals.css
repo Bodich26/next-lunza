@@ -5,9 +5,9 @@
 }
 
 .shadow-black {
-  box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 4px 5px 0px rgba(10, 10, 10, 0.2);
+  -webkit-box-shadow: 4px 4px 5px 0px rgba(10, 10, 10, 0.2);
+  -moz-box-shadow: 4px 4px 6px 0px rgba(10, 10, 10, 0.2);
 }
 
 .bg-none {
@@ -40,6 +40,13 @@
   background-color: var(--color-rose-700);
   left: -5px;
   transform: translateY(1px);
+}
+
+[data-scope="dialog"],
+[data-scope="toast"],
+[data-scope="popover"] {
+  animation: revert !important;
+  transition: revert !important;
 }
 
 body {

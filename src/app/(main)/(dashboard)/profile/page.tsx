@@ -6,35 +6,48 @@ import {
   ProfileInfo,
   ProfileSkeleton,
 } from "@/widgets/main-profile";
+import { ProfileListPosts } from "@/widgets/profile-list-posts";
 
 export default function Profile() {
-  const { data: profile, isLoading, error } = useMyProfileApi();
-
-  if (isLoading) {
-    return <ProfileSkeleton />;
-  }
-  if (error) {
-    return <ShowErrors errorMessage={error.message} type={"page"} />;
-  }
-  if (!profile) {
-    return (
-      <ShowErrors errorMessage={"Профиль не найден"} type={"definition"} />
-    );
-  }
+  const {
+    data: profile,
+    isLoading: isProfileLoading,
+    error: profileError,
+  } = useMyProfileApi();
 
   return (
     <>
-      <ProfileBanner
-        altBanner={"Profile Banner"}
-        urlBanner={profile.banner_url}
-      />
-      <ProfileInfo
-        username={profile.username}
-        avatarUrl={profile.avatar_url}
-        avatarAlt={"Avatar Profile"}
-        about={profile.about}
-        date={profile.created_at}
-      />
+      {/*Профиль пользователя */}
+      <section>
+        {isProfileLoading && <ProfileSkeleton />}
+
+        {profileError && (
+          <ShowErrors errorMessage={profileError.message} type={"page"} />
+        )}
+
+        {!isProfileLoading && !profile && (
+          <ShowErrors errorMessage="Профиль не найден" type="definition" />
+        )}
+
+        {profile && (
+          <>
+            <ProfileBanner
+              altBanner={"Profile Banner"}
+              urlBanner={profile.banner_url}
+            />
+            <ProfileInfo
+              username={profile.username}
+              avatarUrl={profile.avatar_url}
+              avatarAlt={"Avatar Profile"}
+              about={profile.about}
+              date={profile.created_at}
+            />
+          </>
+        )}
+      </section>
+
+      {/*Посты пользователя */}
+      <ProfileListPosts />
     </>
   );
 }

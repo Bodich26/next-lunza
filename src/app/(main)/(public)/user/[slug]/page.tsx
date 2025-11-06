@@ -21,7 +21,7 @@ export default async function User({ params }: UserSlug) {
     );
   }
   return (
-    <>
+    <section>
       <UserBanner
         altBanner={"Profile Banner"}
         urlBanner={profileData.banner_url}
@@ -33,6 +33,6 @@ export default async function User({ params }: UserSlug) {
         about={profileData.about}
         date={profileData.created_at}
       />
-    </>
+    </section>
   );
 }
