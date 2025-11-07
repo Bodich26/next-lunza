@@ -20,7 +20,7 @@ export const NewAboutForm = ({ value, onChange, closeForm }: Props) => {
       <Field.Root invalid={!!aboutNewErrors} w={"428px"}>
         <FloatingLabelInput
           type="text"
-          borderColor={"textPrimary"}
+          borderColor={"text.primary"}
           {...register("about")}
           label="Новое описание"
           value={value}

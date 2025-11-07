@@ -10,13 +10,13 @@ export const UserSkeleton = () => {
           width="full"
           height="192px"
           variant={"shine"}
-          background={"graysColor"}
+          background={"bg.skeleton"}
         />
       </Box>
       <Box
         width="full"
         position="relative"
-        background="cardBackground"
+        background="bg.card"
         roundedBottom="md"
         paddingX={4}
         paddingBottom={4.5}
@@ -47,7 +47,7 @@ export const UserSkeleton = () => {
             <SkeletonCircle
               size={{ base: "176px", smPlusDown: "154px" }}
               variant={"shine"}
-              background={"graysColor"}
+              background={"bg.skeleton"}
             />
           </Box>
           <Box
@@ -65,19 +65,19 @@ export const UserSkeleton = () => {
                 h="30px"
                 w="40%"
                 variant={"shine"}
-                background={"graysColor"}
+                background={"bg.skeleton"}
               />
               <Skeleton
                 h="57px"
                 w="85%"
                 variant={"shine"}
-                background={"graysColor"}
+                background={"bg.skeleton"}
               />
               <Skeleton
                 h="23px"
                 w="33%"
                 variant={"shine"}
-                background={"graysColor"}
+                background={"bg.skeleton"}
               />
             </Flex>
             <Skeleton
@@ -85,7 +85,7 @@ export const UserSkeleton = () => {
               rounded="md"
               width={{ base: "134px", smDown: "full" }}
               variant={"shine"}
-              background={"graysColor"}
+              background={"bg.skeleton"}
             />
           </Box>
         </Box>

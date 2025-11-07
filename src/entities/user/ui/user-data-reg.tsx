@@ -7,7 +7,7 @@ export const UserDataReg = ({ date }: Props) => {
   return (
     <Text
       as={"span"}
-      color={"textPrimary"}
+      color={"text.primary"}
       fontSize={"md"}
       opacity={"40%"}
       fontWeight={"normal"}

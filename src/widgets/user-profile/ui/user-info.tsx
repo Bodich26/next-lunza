@@ -27,7 +27,7 @@ export const UserInfo = ({
     <Box
       width={"full"}
       position={"relative"}
-      background={"cardBackground"}
+      background={"bg.card"}
       roundedBottom={"md"}
       paddingX={4}
       paddingBottom={4.5}

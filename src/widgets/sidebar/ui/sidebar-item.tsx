@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const SidebarItem = ({ link, isActive, children }: Props) => {
-  const activeMenu = isActive ? "accentColor" : "textPrimary";
+  const activeMenu = isActive ? "accent.primary" : "text.primary";
 
   return (
     <List.Item

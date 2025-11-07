@@ -23,77 +23,98 @@ const config = defineConfig({
           950: { value: "#4c051f" },
         },
         gray: {
-          200: { value: "#e5e7eb" },
+          50: { value: "oklch(98.5% 0.002 247.839)" },
+          100: { value: "oklch(96.7% 0.003 264.542)" },
+          200: { value: "oklch(92.8% 0.006 264.531)" },
+          300: { value: "oklch(87.2% 0.01 258.338)" },
+          400: { value: "oklch(70.7% 0.022 261.325)" },
+          500: { value: "oklch(55.1% 0.027 264.364)" },
+          600: { value: "oklch(44.6% 0.03 256.802)" },
+          700: { value: "oklch(37.3% 0.034 259.733)" },
+          800: { value: "oklch(27.8% 0.033 256.848)" },
+          900: { value: "oklch(21% 0.034 264.665)" },
+          950: { value: "oklch(13% 0.028 261.692)" },
         },
-        white: { value: "#fff" },
-        black: { value: "#000" },
-        shadow: { value: "#242424" },
-        light: { value: "#F2F0F1" },
-        dark: { value: "#1c1c1c" },
-        silver: { value: "#2e2e2e" },
-        border: {
-          light: { value: "#DDDDE0" },
+        whites: {
+          50: { value: "#fff" },
+          100: { value: "#FAFAFA" },
+          200: { value: "#F5F5F5" },
+          300: { value: "#EBEBEB" },
+        },
+        silver: {
+          50: { value: "#000" },
+          100: { value: "#1c1c1c" },
+          200: { value: "#242424" },
+          300: { value: "#2e2e2e" },
+          400: { value: "#333333" },
         },
       },
     },
     semanticTokens: {
       colors: {
-        colorGrayWhite: {
+        // Основные фоны
+        "bg.app": {
+          value: {
+            base: "{colors.whites.200}",
+            _dark: "{colors.silver.100}",
+          },
+        },
+        "bg.card": {
+          value: {
+            base: "{colors.whites.50}",
+            _dark: "{colors.silver.200}",
+          },
+        },
+        "bg.muted": {
+          value: {
+            base: "{colors.whites.200}",
+            _dark: "{colors.gray.600}",
+          },
+        },
+        "bg.subtle": {
           value: {
             base: "{colors.gray.200}",
-            _dark: "{colors.white}",
+            _dark: "{colors.whites.50}",
           },
         },
-        borderColors: {
+        "bg.skeleton": {
           value: {
-            base: "{colors.border.light}",
-            _dark: "{colors.border.light}",
+            base: "{colors.gray.200}",
+            _dark: "{colors.silver.300}",
           },
         },
-        backgroundPrimary: {
+
+        // Текст
+        "text.primary": {
           value: {
-            base: "{colors.light}",
-            _dark: "{colors.dark}",
+            base: "{colors.silver.50}",
+            _dark: "{colors.whites.50}",
           },
         },
-        textPrimary: {
+        "text.inverse": {
           value: {
-            base: "{colors.black}",
-            _dark: "{colors.white}",
+            base: "{colors.whites.50}",
+            _dark: "{colors.silver.50}",
           },
         },
-        textWhite: {
+        "text.white": {
           value: {
-            base: "{colors.white}",
-            _dark: "{colors.white}",
+            base: "{colors.whites.50}",
+            _dark: "{colors.whites.50}",
           },
         },
-        cardBackground: {
+
+        // Бордеры
+        "border.default": {
           value: {
-            base: "{colors.white}",
-            _dark: "{colors.shadow}",
+            base: "{colors.gray.200}",
+            _dark: "{colors.whites.300}",
           },
         },
-        accentColor: {
+
+        // Акцент
+        "accent.primary": {
           value: "{colors.rose.700}",
-        },
-        buttonColor: {
-          value: {
-            base: "{colors.shadow}",
-            _dark: "{colors.white}",
-          },
-        },
-        buttonText: {
-          value: {
-            base: "{colors.white}",
-            _dark: "{colors.black}",
-          },
-        },
-        graysColor: {
-          value: {
-            base: "{colors.gray.200}",
-            _dark: "{colors.silver}",
-          },
         },
       },
     },

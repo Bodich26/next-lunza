@@ -5,7 +5,7 @@ type Props = {
 };
 export const UserAbout = ({ text }: Props) => {
   return (
-    <Text as={"p"} color={"textPrimary"} fontSize={"md"} fontWeight={"normal"}>
+    <Text as={"p"} color={"text.primary"} fontSize={"md"} fontWeight={"normal"}>
       {text}
     </Text>
   );

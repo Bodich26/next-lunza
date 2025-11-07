@@ -5,9 +5,8 @@ export const CopyIdButton = () => {
     <Button
       variant="solid"
       colorPalette={"gray"}
-      color={"textWhite"}
+      color={"text.inverse"}
       rounded={"md"}
-      _dark={{ color: "black" }}
       width={{ smDown: "full" }}
     >
       Копировать ID

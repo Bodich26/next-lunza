@@ -20,7 +20,7 @@ export default function RootLayout({
       <Sidebar />
       <Toaster />
       <Box
-        background={"backgroundPrimary"}
+        background={"bg.app"}
         as={"main"}
         className="max-[1530px]:pl-[50px] max-md:pl-[0] min-h-screen"
       >

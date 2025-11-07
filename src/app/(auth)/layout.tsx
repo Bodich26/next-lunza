@@ -33,7 +33,7 @@ export default function RootLayout({
             fontWeight={"bold"}
             lineHeight={"0.82em"}
             letterSpacing={"0.22em"}
-            color={"textWhite"}
+            color={"text.white"}
           >
             Lunza
           </Text>
@@ -41,7 +41,7 @@ export default function RootLayout({
           <Text
             as={"p"}
             fontSize={{ base: "lg", lg: "2xl", xl: "3xl" }}
-            color={"textWhite"}
+            color={"text.white"}
           >
             Общайся. Делись. Вдохновляй.
           </Text>
@@ -49,7 +49,7 @@ export default function RootLayout({
         <Flex
           gap={"5"}
           position={"relative"}
-          background={"backgroundPrimary"}
+          background={"bg.app"}
           basis={{ base: "100%", md: "55%", lg: "48%" }}
           height={"full"}
           roundedLeft={{ base: "none", md: "xl" }}

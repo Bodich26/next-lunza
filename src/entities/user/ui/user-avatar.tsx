@@ -30,7 +30,7 @@ export const UserAvatar = ({ urlAvatar, altAvatar, isOwner, size }: Props) => {
         objectFit={"cover"}
         src={urlAvatar ?? "/user_default_avatar.svg"}
         alt={altAvatar ?? "Profile Avatar"}
-        borderColor={"cardBackground"}
+        borderColor={"bg.card"}
         margin={{ smPlusDown: "0 auto" }}
         className="border-[5px] border-solid shadow-black"
         transition="filter 0.3s ease"

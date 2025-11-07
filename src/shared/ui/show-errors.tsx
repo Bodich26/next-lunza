@@ -14,7 +14,7 @@ export const ShowErrors = ({ errorMessage, type }: Props) => {
     return (
       <Box
         w={"full"}
-        background={"cardBackground"}
+        background={"bg.card"}
         rounded={"md"}
         padding={5}
         display={"flex"}
@@ -29,9 +29,8 @@ export const ShowErrors = ({ errorMessage, type }: Props) => {
           onClick={() => window.location.reload()}
           variant="solid"
           colorPalette={"gray"}
-          color={"textWhite"}
+          color={"text.inverse"}
           rounded={"md"}
-          _dark={{ color: "black" }}
           margin={"0 auto"}
           width={{ base: "178px", smDown: "full" }}
         >
@@ -44,7 +43,7 @@ export const ShowErrors = ({ errorMessage, type }: Props) => {
     return (
       <Box
         w={"full"}
-        background={"cardBackground"}
+        background={"bg.card"}
         roundedBottom={"md"}
         padding={5}
         display={"flex"}
@@ -59,9 +58,8 @@ export const ShowErrors = ({ errorMessage, type }: Props) => {
           onClick={() => route.push(PUBLIC_ROUTES.MAIN)}
           variant="solid"
           colorPalette={"gray"}
-          color={"textWhite"}
+          color={"text.inverse"}
           rounded={"md"}
-          _dark={{ color: "black" }}
           margin={"0 auto"}
           width={{ base: "178px", smDown: "full" }}
         >

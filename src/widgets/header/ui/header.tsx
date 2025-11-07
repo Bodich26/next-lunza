@@ -11,7 +11,7 @@ export const Header = () => {
     <Box
       as={"header"}
       paddingY={2}
-      background={"cardBackground"}
+      background={"bg.card"}
       width={"full"}
       position={"fixed"}
       top="0"
@@ -40,7 +40,7 @@ export const Header = () => {
 
             {/** Separator*/}
             <Separator
-              background={"colorGrayWhite"}
+              background={"bg.subtle"}
               width={"0.5"}
               height={"40px"}
               rounded={"full"}
@@ -54,8 +54,8 @@ export const Header = () => {
             <Box display={"flex"} alignItems={"center"} gap={"3"}>
               <Button
                 variant="solid"
-                background={"rose.700"}
-                color={"textWhite"}
+                background={"accent.primary"}
+                color={"text.white"}
                 rounded={"md"}
                 _active={{ background: "rose.800" }}
                 _hover={{ background: "rose.800" }}
@@ -73,7 +73,7 @@ export const Header = () => {
 
             {/** Separator*/}
             <Separator
-              background={"colorGrayWhite"}
+              background={"bg.subtle"}
               width={"0.5"}
               height={"40px"}
               rounded={"full"}

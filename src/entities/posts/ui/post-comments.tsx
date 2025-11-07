@@ -1,6 +1,7 @@
 import { Box, Separator, Text } from "@chakra-ui/react";
 
 const comments = Array.from({ length: 1 });
+
 export const PostComments = () => {
   return (
     <Box
@@ -20,7 +21,7 @@ export const PostComments = () => {
         position="sticky"
         top="0"
         zIndex="1"
-        background="cardBackground"
+        background="bg.card"
       >
         <Text as="p" textStyle="lg" textAlign="start">
           Комментарии
@@ -31,7 +32,7 @@ export const PostComments = () => {
             md: "none",
           }}
           marginTop="12px"
-          background="colorGrayWhite"
+          background="bg.subtle"
           h="0.5"
           w="full"
           rounded="full"
@@ -48,12 +49,16 @@ export const PostComments = () => {
       >
         {comments.length > 0 ? (
           comments.map((_, i) => (
-            <div
+            <Box
               key={i}
-              className="w-full border-2 border-amber-300 rounded-md"
+              className="w-full rounded-md"
+              background={"bg.muted"}
+              padding={"1"}
             >
-              {i + 1}
-            </div>
+              <Text as="p" textStyle="sm" textAlign="start">
+                Вау ты ваще такой интересный тип.
+              </Text>
+            </Box>
           ))
         ) : (
           <Box

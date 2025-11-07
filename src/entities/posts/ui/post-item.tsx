@@ -45,7 +45,7 @@ export const PostItem = ({
     <Dialog.Root placement="center">
       <Dialog.Trigger asChild>
         <Box
-          borderColor={"cardBackground"}
+          borderColor={"bg.card"}
           className="relative h-[290px] border-3 shadow-black rounded-md flex items-center justify-center text-lg font-medium cursor-pointer"
         >
           <Image
@@ -68,7 +68,7 @@ export const PostItem = ({
             width="100%"
             rounded="md"
             overflow="hidden"
-            background="cardBackground"
+            background="bg.card"
           >
             <Dialog.Body padding={`${PADDING}px`} overflow={"auto"}>
               <Box
@@ -99,7 +99,7 @@ export const PostItem = ({
                   justifyContent="space-between"
                   flexShrink={0}
                   flexGrow={0}
-                  background={{ base: "transparent", md: "cardBackground" }}
+                  background={{ base: "transparent", md: "bg.card" }}
                   height="100%"
                   maxH={`calc(${dialogMaxH} - ${2 * PADDING}px)`}
                 >
@@ -118,7 +118,7 @@ export const PostItem = ({
                       md: "flex",
                     }}
                     marginTop="12px"
-                    background="colorGrayWhite"
+                    background="bg.subtle"
                     h="0.5"
                     w="full"
                     rounded="full"
@@ -147,7 +147,7 @@ export const PostItem = ({
                     insetX={{ mdDown: 6, smDown: 0 }}
                     zIndex={{ mdDown: 10 }}
                     position={{ mdDown: "fixed" }}
-                    background={{ mdDown: "cardBackground" }}
+                    background={{ mdDown: "bg.card" }}
                     paddingBottom={"16px"}
                   >
                     {/* Коментарии  */}
@@ -160,7 +160,7 @@ export const PostItem = ({
                       md: "flex",
                     }}
                     marginBottom="12px"
-                    background="colorGrayWhite"
+                    background="bg.subtle"
                     h="0.5"
                     w="full"
                     rounded="full"
@@ -206,7 +206,7 @@ export const PostItem = ({
                 position="absolute"
                 right="2"
                 top={{ base: "1", mdDown: "0" }}
-                background={{ mdDown: "cardBackground" }}
+                background={{ mdDown: "bg.card" }}
               />
             </Dialog.CloseTrigger>
           </Dialog.Content>

@@ -8,7 +8,7 @@ export const ToggleDarkModeButton = () => {
 
   return (
     <ClientOnly
-      fallback={<Skeleton w="40px" h="86px" background={"colorGrayWhite"} />}
+      fallback={<Skeleton w="40px" h="86px" background={"bg.skeleton"} />}
     >
       <Switch.Root
         size="lg"
@@ -20,7 +20,7 @@ export const ToggleDarkModeButton = () => {
           w="40px"
           h="86px"
           rounded={"md"}
-          bg={"colorGrayWhite"}
+          bg={"bg.subtle"}
           display="flex"
           flexDirection="column"
           alignItems="center"
@@ -34,7 +34,7 @@ export const ToggleDarkModeButton = () => {
             align="center"
             justify="center"
             borderRadius="md"
-            bg={colorMode === "light" ? "accentColor" : "transparent"}
+            bg={colorMode === "light" ? "accent.primary" : "transparent"}
             transition="ease-in-out 0.2s!"
           >
             <Icon
@@ -51,7 +51,7 @@ export const ToggleDarkModeButton = () => {
             align="center"
             justify="center"
             borderRadius="md"
-            bg={colorMode === "dark" ? "accentColor" : "transparent"}
+            bg={colorMode === "dark" ? "accent.primary" : "transparent"}
             transition="ease-in-out 0.2s!"
           >
             <Icon

@@ -30,8 +30,8 @@ export const UpdatePasswordForm = () => {
           borderWidth={"thin"}
           rounded={"md"}
           width={"full"}
-          borderColor={"borderColors"}
-          background={"backgroundPrimary"}
+          borderColor={"border.default"}
+          background={"bg.app"}
         >
           {/* Password */}
 
@@ -56,7 +56,11 @@ export const UpdatePasswordForm = () => {
           <Button
             className="w-full"
             type="submit"
-            colorPalette={"gray"}
+            background={"accent.primary"}
+            color={"text.white"}
+            rounded={"md"}
+            _active={{ background: "rose.800" }}
+            _hover={{ background: "rose.800" }}
             loading={isLoading}
           >
             Обновить пароль

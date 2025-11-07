@@ -17,7 +17,7 @@ export const NewNameForm = ({ value, onChange, closeForm }: Props) => {
       <Field.Root required invalid={!!nameNewErrors}>
         <FloatingLabelInput
           type="text"
-          borderColor={"textPrimary"}
+          borderColor={"text.primary"}
           {...register("name")}
           label="Новое имя"
           value={value}

@@ -26,7 +26,7 @@ export const Sidebar = () => {
       <Box
         as={"aside"}
         width={"60px"}
-        background="cardBackground"
+        background="bg.card"
         paddingY="3"
         paddingX="2"
         wordBreak="break-word"
@@ -53,7 +53,7 @@ export const Sidebar = () => {
           />
 
           <Separator
-            background={"colorGrayWhite"}
+            background={"bg.subtle"}
             h={"0.5"}
             w={"full"}
             rounded={"full"}
@@ -98,7 +98,7 @@ export const Sidebar = () => {
           <LogoutButton className={"hidden max-md:block"} />
 
           <Separator
-            background={"colorGrayWhite"}
+            background={"bg.subtle"}
             h={"0.5"}
             w={"full"}
             rounded={"full"}

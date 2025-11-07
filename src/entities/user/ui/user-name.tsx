@@ -7,7 +7,7 @@ export const UserName = ({ name }: Props) => {
   return (
     <Heading
       as={"h3"}
-      color={"textPrimary"}
+      color={"text.primary"}
       fontWeight={"medium"}
       size={{ base: "3xl", smDown: "2xl" }}
     >

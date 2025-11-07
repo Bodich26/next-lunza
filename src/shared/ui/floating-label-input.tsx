@@ -56,7 +56,7 @@ export const FloatingLabelInput = (props: FloatingLabelInputProps) => {
 
 const floatingStyles = defineStyle({
   pos: "absolute",
-  bg: "cardBackground",
+  bg: "bg.card",
   px: "0.5",
   top: "2.5",
   insetStart: "3",
