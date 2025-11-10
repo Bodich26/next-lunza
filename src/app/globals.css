@@ -28,7 +28,7 @@
 }
 
 .dark .isHover-icon-background:hover {
-  background: var(--color-gray-700);
+  background: var(--color-gray-600);
 }
 
 .sidebar-item-line::before {

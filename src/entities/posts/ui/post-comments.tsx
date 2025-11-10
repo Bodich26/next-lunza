@@ -1,5 +1,6 @@
-import { Box, Separator, Text } from "@chakra-ui/react";
-
+import { Box, Link, Separator, Text } from "@chakra-ui/react";
+import NextLink from "next/link";
+import { PUBLIC_ROUTES } from "routes";
 const comments = Array.from({ length: 1 });
 
 export const PostComments = () => {
@@ -51,13 +52,38 @@ export const PostComments = () => {
           comments.map((_, i) => (
             <Box
               key={i}
-              className="w-full rounded-md"
+              className="w-full rounded-md "
               background={"bg.muted"}
-              padding={"1"}
+              padding={"1.5"}
             >
-              <Text as="p" textStyle="sm" textAlign="start">
-                Вау ты ваще такой интересный тип.
+              <Text
+                as="p"
+                textStyle="sm"
+                textAlign="start"
+                marginBottom={"12px"}
+              >
+                Вау ты ваще такой интересный тип. Вау ты ваще такой интересный
+                тип. Вау ты ваще такой интересный тип.
               </Text>
+              <Box
+                display={"flex"}
+                justifyContent={"end"}
+                alignItems={"center"}
+                gap={"8px"}
+              >
+                <Text as="p" textStyle="sm" textAlign="start" opacity={"60%"}>
+                  автор
+                </Text>
+                <Link
+                  as={NextLink}
+                  href={`${PUBLIC_ROUTES.USER}/bodich`}
+                  textStyle="md"
+                  textAlign="end"
+                  target="_black"
+                >
+                  Bodich
+                </Link>
+              </Box>
             </Box>
           ))
         ) : (

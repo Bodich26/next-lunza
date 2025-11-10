@@ -1,9 +1,9 @@
 import { LogoutButton } from "@/features/auth";
 import { ToggleSidebarButton } from "@/features/toggle-sidebar";
 import { CustomIcon, Logo, widthContainer } from "@/shared";
-import { Box, Button, Container, Separator } from "@chakra-ui/react";
+import { CreateMenu } from "@/widgets/create-menu";
+import { Box, Container, Separator } from "@chakra-ui/react";
 import { Bell } from "lucide-react";
-import { BiPlus } from "react-icons/bi";
 import { PUBLIC_ROUTES } from "routes";
 
 export const Header = () => {
@@ -52,16 +52,7 @@ export const Header = () => {
           <Box display={"flex"} alignItems={"center"} gap={"4"}>
             {/** Button-Block*/}
             <Box display={"flex"} alignItems={"center"} gap={"3"}>
-              <Button
-                variant="solid"
-                background={"accent.primary"}
-                color={"text.white"}
-                rounded={"md"}
-                _active={{ background: "rose.800" }}
-                _hover={{ background: "rose.800" }}
-              >
-                Создать <BiPlus />
-              </Button>
+              <CreateMenu />
 
               <CustomIcon
                 value={10}

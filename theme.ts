@@ -39,7 +39,8 @@ const config = defineConfig({
           50: { value: "#fff" },
           100: { value: "#FAFAFA" },
           200: { value: "#F5F5F5" },
-          300: { value: "#EBEBEB" },
+          300: { value: "#F2F2F2" },
+          400: { value: "#EBEBEB" },
         },
         silver: {
           50: { value: "#000" },
@@ -67,8 +68,8 @@ const config = defineConfig({
         },
         "bg.muted": {
           value: {
-            base: "{colors.whites.200}",
-            _dark: "{colors.gray.600}",
+            base: "{colors.whites.300}",
+            _dark: "{colors.silver.400}",
           },
         },
         "bg.subtle": {

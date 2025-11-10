@@ -180,7 +180,7 @@ export const PostItem = ({
                     >
                       <Heart width={28} height={28} />
                       <Text as="p" textStyle="md">
-                        {likesCount} Лайк(ов)
+                        {likesCount}
                       </Text>
                     </Box>
 
