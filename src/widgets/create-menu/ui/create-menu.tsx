@@ -1,12 +1,12 @@
 "use client";
 import { CreatePostButton } from "@/features/create-post";
-import { Button, Popover, Portal } from "@chakra-ui/react";
+import { Button, Menu, Portal } from "@chakra-ui/react";
 import { BiPlus } from "react-icons/bi";
 
 export const CreateMenu = () => {
   return (
-    <Popover.Root size="xs">
-      <Popover.Trigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button
           variant="solid"
           background={"accent.primary"}
@@ -17,16 +17,16 @@ export const CreateMenu = () => {
         >
           Создать <BiPlus />
         </Button>
-      </Popover.Trigger>
+      </Menu.Trigger>
       <Portal>
-        <Popover.Positioner>
-          <Popover.Content background={"bg.card"} w={"full"}>
-            <Popover.Body>
+        <Menu.Positioner>
+          <Menu.Content background={"bg.card"} w={"full"}>
+            <Menu.Item value="add_post" _hover={{ background: "bg.muted" }}>
               <CreatePostButton />
-            </Popover.Body>
-          </Popover.Content>
-        </Popover.Positioner>
+            </Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
       </Portal>
-    </Popover.Root>
+    </Menu.Root>
   );
 };

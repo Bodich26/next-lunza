@@ -3,6 +3,7 @@ import { Header, Sidebar } from "@/widgets";
 import type { Metadata } from "next";
 import { Toaster, widthContainer } from "@/shared";
 import { SidebarProvider } from "@/features/toggle-sidebar";
+import { CreatePostDialog } from "@/features/create-post";
 
 export const metadata: Metadata = {
   title: "Lunza",
@@ -19,6 +20,7 @@ export default function RootLayout({
       <Header />
       <Sidebar />
       <Toaster />
+      <CreatePostDialog />
       <Box
         background={"bg.app"}
         as={"main"}
