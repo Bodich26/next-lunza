@@ -2,18 +2,23 @@
 import React from "react";
 import { Box, Flex, List, Separator } from "@chakra-ui/react";
 
-import { activeLinkMenu, CustomIcon, IconAvatar, sidebarMenu } from "@/shared";
+import {
+  activeLinkMenu,
+  CustomIcon,
+  CustomOverlay,
+  IconAvatar,
+  sidebarMenu,
+} from "@/shared";
 import { LogoutButton } from "@/features/auth";
 import { SidebarItem } from "./sidebar-item";
 import { usePathname } from "next/navigation";
-import { useToggleSidebar } from "@/features/toggle-sidebar";
-import { SidebarOverlay } from "./sidebar-overlay";
 import { ToggleDarkModeButton } from "@/features/dark-mode";
 import { useMyProfileApi } from "@/entities/user";
+import { useToggleSidebarStore } from "@/features/toggle-sidebar";
 
 export const Sidebar = () => {
   const { data: profile } = useMyProfileApi();
-  const { isOpen, handleToggleSidebar } = useToggleSidebar();
+  const { isOpen, close } = useToggleSidebarStore();
   const pathName = usePathname();
   const sidebarDisplay = {
     base: isOpen ? "flex" : "none",
@@ -22,7 +27,12 @@ export const Sidebar = () => {
 
   return (
     <>
-      <SidebarOverlay onClick={handleToggleSidebar} isActive={isOpen} />
+      <CustomOverlay
+        onClick={() => close()}
+        isActive={isOpen}
+        display={"mobile"}
+        zIndex="90"
+      />
       <Box
         as={"aside"}
         width={"60px"}

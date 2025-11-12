@@ -2,7 +2,6 @@ import { Box, Container } from "@chakra-ui/react";
 import { Header, Sidebar } from "@/widgets";
 import type { Metadata } from "next";
 import { Toaster, widthContainer } from "@/shared";
-import { SidebarProvider } from "@/features/toggle-sidebar";
 import { CreatePostDialog } from "@/features/create-post";
 
 export const metadata: Metadata = {
@@ -16,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SidebarProvider>
+    <>
       <Header />
       <Sidebar />
       <Toaster />
@@ -30,6 +29,6 @@ export default function RootLayout({
           {children}
         </Container>
       </Box>
-    </SidebarProvider>
+    </>
   );
 }

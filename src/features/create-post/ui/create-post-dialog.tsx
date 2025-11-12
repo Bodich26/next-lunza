@@ -2,6 +2,7 @@
 import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react";
 import { CreatePostForm } from "./create-post-form";
 import { useCreatePostDialogStore } from "../model/use-create-post-dialog-store";
+import { CustomOverlay } from "@/shared";
 
 export const CreatePostDialog = () => {
   const { isOpen, close } = useCreatePostDialogStore();
@@ -14,6 +15,7 @@ export const CreatePostDialog = () => {
       onOpenChange={() => close()}
     >
       <Portal>
+        <CustomOverlay isActive={isOpen} display="desktop" zIndex="100" />
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>
