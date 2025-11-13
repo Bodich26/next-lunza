@@ -42,12 +42,22 @@ const config = defineConfig({
           300: { value: "#F2F2F2" },
           400: { value: "#EBEBEB" },
         },
-        silver: {
+        blacks: {
           50: { value: "#000" },
           100: { value: "#1c1c1c" },
           200: { value: "#242424" },
           300: { value: "#2e2e2e" },
           400: { value: "#333333" },
+          500: { value: "#3D3D3D" },
+          600: { value: "#424242" },
+        },
+        dust: {
+          50: { value: "#e5e5e5" },
+          100: { value: "#dcdcdc" },
+          200: { value: "#d5d5d5" },
+          300: { value: "#cdcdcd" },
+          400: { value: "#c1c1c1" },
+          500: { value: "#bdbdbd" },
         },
       },
     },
@@ -57,19 +67,19 @@ const config = defineConfig({
         "bg.app": {
           value: {
             base: "{colors.whites.200}",
-            _dark: "{colors.silver.100}",
+            _dark: "{colors.blacks.100}",
           },
         },
         "bg.card": {
           value: {
             base: "{colors.whites.50}",
-            _dark: "{colors.silver.200}",
+            _dark: "{colors.blacks.200}",
           },
         },
         "bg.muted": {
           value: {
             base: "{colors.whites.300}",
-            _dark: "{colors.silver.400}",
+            _dark: "{colors.blacks.400}",
           },
         },
         "bg.subtle": {
@@ -81,21 +91,21 @@ const config = defineConfig({
         "bg.skeleton": {
           value: {
             base: "{colors.gray.200}",
-            _dark: "{colors.silver.300}",
+            _dark: "{colors.blacks.300}",
           },
         },
 
         // Текст
         "text.primary": {
           value: {
-            base: "{colors.silver.50}",
+            base: "{colors.blacks.50}",
             _dark: "{colors.whites.50}",
           },
         },
         "text.inverse": {
           value: {
             base: "{colors.whites.50}",
-            _dark: "{colors.silver.50}",
+            _dark: "{colors.blacks.50}",
           },
         },
         "text.white": {
@@ -104,17 +114,41 @@ const config = defineConfig({
             _dark: "{colors.whites.50}",
           },
         },
+        "text.black": {
+          value: {
+            base: "{colors.blacks.50}",
+            _dark: "{colors.blacks.50}",
+          },
+        },
 
         // Бордеры
         "border.default": {
           value: {
-            base: "{colors.gray.200}",
+            base: "{colors.dust.50}",
             _dark: "{colors.whites.300}",
           },
         },
 
         // Акцент
         "accent.primary": {
+          value: "{colors.rose.700}",
+        },
+
+        // Остальные кнопки
+        "button.other": {
+          value: {
+            base: "{colors.dust.50}",
+            _dark: "{colors.whites.300}",
+          },
+        },
+        "button.other.effect": {
+          value: {
+            base: "{colors.dust.100}",
+            _dark: "{colors.dust.200}",
+          },
+        },
+
+        "button.primary": {
           value: "{colors.rose.700}",
         },
       },

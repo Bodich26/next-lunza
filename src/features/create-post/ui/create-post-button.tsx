@@ -6,7 +6,12 @@ export const CreatePostButton = () => {
   const open = useCreatePostDialogStore((state) => state.open);
 
   return (
-    <Button w={"full"} onClick={open}>
+    <Button
+      w={"full"}
+      onClick={open}
+      variant={"ghost"}
+      _hover={{ background: "bg.muted" }}
+    >
       <ImageIcon width={24} height={24} />
       Добавить публикацию
     </Button>

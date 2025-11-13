@@ -59,6 +59,7 @@ export const RegisterForm = () => {
                 {...register("email")}
                 required
                 placeholder="example@mail.com"
+                borderColor={"border.default"}
               />
             </InputGroup>
 
@@ -77,6 +78,7 @@ export const RegisterForm = () => {
                 {...register("name")}
                 required
                 placeholder="Введите псевдоним"
+                borderColor={"border.default"}
               />
             </InputGroup>
 
@@ -94,6 +96,7 @@ export const RegisterForm = () => {
               {...register("password")}
               required
               placeholder="********"
+              borderColor={"border.default"}
             />
             {passwordErrors ? (
               <Field.ErrorText>{passwordErrors?.message}</Field.ErrorText>
@@ -109,7 +112,7 @@ export const RegisterForm = () => {
 
           <Checkbox.Root variant={"solid"} required>
             <Checkbox.HiddenInput />
-            <Checkbox.Control />
+            <Checkbox.Control borderColor={"border.default"} />
             <Checkbox.Label fontSize={"sm"}>
               Регистрируясь, вы соглашаетесь с{" "}
               <Link href="/login" color={"rose.700"} display={"inline"}>

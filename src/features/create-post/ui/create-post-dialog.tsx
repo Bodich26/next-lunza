@@ -13,13 +13,14 @@ export const CreatePostDialog = () => {
       closeOnInteractOutside={false}
       open={isOpen}
       onOpenChange={() => close()}
+      size={"lg"}
     >
       <Portal>
-        <CustomOverlay isActive={isOpen} display="desktop" zIndex="100" />
+        <CustomOverlay isActive={isOpen} display="desktop" zIndex="1000" />
         <Dialog.Positioner>
-          <Dialog.Content>
+          <Dialog.Content background={"bg.app"}>
             <Dialog.Header>
-              <Dialog.Title>Dialog Title</Dialog.Title>
+              <Dialog.Title>Добавление публикации</Dialog.Title>
             </Dialog.Header>
             <Dialog.Body>
               {/* Форма */}
@@ -27,7 +28,7 @@ export const CreatePostDialog = () => {
             </Dialog.Body>
             <Dialog.Footer>
               <Dialog.ActionTrigger asChild>
-                <Button variant="outline">Закрыть</Button>
+                <Button variant="outline">Отмена</Button>
               </Dialog.ActionTrigger>
             </Dialog.Footer>
             <Dialog.CloseTrigger asChild>

@@ -53,6 +53,7 @@ export const ForgotPasswordFrom = () => {
                 {...register("email")}
                 required
                 placeholder="example@mail.com"
+                borderColor={"border.default"}
               />
             </InputGroup>
 

@@ -13,3 +13,4 @@ export { PencilButton } from "./pencil-button";
 export { FloatingLabelInput } from "./floating-label-input";
 export { FileUploadList } from "./file-upload-list";
 export { CustomOverlay } from "./custom-overlay";
+export { GlobalLoadingPage } from "./global-loading-page";

@@ -19,17 +19,22 @@ export const CustomIcon = ({
   hoverEffect,
 }: Props) => {
   const displayValue = value && value > 0 ? Math.min(value, 99) : undefined;
-  const activeClass = hoverEffect
-    ? "isHover-icon-background bg-transparent!"
-    : "isHover-icon-background ";
 
   return (
     <Box
       position="relative"
       cursor={"pointer"}
       onClick={onClick}
-      className={cn(activeClass)}
+      className={"inline-flex items-center justify-center rounded-full "}
       padding={"1"}
+      _light={{
+        bg: hoverEffect ? "transparent" : " transparent",
+        _hover: hoverEffect ? { bg: "transparent" } : { bg: "whites.400" },
+      }}
+      _dark={{
+        bg: hoverEffect ? "transparent" : "transparent",
+        _hover: hoverEffect ? { bg: "transparent" } : { bg: "blacks.500" },
+      }}
     >
       <Icon width={iconWidth} height={iconHeight} />
       {displayValue && (

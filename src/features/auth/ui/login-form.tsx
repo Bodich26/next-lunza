@@ -57,6 +57,7 @@ export const LoginForm = () => {
                 {...register("email")}
                 required
                 placeholder="example@mail.com"
+                borderColor={"border.default"}
               />
             </InputGroup>
 
@@ -74,6 +75,7 @@ export const LoginForm = () => {
               {...register("password")}
               required
               placeholder="********"
+              borderColor={"border.default"}
             />
             <Field.ErrorText>{passwordErrors?.message}</Field.ErrorText>
           </Field.Root>

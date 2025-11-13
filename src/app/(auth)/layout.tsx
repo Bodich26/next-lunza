@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Flex, Text } from "@chakra-ui/react";
 import { DecorCircle } from "@/shared";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Lunza",
@@ -13,9 +14,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-col h-screen bg-cover bg-center bg-auth-image max-md:bg-none! overflow-x-hidden">
+    <div className="flex flex-col h-screen overflow-x-hidden">
       <header></header>
-      <main className="flex justify-between flex-grow">
+      <Image
+        priority
+        src={"/bg-auth-lunza.jpeg"}
+        fill
+        className="object-cover bg-cover bg-center max-md:hidden!"
+        alt="Background-Lunza"
+      />
+      <main className="flex justify-between flex-grow z-10">
         <Flex
           display={{ base: "none", md: "flex" }}
           gap={"3"}

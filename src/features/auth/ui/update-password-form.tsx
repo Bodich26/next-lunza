@@ -44,6 +44,7 @@ export const UpdatePasswordForm = () => {
               {...register("password")}
               required
               placeholder="********"
+              borderColor={"border.default"}
             />
             <Field.ErrorText>{passwordErrors?.message}</Field.ErrorText>
           </Field.Root>

@@ -7,6 +7,7 @@ import {
   Flex,
   Input,
   Stack,
+  Textarea,
 } from "@chakra-ui/react";
 import { HiUpload } from "react-icons/hi";
 import { useCreatePost } from "../model/use-create-post";
@@ -23,7 +24,7 @@ export const CreatePostForm = () => {
   } = useCreatePost();
 
   return (
-    <Flex gap={"5"} flexDirection={"column"} className="max-w-[487px]">
+    <Flex gap={"5"} flexDirection={"column"}>
       <form onSubmit={handleSubmitForm}>
         <Stack
           gap="4"
@@ -38,12 +39,18 @@ export const CreatePostForm = () => {
           overflow={"auto"}
         >
           {/* Image */}
-
-          <Field.Root invalid={!!fileErrors}>
+          <Field.Root required invalid={!!fileErrors}>
+            <Field.Label>
+              Изображение <Field.RequiredIndicator />
+            </Field.Label>
             <FileUpload.Root accept="image/*">
               <FileUpload.HiddenInput {...register("file")} />
               <FileUpload.Trigger asChild>
-                <Button variant="outline" size="sm">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  borderColor={"border.default"}
+                >
                   <HiUpload /> Добавить изображение
                 </Button>
               </FileUpload.Trigger>
@@ -53,14 +60,14 @@ export const CreatePostForm = () => {
           </Field.Root>
 
           {/* Description */}
-
           <Field.Root invalid={!!descriptionErrors}>
             <Field.Label>Добавьте описание</Field.Label>
-            <Input
-              type="text"
-              {...register("description")}
-              required
+            <Textarea
+              resize={"none"}
+              size="xl"
               placeholder="Описание к публикации"
+              {...register("description")}
+              borderColor={"border.default"}
             />
             <Field.ErrorText>{descriptionErrors?.message}</Field.ErrorText>
           </Field.Root>
