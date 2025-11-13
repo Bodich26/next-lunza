@@ -24,12 +24,13 @@ export const CreatePostForm = () => {
   } = useCreatePost();
 
   return (
-    <Flex gap={"5"} flexDirection={"column"}>
-      <form onSubmit={handleSubmitForm}>
+    <Flex gap={"5"} flexDirection={"column"} h={{ smDown: "100%" }}>
+      <form onSubmit={handleSubmitForm} className=" max-sm:h-[100%]">
         <Stack
+          h={{ smDown: "100%" }}
           gap="4"
           align="flex-start"
-          padding={"10"}
+          padding={{ base: "10", mdDown: "6" }}
           border={"solid"}
           borderWidth={"thin"}
           rounded={"md"}
@@ -54,17 +55,20 @@ export const CreatePostForm = () => {
                   <HiUpload /> Добавить изображение
                 </Button>
               </FileUpload.Trigger>
-              <FileUpload.List />
+              <FileUpload.ItemGroup>
+                <FileUpload.Items background={"transparent"} />
+              </FileUpload.ItemGroup>
             </FileUpload.Root>
             <Field.ErrorText>{fileErrors?.message}</Field.ErrorText>
           </Field.Root>
 
           {/* Description */}
-          <Field.Root invalid={!!descriptionErrors}>
+          <Field.Root invalid={!!descriptionErrors} flexGrow={{ smDown: 1 }}>
             <Field.Label>Добавьте описание</Field.Label>
             <Textarea
               resize={"none"}
               size="xl"
+              height={{ smDown: "60%" }}
               placeholder="Описание к публикации"
               {...register("description")}
               borderColor={"border.default"}

@@ -18,7 +18,12 @@ export const CreatePostDialog = () => {
       <Portal>
         <CustomOverlay isActive={isOpen} display="desktop" zIndex="1000" />
         <Dialog.Positioner>
-          <Dialog.Content background={"bg.app"}>
+          <Dialog.Content
+            h={{ smDown: "100vh" }}
+            width="100%"
+            background={"bg.app"}
+            maxH={{ smDown: "100%" }}
+          >
             <Dialog.Header>
               <Dialog.Title>Добавление публикации</Dialog.Title>
             </Dialog.Header>
@@ -28,7 +33,16 @@ export const CreatePostDialog = () => {
             </Dialog.Body>
             <Dialog.Footer>
               <Dialog.ActionTrigger asChild>
-                <Button variant="outline">Отмена</Button>
+                <Button
+                  variant={"ghost"}
+                  borderColor={"none"}
+                  color={"text.black"}
+                  background={"button.other"}
+                  _hover={{ background: "button.other.effect" }}
+                  _active={{ background: "button.other.effect" }}
+                >
+                  Отмена
+                </Button>
               </Dialog.ActionTrigger>
             </Dialog.Footer>
             <Dialog.CloseTrigger asChild>
