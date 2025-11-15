@@ -6,7 +6,7 @@ import { updateBanner } from "../api/action";
 
 export const useNewBanner = () => {
   const { data: profile } = useMyProfileApi();
-  const userId = profile!.id;
+  const userId = profile?.id;
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const handleFileChange = async (files: FileList | null) => {
@@ -31,7 +31,7 @@ export const useNewBanner = () => {
       return;
     }
 
-    const res = await updateBanner(file, userId);
+    const res = await updateBanner(file, userId!);
 
     if (res.error) {
       toaster.create({

@@ -9,7 +9,7 @@ import { profileQueryKeys, useMyProfileApi } from "@/entities/user";
 
 export const useNewName = (closeForm: () => void) => {
   const { data: profile } = useMyProfileApi();
-  const userId = profile!.id;
+  const userId = profile?.id;
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
@@ -30,7 +30,7 @@ export const useNewName = (closeForm: () => void) => {
     if (isLoading) return;
     setIsLoading(true);
 
-    const res = await updateName(objectFormData(data), userId);
+    const res = await updateName(objectFormData(data), userId!);
 
     if (res.error) {
       toaster.create({

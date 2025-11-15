@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@chakra-ui/react";
 import { Image as ImageIcon } from "lucide-react";
 import { useCreatePostDialogStore } from "../model/use-create-post-dialog-store";

@@ -1,8 +1,8 @@
 import { Alert, Box } from "@chakra-ui/react";
 
 type Props = {
-  success: string;
-  error: string;
+  success?: string;
+  error?: string;
 };
 export const NoticeForm = ({ success, error }: Props) => {
   if (success) {

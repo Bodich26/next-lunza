@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 export const useNewAbout = (closeForm: () => void) => {
   const { data: profile } = useMyProfileApi();
-  const userId = profile!.id;
+  const userId = profile?.id;
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
@@ -30,7 +30,7 @@ export const useNewAbout = (closeForm: () => void) => {
     if (isLoading) return;
     setIsLoading(true);
 
-    const res = await updateAbout(objectFormData(data), userId);
+    const res = await updateAbout(objectFormData(data), userId!);
 
     if (res.error) {
       toaster.create({

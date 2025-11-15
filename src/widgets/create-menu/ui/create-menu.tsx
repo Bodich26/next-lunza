@@ -21,7 +21,11 @@ export const CreateMenu = () => {
       <Portal>
         <Menu.Positioner>
           <Menu.Content background={"bg.card"} w={"full"}>
-            <Menu.Item value="add_post" _hover={{ background: "bg.muted" }}>
+            <Menu.Item
+              value="add_post"
+              _hover={{ background: "bg.muted" }}
+              background={"bg.card"}
+            >
               <CreatePostButton />
             </Menu.Item>
           </Menu.Content>

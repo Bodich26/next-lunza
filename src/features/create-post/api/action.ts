@@ -34,7 +34,9 @@ export async function createPost(
       return { error: "Id текущего пользователя несовпадает с переданым Id." };
     }
 
-    const fileName = `${user.id}/posts.${postFile.name.split(".").pop()}`;
+    const fileName = `${user.id}/posts.${Date.now()}${postFile.name
+      .split(".")
+      .pop()}`;
 
     const { error: uploadError } = await supabase.storage
       .from("posts")

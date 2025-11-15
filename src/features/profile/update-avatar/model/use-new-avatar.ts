@@ -6,7 +6,7 @@ import { updateAvatar } from "../api/action";
 
 export const useNewAvatar = () => {
   const { data: profile } = useMyProfileApi();
-  const userId = profile!.id;
+  const userId = profile?.id;
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const handleFileChange = async (files: FileList | null) => {
@@ -31,7 +31,7 @@ export const useNewAvatar = () => {
       return;
     }
 
-    const res = await updateAvatar(file, userId);
+    const res = await updateAvatar(file, userId!);
 
     if (res.error) {
       toaster.create({

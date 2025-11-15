@@ -5,7 +5,6 @@ import {
   Field,
   FileUpload,
   Flex,
-  Input,
   Stack,
   Textarea,
 } from "@chakra-ui/react";
@@ -20,7 +19,6 @@ export const CreatePostForm = () => {
     register,
     isLoading,
     resError,
-    resSuccess,
   } = useCreatePost();
 
   return (
@@ -77,7 +75,7 @@ export const CreatePostForm = () => {
           </Field.Root>
 
           {/*Notice*/}
-          <NoticeForm success={resSuccess} error={resError} />
+          <NoticeForm error={resError} />
 
           {/* Button */}
           <Button
