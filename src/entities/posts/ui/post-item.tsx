@@ -15,7 +15,7 @@ import { PostImage } from "./post-image";
 import { PostComments } from "./post-comments";
 
 type Props = {
-  id: string;
+  id: number;
   imageUrl: string;
   postText: string;
   likesCount: number;
@@ -39,7 +39,7 @@ export const PostItem = ({
   const PADDING = 16;
 
   const { aspectRatio, dialogMaxW, dialogMaxH, imageMaxWidth, imageMaxHeight } =
-    usePostDimensions(imageWidth, imageHeight, PADDING, RIGHT_PANEL_WIDTH, GAP);
+    usePostDimensions(imageWidth, imageHeight, RIGHT_PANEL_WIDTH, GAP, PADDING);
 
   return (
     <Dialog.Root placement="center">

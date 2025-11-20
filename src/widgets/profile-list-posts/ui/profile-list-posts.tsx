@@ -1,39 +1,15 @@
 "use client";
 import { PostItem } from "@/entities/posts";
+import { TypeUserPosts } from "@/entities/posts/model/type-user-posts";
 import { cn } from "@/shared";
 
-export const ProfileListPosts = ({
-  posts = [
-    {
-      id: "1",
-      imageUrl: "/avatar.jpg",
-      postText: "Мяууу.. я вообще в шоке, вы знаете где я побывал?",
-      likesCount: 11,
-      imageWidth: 736,
-      imageHeight: 831,
-    },
-    {
-      id: "2",
-      imageUrl: "/default-banner-profile.jpg",
-      postText: "Мяууу.. я вообще в шоке, вы знаете где я побывал?",
-      likesCount: 12,
-      imageWidth: 1920,
-      imageHeight: 1080,
-    },
-    {
-      id: "3",
-      imageUrl: "/bg-auth-lunza.jpeg",
-      postText: "Мяууу.. я вообще в шоке, вы знаете где я побывал?",
-      likesCount: 12,
-      imageWidth: 1920,
-      imageHeight: 1080,
-    },
-  ],
-}) => {
+type Props = { posts: TypeUserPosts[] };
+
+export const ProfileListPosts = ({ posts }: Props) => {
   const isCompact = posts.length <= 3;
 
   return (
-    <section
+    <div
       className={cn(
         "grid gap-6 mt-6 max-sm:grid-cols-[repeat(auto-fit,minmax(260px,2fr))]",
         isCompact
@@ -45,13 +21,13 @@ export const ProfileListPosts = ({
         <PostItem
           key={p.id}
           id={p.id}
-          imageUrl={p.imageUrl}
-          postText={p.postText}
-          likesCount={p.likesCount}
-          imageWidth={p.imageWidth}
-          imageHeight={p.imageHeight}
+          imageUrl={p.image_url}
+          postText={p.description}
+          likesCount={11}
+          imageWidth={p.image_width}
+          imageHeight={p.image_height}
         />
       ))}
-    </section>
+    </div>
   );
 };

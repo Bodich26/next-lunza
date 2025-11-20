@@ -18,13 +18,7 @@ export async function GET() {
 
     const { data: userPostsData, error: userPostsError } = await supabase
       .from("user_posts")
-      .select(
-        `
-    *,
-    post_comments (*),
-    post_likes (*)
-  `
-      )
+      .select("*")
       .eq("author_id", userId)
       .order("created_at", { ascending: false });
 

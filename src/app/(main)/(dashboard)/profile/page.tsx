@@ -1,6 +1,7 @@
 "use client";
+import { useMyPostApi } from "@/entities/posts";
 import { useMyProfileApi } from "@/entities/user";
-import { ShowErrors } from "@/shared";
+import { ShowErrors, ShowNotice } from "@/shared";
 import {
   ProfileBanner,
   ProfileInfo,
@@ -14,6 +15,12 @@ export default function Profile() {
     isLoading: isProfileLoading,
     error: profileError,
   } = useMyProfileApi();
+
+  const {
+    data: posts,
+    isLoading: isPostsLoading,
+    error: postsError,
+  } = useMyPostApi();
 
   return (
     <>
@@ -47,7 +54,21 @@ export default function Profile() {
       </section>
 
       {/*Посты пользователя */}
-      <ProfileListPosts />
+      <section>
+        {isPostsLoading && <ProfileSkeleton />}
+
+        {postsError && <ShowNotice errorMessage={postsError.message} />}
+
+        {!isProfileLoading && !profile && (
+          <ShowNotice errorMessage="Публикации ненайдены" />
+        )}
+
+        {posts?.length === 0 && (
+          <ShowNotice errorMessage="У пользователя нет публикации" />
+        )}
+
+        {posts && <ProfileListPosts posts={posts} />}
+      </section>
     </>
   );
 }

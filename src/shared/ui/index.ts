@@ -14,3 +14,4 @@ export { FloatingLabelInput } from "./floating-label-input";
 export { FileUploadList } from "./file-upload-list";
 export { CustomOverlay } from "./custom-overlay";
 export { GlobalLoadingPage } from "./global-loading-page";
+export { ShowNotice } from "./show-notice";

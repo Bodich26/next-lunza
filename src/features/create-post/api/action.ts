@@ -1,5 +1,5 @@
 "use server";
-import { maxFileSize } from "@/shared";
+import { getSizeImages, maxFileSize } from "@/shared";
 import { createClient } from "@/shared/lib/supabase/server";
 
 export async function createPost(
@@ -21,6 +21,8 @@ export async function createPost(
     if (postFile.size > maxFileSize) {
       return { error: "Файл слишком большой. Максимум 1 МБ." };
     }
+
+    const { width, height } = await getSizeImages(postFile);
 
     const {
       data: { user },
@@ -54,6 +56,8 @@ export async function createPost(
       author_id: userId,
       description,
       image_url: publicUrl,
+      image_width: width,
+      image_height: height,
     });
 
     if (insertError) {
