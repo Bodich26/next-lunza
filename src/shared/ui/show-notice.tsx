@@ -13,6 +13,7 @@ export const ShowNotice = ({ errorMessage }: Props) => {
       padding={5}
       display={"flex"}
       flexDirection={"column"}
+      mt={"24px"}
       gap={5}
     >
       <Text as={"p"} fontSize={"lg"} textAlign={"center"}>

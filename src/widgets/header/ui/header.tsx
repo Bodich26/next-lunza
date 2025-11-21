@@ -1,3 +1,4 @@
+"use client";
 import { LogoutButton } from "@/features/auth";
 import { ToggleSidebarButton } from "@/features/toggle-sidebar";
 import { CustomIcon, Logo, widthContainer } from "@/shared";

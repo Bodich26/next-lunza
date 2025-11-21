@@ -8,6 +8,8 @@ export const API_ROUTES = {
   BASE: process.env.NEXT_PUBLIC_API!,
   MY_PROFILE: process.env.NEXT_PUBLIC_API_MY_PROFILE!,
   MY_POSTS: process.env.NEXT_PUBLIC_API_MY_POSTS!,
+  POSTS: process.env.NEXT_PUBLIC_API_POSTS!,
+  COMMENTS: process.env.NEXT_PUBLIC_API_POSTS_COMMENTS!,
 } as const;
 
 /**

@@ -10,26 +10,24 @@ export async function GET(
     const supabase = await createClient();
     const { postId } = await context.params;
 
-    const { data: postCommentsData, error: postCommentsDataError } =
-      await supabase
-        .from("post_comments")
-        .select("*")
-        .eq("post_id", postId)
-        .order("created_at", { ascending: false });
+    const { data: postLikesData, error: postLikesDataError } = await supabase
+      .from("post_likes")
+      .select("*")
+      .eq("post_id", postId);
 
-    if (postCommentsDataError) {
+    if (postLikesDataError) {
       return NextResponse.json({
-        error: "Не удалось получить комментарии пользователей",
-        postComments: null,
+        error: "Не удалось получить кол-во лайков",
+        postLikes: null,
       });
     }
 
     return NextResponse.json({
-      postComments: postCommentsData,
+      postsLikes: postLikesData,
       success: true,
     });
   } catch (error) {
-    console.error("Ошибка получения публикаций:", error);
+    console.error("Ошибка получения кол-во лайков:", error);
     return NextResponse.json({ error: "Внутренняя ошибка сервера" });
   }
 }

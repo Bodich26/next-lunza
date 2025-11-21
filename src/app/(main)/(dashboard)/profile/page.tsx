@@ -7,7 +7,10 @@ import {
   ProfileInfo,
   ProfileSkeleton,
 } from "@/widgets/main-profile";
-import { ProfileListPosts } from "@/widgets/profile-list-posts";
+import {
+  PostsListSkeleton,
+  ProfileListPosts,
+} from "@/widgets/profile-list-posts";
 
 export default function Profile() {
   const {
@@ -55,7 +58,7 @@ export default function Profile() {
 
       {/*Посты пользователя */}
       <section>
-        {isPostsLoading && <ProfileSkeleton />}
+        {isPostsLoading && <PostsListSkeleton />}
 
         {postsError && <ShowNotice errorMessage={postsError.message} />}
 
@@ -63,7 +66,7 @@ export default function Profile() {
           <ShowNotice errorMessage="Публикации ненайдены" />
         )}
 
-        {posts?.length === 0 && (
+        {posts && posts.length === 0 && (
           <ShowNotice errorMessage="У пользователя нет публикации" />
         )}
 
