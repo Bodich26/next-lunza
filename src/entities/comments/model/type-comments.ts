@@ -3,6 +3,7 @@ export type TypePostsComments = {
   post_id: number;
   user_id: string;
   content: string;
+  user_name: string;
   created_at: string;
   updated_at: string;
   parent_id: number;

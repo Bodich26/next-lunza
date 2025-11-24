@@ -1,7 +1,7 @@
 "use client";
-import { PostItem } from "@/entities/posts";
 import { TypeUserPosts } from "@/entities/posts/model/type-user-posts";
 import { cn } from "@/shared";
+import { PostItem } from "@/widgets/post-item";
 
 type Props = { posts: TypeUserPosts[] };
 

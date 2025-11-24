@@ -2,9 +2,8 @@ import { API_ROUTES } from "routes";
 import { TypeUserProfileRes } from "../model/type-users-profile";
 
 export const fetchMyProfile = async ({ signal }: { signal?: AbortSignal }) => {
-  const res = await fetch(`${API_ROUTES.BASE}${API_ROUTES.MY_PROFILE}`, {
-    signal,
-  });
+  const URL = `${API_ROUTES.BASE}${API_ROUTES.MY_PROFILE}`;
+  const res = await fetch(`${URL}`, { signal });
 
   if (!res.ok) throw new Error(`Ошибка сервера: ${res.status}`);
 

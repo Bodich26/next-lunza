@@ -9,7 +9,7 @@ export const profileQueryKeys = {
 export const useMyProfileApi = () => {
   return useQuery<TypeUserProfile, Error>({
     queryKey: profileQueryKeys.myProfile,
-    queryFn: fetchMyProfile,
+    queryFn: ({ signal }) => fetchMyProfile({ signal }),
     retry: 1,
   });
 };

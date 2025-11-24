@@ -9,7 +9,7 @@ export const postsQueryKeys = {
 export const useMyPostApi = () => {
   return useQuery<TypeUserPosts[], Error>({
     queryKey: postsQueryKeys.myPosts,
-    queryFn: fetchMyPosts,
+    queryFn: ({ signal }) => fetchMyPosts({ signal }),
     retry: 1,
   });
 };

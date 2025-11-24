@@ -10,9 +10,9 @@ import {
 } from "@chakra-ui/react";
 import { Heart, MessageSquareText } from "lucide-react";
 import Image from "next/image";
-import { usePostDimensions } from "../model/use-post-dimensions";
-import { PostImage } from "./post-image";
-import { PostComments } from "./post-comments";
+import { useCommentsQuery } from "@/entities/comments";
+import { PostCard, usePostDimensions } from "@/entities/posts";
+import { PostComments } from "@/widgets/post-comments";
 
 type Props = {
   id: number;
@@ -32,6 +32,7 @@ export const PostItem = ({
   imageHeight,
 }: Props) => {
   const [showComments, setShowComments] = React.useState<boolean>(true);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const toggleComments = () => setShowComments((prev) => !prev);
 
   const RIGHT_PANEL_WIDTH = 320;
@@ -41,23 +42,21 @@ export const PostItem = ({
   const { aspectRatio, dialogMaxW, dialogMaxH, imageMaxWidth, imageMaxHeight } =
     usePostDimensions(imageWidth, imageHeight, RIGHT_PANEL_WIDTH, GAP, PADDING);
 
-  return (
-    <Dialog.Root placement="center">
-      <Dialog.Trigger asChild>
-        <Box
-          borderColor={"bg.card"}
-          className="relative h-[290px] border-3 shadow-black rounded-md flex items-center justify-center text-lg font-medium cursor-pointer"
-        >
-          <Image
-            src={imageUrl}
-            alt="Post Image"
-            fill
-            className="object-cover rounded-md"
-            unoptimized
-          />
-        </Box>
-      </Dialog.Trigger>
+  const {
+    data: comments,
+    isLoading: isLoadingComments,
+    error: isErrorComments,
+  } = useCommentsQuery(id, isDialogOpen);
 
+  return (
+    <Dialog.Root
+      placement="center"
+      open={isDialogOpen}
+      onOpenChange={(details) => setIsDialogOpen(details.open)}
+    >
+      <Dialog.Trigger asChild>
+        <PostCard imageUrl={imageUrl} onClick={() => setIsDialogOpen(true)} />
+      </Dialog.Trigger>
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
@@ -80,13 +79,35 @@ export const PostItem = ({
                 width="100%"
               >
                 {/* Изображение */}
-                <PostImage
-                  imageUrl={imageUrl}
-                  dialogMaxH={dialogMaxH}
+                <Box
+                  position="relative"
+                  flexShrink={0}
+                  flexGrow={0}
+                  width={{ base: "100%", md: imageMaxWidth }}
+                  height={{ base: dialogMaxH, md: imageMaxHeight }}
                   aspectRatio={aspectRatio}
-                  imageMaxHeight={imageMaxHeight}
-                  imageMaxWidth={imageMaxWidth}
-                />
+                  rounded="md"
+                  overflow="hidden"
+                  minH="250px"
+                >
+                  {/* Фоновое размытие */}
+                  <Image
+                    src={imageUrl}
+                    alt="blur background"
+                    fill
+                    className="object-cover blur-xs"
+                    unoptimized
+                  />
+
+                  {/* Основное изображение */}
+                  <Image
+                    src={imageUrl}
+                    alt="Post image"
+                    fill
+                    className="object-contain rounded-md relative "
+                    unoptimized
+                  />
+                </Box>
 
                 {/* Правая панель */}
                 <Box
@@ -151,7 +172,11 @@ export const PostItem = ({
                     paddingBottom={"16px"}
                   >
                     {/* Коментарии  */}
-                    <PostComments />
+                    <PostComments
+                      comments={comments ?? []}
+                      isLoading={isLoadingComments}
+                      isError={isErrorComments ?? undefined}
+                    />
                   </Box>
 
                   <Separator

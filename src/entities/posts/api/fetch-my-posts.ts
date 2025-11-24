@@ -2,9 +2,8 @@ import { API_ROUTES } from "routes";
 import { TypeUserPostsRes } from "../model/type-user-posts";
 
 export const fetchMyPosts = async ({ signal }: { signal?: AbortSignal }) => {
-  const res = await fetch(`${API_ROUTES.BASE}${API_ROUTES.MY_POSTS}`, {
-    signal,
-  });
+  const URL = `${API_ROUTES.BASE}${API_ROUTES.MY_POSTS}`;
+  const res = await fetch(`${URL}`, { signal });
 
   if (!res.ok) throw new Error(`Ошибка сервера: ${res.status}`);
 
