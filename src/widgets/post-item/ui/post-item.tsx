@@ -8,17 +8,17 @@ import {
   Separator,
   Text,
 } from "@chakra-ui/react";
-import { Heart, MessageSquareText } from "lucide-react";
+import { MessageSquareText } from "lucide-react";
 import Image from "next/image";
 import { useCommentsQuery } from "@/entities/comments";
 import { PostCard, usePostDimensions } from "@/entities/posts";
 import { PostComments } from "@/widgets/post-comments";
+import { ToggleLikePost } from "@/features/post/toggle-like-post";
 
 type Props = {
   id: number;
   imageUrl: string;
   postText: string;
-  likesCount: number;
   imageWidth: number;
   imageHeight: number;
 };
@@ -27,7 +27,6 @@ export const PostItem = ({
   id,
   imageUrl,
   postText,
-  likesCount,
   imageWidth,
   imageHeight,
 }: Props) => {
@@ -197,17 +196,8 @@ export const PostItem = ({
                     justifyContent={"space-between"}
                     gap="9px"
                   >
-                    <Box
-                      display="flex"
-                      alignItems="center"
-                      gap="7px"
-                      cursor={"pointer"}
-                    >
-                      <Heart width={28} height={28} />
-                      <Text as="p" textStyle="md">
-                        {likesCount}
-                      </Text>
-                    </Box>
+                    {/* Лайки  */}
+                    <ToggleLikePost postId={id} isDialogOpen={isDialogOpen} />
 
                     <Box
                       onClick={toggleComments}
@@ -217,9 +207,11 @@ export const PostItem = ({
                       cursor={"pointer"}
                     >
                       <MessageSquareText width={28} height={28} />
-                      <Text as="p" textStyle="md">
-                        {likesCount}
-                      </Text>
+                      {comments && comments.length ? (
+                        <Text as="p" textStyle="md">
+                          {comments.length}
+                        </Text>
+                      ) : null}
                     </Box>
                   </Box>
                 </Box>

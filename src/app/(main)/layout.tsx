@@ -1,8 +1,9 @@
 import { Box, Container } from "@chakra-ui/react";
-import { Header, Sidebar } from "@/widgets";
 import type { Metadata } from "next";
 import { Toaster, widthContainer } from "@/shared";
 import { CreatePostDialog } from "@/features/create-post";
+import { Header } from "@/widgets/header";
+import { Sidebar } from "@/widgets/sidebar";
 
 export const metadata: Metadata = {
   title: "Lunza",

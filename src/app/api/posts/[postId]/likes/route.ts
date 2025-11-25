@@ -10,6 +10,19 @@ export async function GET(
     const supabase = await createClient();
     const { postId } = await context.params;
 
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return NextResponse.json({
+        error: "Не удалось получить текущего пользователя",
+        postLikes: null,
+      });
+    }
+
+    const userId = user.id;
+
     const { data: postLikesData, error: postLikesDataError } = await supabase
       .from("post_likes")
       .select("*")
@@ -22,8 +35,13 @@ export async function GET(
       });
     }
 
+    const isLike = userId
+      ? postLikesData.some((like) => like.user_id === userId)
+      : false;
+
     return NextResponse.json({
-      postsLikes: postLikesData,
+      postLikes: postLikesData,
+      isLike: isLike,
       success: true,
     });
   } catch (error) {

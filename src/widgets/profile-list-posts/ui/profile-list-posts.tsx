@@ -23,7 +23,6 @@ export const ProfileListPosts = ({ posts }: Props) => {
           id={p.id}
           imageUrl={p.image_url}
           postText={p.description}
-          likesCount={11}
           imageWidth={p.image_width}
           imageHeight={p.image_height}
         />
