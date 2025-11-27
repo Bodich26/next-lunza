@@ -71,7 +71,12 @@ export const PostComments = ({ comments, isLoading, isError }: Props) => {
         )}
 
         {comments.map((item, i) => (
-          <CommentItem userName={item.user_id} content={item.content} key={i} />
+          <CommentItem
+            avatarUrl={item.user_avatar}
+            userName={item.user_name}
+            content={item.content}
+            key={i}
+          />
         ))}
       </Box>
     </Box>

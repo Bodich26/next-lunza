@@ -14,6 +14,7 @@ import { useCommentsQuery } from "@/entities/comments";
 import { PostCard, usePostDimensions } from "@/entities/posts";
 import { PostComments } from "@/widgets/post-comments";
 import { ToggleLikePost } from "@/features/post/toggle-like-post";
+import { CreateCommentForm } from "@/features/post/create-comment";
 
 type Props = {
   id: number;
@@ -163,6 +164,7 @@ export const PostItem = ({
                       base: showComments ? "none" : "flex",
                       md: "flex",
                     }}
+                    flexDirection={"column"}
                     insetY={{ mdDown: 6, smDown: 0 }}
                     insetX={{ mdDown: 6, smDown: 0 }}
                     zIndex={{ mdDown: 10 }}
@@ -176,6 +178,9 @@ export const PostItem = ({
                       isLoading={isLoadingComments}
                       isError={isErrorComments ?? undefined}
                     />
+
+                    {/* Создать комментарий  */}
+                    <CreateCommentForm postId={id} />
                   </Box>
 
                   <Separator

@@ -7,6 +7,7 @@ export type TypePostsComments = {
   created_at: string;
   updated_at: string;
   parent_id: number;
+  user_avatar: string;
 };
 
 export type TypePostsCommentsRes = {

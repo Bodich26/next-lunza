@@ -10,6 +10,18 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "irabcknbreshzucesnpr.supabase.co",
+        port: "",
+        pathname: "/storage/v1/object/public/**",
+      },
+    ],
+  },
+
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
   },
