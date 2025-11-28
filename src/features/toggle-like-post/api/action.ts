@@ -14,7 +14,7 @@ export async function toggleLike(postId: number) {
     }
 
     if (userError || !user) {
-      return { error: "Текущий пользователь ненайден" };
+      return { error: "Текущий пользователь не найден." };
     }
 
     const userId = user.id;
@@ -27,7 +27,7 @@ export async function toggleLike(postId: number) {
       .maybeSingle();
 
     if (existingLikeError) {
-      return { error: "Ошибка проверки существующего лайка" };
+      return { error: "Ошибка при проверке существующего лайка." };
     }
 
     if (existingLike) {
@@ -40,12 +40,12 @@ export async function toggleLike(postId: number) {
       .insert({ post_id: postId, user_id: userId });
 
     if (insertError) {
-      return { error: "Не удалось поставить лайк" };
+      return { error: "Не удалось поставить лайк." };
     }
 
     return { success: true, liked: true };
   } catch (error) {
     console.error(error);
-    return { error: "Произошла непредвиденная ошибка, попробуйте позже." };
+    return { error: "Произошла непредвиденная ошибка. Попробуйте позже." };
   }
 }

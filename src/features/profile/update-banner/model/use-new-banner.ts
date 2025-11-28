@@ -42,8 +42,8 @@ export const useNewBanner = () => {
       });
     } else if (res.success) {
       toaster.create({
-        title: "Баннер обновлен",
-        description: "Новый баннер успешно сохранен!",
+        title: "Успешно",
+        description: "Новый баннер успешно сохранен.",
         type: "success",
         closable: true,
       });

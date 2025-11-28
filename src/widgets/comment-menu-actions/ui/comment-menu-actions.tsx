@@ -7,9 +7,10 @@ import { Asterisk, Ellipsis } from "lucide-react";
 type Props = {
   commentId: number;
   userId: string;
+  postId: number;
 };
 
-export const CommentMenuActions = ({ commentId, userId }: Props) => {
+export const CommentMenuActions = ({ commentId, userId, postId }: Props) => {
   const { data: profile } = useMyProfileApi();
   const currentUserId = profile?.id;
 
@@ -31,7 +32,10 @@ export const CommentMenuActions = ({ commentId, userId }: Props) => {
                 {userId === currentUserId ? (
                   <>
                     <UpdateCommentButton />
-                    <DeleteCommentButton />
+                    <DeleteCommentButton
+                      commentId={commentId}
+                      postId={postId}
+                    />
                   </>
                 ) : (
                   <>

@@ -4,13 +4,13 @@ import * as z from "zod";
 export const postSchema = z.object({
   file: z
     .custom<FileList>((val) => val instanceof FileList && val.length > 0, {
-      message: "Пожалуйста, добавьте изображение",
+      message: "Пожалуйста, добавьте изображение.",
     })
     .refine((files) => files[0]?.type.startsWith("image/"), {
-      message: "Допустимы только изображения",
+      message: "Допустимы только файлы изображений.",
     })
     .refine((files) => files[0]?.size <= maxFileSize, {
-      message: "Размер файла не должен превышать 1 МБ",
+      message: "Размер файла не должен превышать 1 МБ.",
     })
     .refine(
       async (files) => {
@@ -28,12 +28,12 @@ export const postSchema = z.object({
         });
       },
       {
-        message: `Минимальный размер изображения ${maxWidthFile}x${maxHightFile}`,
+        message: `Минимальный размер изображения — ${maxWidthFile}x${maxHightFile}px.`,
       }
     ),
 
   description: z.string().max(256, {
-    message: "Максимум 256 символов",
+    message: "Максимум 256 символов.",
   }),
 });
 

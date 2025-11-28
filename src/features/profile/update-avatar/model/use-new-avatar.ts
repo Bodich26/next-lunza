@@ -42,8 +42,8 @@ export const useNewAvatar = () => {
       });
     } else if (res.success) {
       toaster.create({
-        title: "Аватар обновлен",
-        description: "Новая аватарка успешно сохранена!",
+        title: "Успешно",
+        description: "Новая аватарка успешно сохранена.",
         type: "success",
         closable: true,
       });

@@ -33,7 +33,7 @@ export const useCreateComment = (postId: number) => {
     setIsLoading(true);
 
     if (!postId) {
-      setResError("Id публикации непередан");
+      setResError("ID публикации не передан.");
       return;
     }
 

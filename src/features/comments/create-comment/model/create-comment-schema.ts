@@ -4,10 +4,10 @@ export const createCommentSchema = z.object({
   commentText: z
     .string()
     .min(3, {
-      message: "Минимум 3 символа",
+      message: "Минимум 3 символа.",
     })
     .max(256, {
-      message: "Максимум 256 символов",
+      message: "Максимум 256 символов.",
     }),
 });
 

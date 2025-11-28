@@ -24,11 +24,13 @@ export async function updateBanner(imageFile: File, userId: string) {
     } = await supabase.auth.getUser();
 
     if (userError || !user) {
-      return { error: "Текущий пользователь ненайден" };
+      return { error: "Текущий пользователь не найден." };
     }
 
     if (userError || user.id !== userId) {
-      return { error: "Id текущего пользователя несовпадает с переданым Id." };
+      return {
+        error: "ID текущего пользователя не совпадает с переданным ID.",
+      };
     }
 
     const fileName = `${user.id}/banner.${imageFile.name.split(".").pop()}`;
@@ -38,7 +40,7 @@ export async function updateBanner(imageFile: File, userId: string) {
       .upload(fileName, imageFile, { upsert: true });
 
     if (uploadError) {
-      return { error: "Неудалось загрузить изображение" };
+      return { error: "Не удалось загрузить изображение." };
     }
 
     const {
@@ -59,6 +61,6 @@ export async function updateBanner(imageFile: File, userId: string) {
     return { success: true };
   } catch (error) {
     console.error(error);
-    return { error: "Произошла непредвиденная ошибка, попробуйте позже." };
+    return { error: "Произошла непредвиденная ошибка. Попробуйте позже." };
   }
 }

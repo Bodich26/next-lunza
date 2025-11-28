@@ -23,7 +23,7 @@ export async function signUp(formData: FormData) {
     .single();
 
   if (existingUser) {
-    return { error: "Этот псевдоним уже занят, введите другой" };
+    return { error: "Этот псевдоним уже занят. Введите другой." };
   }
 
   const { error } = await supabase.auth.signUp({
@@ -38,11 +38,11 @@ export async function signUp(formData: FormData) {
 
   if (error) {
     if (error.code === "email_address_invalid") {
-      return { error: "Некорректный формат email" };
+      return { error: "Некорректный формат email." };
     }
 
-    return { error: "Произошла ошибка при регистрации" };
+    return { error: "Произошла ошибка при регистрации." };
   }
 
-  return { success: "Регистрация успешна, подтвердите почту" };
+  return { success: "Регистрация успешна. Подтвердите почту." };
 }

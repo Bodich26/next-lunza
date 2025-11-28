@@ -22,14 +22,14 @@ export async function signIn(formData: FormData) {
 
   if (error) {
     if (error.code === "invalid_credentials")
-      return { error: "Неверный email или пароль" };
+      return { error: "Неверный email или пароль." };
 
     if (error.code === "email_address_invalid") {
-      return { error: "Некорректный формат email" };
+      return { error: "Некорректный формат email." };
     }
 
     return { error: "Ошибка при входе. Попробуйте снова." };
   }
 
-  return { success: "Успешный вход" };
+  return { success: "Успешный вход." };
 }

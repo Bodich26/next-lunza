@@ -29,11 +29,13 @@ export async function createPost(
       error: userError,
     } = await supabase.auth.getUser();
     if (userError || !user) {
-      return { error: "Текущий пользователь ненайден" };
+      return { error: "Текущий пользователь не найден." };
     }
 
     if (userError || user.id !== userId) {
-      return { error: "Id текущего пользователя несовпадает с переданым Id." };
+      return {
+        error: "ID текущего пользователя не совпадает с переданным ID.",
+      };
     }
 
     const fileName = `${user.id}/posts.${Date.now()}${postFile.name
@@ -45,7 +47,7 @@ export async function createPost(
       .upload(fileName, postFile);
 
     if (uploadError) {
-      return { error: "Не удалось загрузить изображение" };
+      return { error: "Не удалось загрузить изображение." };
     }
 
     const {
@@ -62,12 +64,12 @@ export async function createPost(
 
     if (insertError) {
       console.error(insertError);
-      return { error: "Ошибка при создании поста" };
+      return { error: "Ошибка при создании поста." };
     }
 
     return { success: "Пост успешно создан!" };
   } catch (error) {
     console.error(error);
-    return { error: "Произошла непредвиденная ошибка, попробуйте позже." };
+    return { error: "Произошла непредвиденная ошибка. Попробуйте позже." };
   }
 }

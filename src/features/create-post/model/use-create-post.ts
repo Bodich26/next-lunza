@@ -51,8 +51,8 @@ export const useCreatePost = () => {
     if (res.success) {
       closeDialogWindow();
       toaster.create({
-        title: "Новая публикация",
-        description: "Новая публикация добавлена успешно",
+        title: "Успешно",
+        description: "Новая публикация успешно добавлена.",
         type: "success",
         closable: true,
       });

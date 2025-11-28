@@ -2,29 +2,29 @@ import * as z from "zod";
 
 export const loginSchema = z.object({
   email: z.email({
-    message: "Пожалуйста, укажите вашу почту",
+    message: "Пожалуйста, укажите вашу почту.",
   }),
   password: z
     .string()
     .min(8, {
-      message: "Минимум 8 символов",
+      message: "Минимум 8 символов.",
     })
     .regex(/^[A-Za-z0-9]+$/, {
-      message: "Только латинские буквы и цифры",
+      message: "Только латинские буквы и цифры.",
     }),
 });
 
 export const registerSchema = z.object({
   email: z.email({
-    message: "Пожалуйста, укажите вашу почту",
+    message: "Пожалуйста, укажите вашу почту.",
   }),
   name: z
     .string()
     .min(3, {
-      message: "Минимум 3 символа",
+      message: "Минимум 3 символа.",
     })
     .regex(/^[A-Za-z0-9]+$/, {
-      message: "Только латинские буквы и цифры",
+      message: "Только латинские буквы и цифры.",
     }),
   password: z
     .string()
@@ -38,7 +38,7 @@ export const registerSchema = z.object({
 
 export const forgotPasswordSchema = z.object({
   email: z.email({
-    message: "Пожалуйста, укажите вашу почту",
+    message: "Пожалуйста, укажите вашу почту.",
   }),
 });
 
@@ -49,7 +49,7 @@ export const updatePasswordSchema = z.object({
       message: "Минимум 8 символов",
     })
     .regex(/^[A-Za-z0-9]+$/, {
-      message: "Только латинские буквы и цифры",
+      message: "Только латинские буквы и цифры.",
     }),
 });
 

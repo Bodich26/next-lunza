@@ -9,7 +9,7 @@ export const createComment = async (formData: FormData, postId: number) => {
     const validationFailed = createCommentSchema.safeParse(userData);
 
     if (!validationFailed.success) {
-      return { error: "Данные невалидны" };
+      return { error: "Данные недействительны." };
     }
 
     const {
@@ -22,7 +22,7 @@ export const createComment = async (formData: FormData, postId: number) => {
     }
 
     if (userError || !user) {
-      return { error: "Текущий пользователь ненайден" };
+      return { error: "Текущий пользователь не найден." };
     }
 
     const { commentText } = validationFailed.data;
@@ -38,9 +38,9 @@ export const createComment = async (formData: FormData, postId: number) => {
       return { error: "Не удалось добавить комментарий." };
     }
 
-    return { success: "Комментарий добавлен" };
+    return { success: "Комментарий добавлен." };
   } catch (error) {
     console.error(error);
-    return { error: "Произошла непредвиденная ошибка, попробуйте позже." };
+    return { error: "Произошла непредвиденная ошибка. Попробуйте позже." };
   }
 };

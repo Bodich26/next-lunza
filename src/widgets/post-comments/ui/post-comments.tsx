@@ -78,7 +78,11 @@ export const PostComments = ({ comments, isLoading, isError }: Props) => {
             content={item.content}
             key={i}
           >
-            <CommentMenuActions commentId={item.id} userId={item.user_id} />
+            <CommentMenuActions
+              commentId={item.id}
+              userId={item.user_id}
+              postId={item.post_id}
+            />
           </CommentItem>
         ))}
       </Box>

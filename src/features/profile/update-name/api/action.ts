@@ -10,7 +10,7 @@ export async function updateName(formData: FormData, userId: string) {
     const validationFailed = nameSchema.safeParse(userData);
 
     if (!validationFailed.success) {
-      return { error: "Данные невалидны" };
+      return { error: "Данные недействительны." };
     }
 
     const { name: newName } = validationFailed.data;
@@ -29,11 +29,13 @@ export async function updateName(formData: FormData, userId: string) {
     } = await supabase.auth.getUser();
 
     if (userError || !user) {
-      return { error: "Текущий пользователь ненайден" };
+      return { error: "Текущий пользователь не найден." };
     }
 
     if (userError || user.id !== userId) {
-      return { error: "Id текущего пользователя несовпадает с переданым Id." };
+      return {
+        error: "ID текущего пользователя не совпадает с переданным ID.",
+      };
     }
 
     const { data: existingUser } = await supabase
@@ -44,7 +46,7 @@ export async function updateName(formData: FormData, userId: string) {
       .single();
 
     if (existingUser) {
-      return { error: "Этот псевдоним уже занят, введите другой" };
+      return { error: "Этот псевдоним уже занят. Введите другой." };
     }
 
     const { data, error: updateError } = await supabase
@@ -59,6 +61,6 @@ export async function updateName(formData: FormData, userId: string) {
     return { success: true };
   } catch (error) {
     console.error(error);
-    return { error: "Произошла непредвиденная ошибка, попробуйте позже." };
+    return { error: "Произошла непредвиденная ошибка. Попробуйте позже." };
   }
 }

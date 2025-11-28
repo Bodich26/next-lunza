@@ -41,8 +41,8 @@ export const useNewAbout = (closeForm: () => void) => {
       });
     } else if (res.success) {
       toaster.create({
-        title: "Текст обновлен",
-        description: "Новое описание успешно сохранено!",
+        title: "Успешно",
+        description: "Новое описание успешно сохранено.",
         type: "success",
         closable: true,
       });

@@ -27,8 +27,8 @@ export async function updatePassword(formData: FormData, code: string) {
   const { error } = await supabase.auth.updateUser({ password });
 
   if (error) {
-    return { error: "Произошла ошибка при обновлении пароля" };
+    return { error: "Произошла ошибка при обновлении пароля." };
   }
 
-  return { success: "Пароль успешно обновлен" };
+  return { success: "Пароль успешно обновлён." };
 }

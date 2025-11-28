@@ -19,11 +19,11 @@ export async function forgotPassword(formData: FormData) {
 
   if (error) {
     if (error.code === "email_address_invalid") {
-      return { error: "Некорректный формат email" };
+      return { error: "Некорректный формат email." };
     }
 
-    return { error: "Неверные данные или email не найден" };
+    return { error: "Неверные данные или email не найден." };
   }
 
-  return { success: "Письмо на почту успешно отправлено" };
+  return { success: "Письмо на почту успешно отправлено." };
 }

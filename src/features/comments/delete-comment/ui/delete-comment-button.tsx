@@ -2,8 +2,15 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
 import { XButton } from "@/shared";
+import { useDeleteComment } from "../model/use-delete-comment";
 
-export const DeleteCommentButton = () => {
+type Props = {
+  commentId: number;
+  postId: number;
+};
+
+export const DeleteCommentButton = ({ commentId, postId }: Props) => {
+  const { handleDeleteComment } = useDeleteComment(commentId, postId);
   return (
     <Box
       display={"flex"}
@@ -13,7 +20,7 @@ export const DeleteCommentButton = () => {
       _hover={{ background: "bg.muted" }}
       padding={"8px"}
       rounded={"md"}
-      onClick={() => console.log("g")}
+      onClick={handleDeleteComment}
     >
       <XButton />
       <Text as={"span"}>Удалить</Text>

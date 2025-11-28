@@ -41,8 +41,8 @@ export const useNewName = (closeForm: () => void) => {
       });
     } else if (res.success) {
       toaster.create({
-        title: "Имя обновлено",
-        description: "Новое имя успешно сохранено!",
+        title: "Успешно",
+        description: "Новое имя успешно сохранено.",
         type: "success",
         closable: true,
       });
