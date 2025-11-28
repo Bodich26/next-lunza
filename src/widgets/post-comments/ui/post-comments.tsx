@@ -2,6 +2,7 @@ import { CommentItem, TypePostsComments } from "@/entities/comments";
 import { Box, Separator, Text } from "@chakra-ui/react";
 import { PostCommentsSkeleton } from "./post-comments-skeleton";
 import { ShowNotice } from "@/shared";
+import { CommentMenuActions } from "@/widgets/comment-menu-actions";
 
 type Props = {
   comments: TypePostsComments[];
@@ -76,7 +77,9 @@ export const PostComments = ({ comments, isLoading, isError }: Props) => {
             userName={item.user_name}
             content={item.content}
             key={i}
-          />
+          >
+            <CommentMenuActions commentId={item.id} userId={item.user_id} />
+          </CommentItem>
         ))}
       </Box>
     </Box>

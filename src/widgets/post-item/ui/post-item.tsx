@@ -13,8 +13,8 @@ import Image from "next/image";
 import { useCommentsQuery } from "@/entities/comments";
 import { PostCard, usePostDimensions } from "@/entities/posts";
 import { PostComments } from "@/widgets/post-comments";
-import { ToggleLikePost } from "@/features/post/toggle-like-post";
-import { CreateCommentForm } from "@/features/post/create-comment";
+import { ToggleLikePost } from "@/features/toggle-like-post";
+import { CreateCommentForm } from "@/features/comments/create-comment";
 
 type Props = {
   id: number;

@@ -7,8 +7,14 @@ type Props = {
   userName: string;
   content: string;
   avatarUrl: string;
+  children?: React.ReactNode;
 };
-export const CommentItem = ({ userName, content, avatarUrl }: Props) => {
+export const CommentItem = ({
+  userName,
+  content,
+  avatarUrl,
+  children,
+}: Props) => {
   return (
     <Box className="w-full rounded-md " background={"bg.muted"} padding={"1.5"}>
       <Text as="p" textStyle="sm" textAlign="start" marginBottom={"8px"}>
@@ -20,15 +26,6 @@ export const CommentItem = ({ userName, content, avatarUrl }: Props) => {
         alignItems={"center"}
         gap={"8px"}
       >
-        <Text
-          as="p"
-          textStyle="sm"
-          textAlign="start"
-          opacity={"60%"}
-          cursor={"pointer"}
-        >
-          Ответить
-        </Text>
         <Box
           display={"flex"}
           justifyContent={"center"}
@@ -53,6 +50,7 @@ export const CommentItem = ({ userName, content, avatarUrl }: Props) => {
             {userName}
           </Link>
         </Box>
+        {children}
       </Box>
     </Box>
   );

@@ -29,7 +29,7 @@ export const CreateCommentForm = ({ postId }: { postId: number }) => {
         paddingX={{ mdDown: "16px" }}
         mt={{ mdDown: "12px" }}
       >
-        <Box display={"flex"} gap="4" width={"full"}>
+        <Box display={"flex"} gap="4" width={"full"} paddingX={"1"}>
           {/* Email */}
           <Field.Root
             required
