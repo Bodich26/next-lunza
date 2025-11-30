@@ -16,7 +16,12 @@ export const CommentItem = ({
   children,
 }: Props) => {
   return (
-    <Box className="w-full rounded-md " background={"bg.muted"} padding={"1.5"}>
+    <Box
+      className="w-full rounded-md "
+      background={"bg.muted"}
+      padding={"1.5"}
+      position={"relative"}
+    >
       <Text as="p" textStyle="sm" textAlign="start" marginBottom={"8px"}>
         {content}
       </Text>

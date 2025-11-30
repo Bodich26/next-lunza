@@ -2,8 +2,14 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
 import { PencilButton } from "@/shared";
+import { useEditCommentStore } from "../model/use-edit-comment-store";
 
-export const UpdateCommentButton = () => {
+type Props = {
+  commentId: number;
+  textComment: string;
+};
+
+export const UpdateCommentButton = ({ commentId, textComment }: Props) => {
   return (
     <Box
       display={"flex"}
@@ -13,7 +19,9 @@ export const UpdateCommentButton = () => {
       _hover={{ background: "bg.muted" }}
       padding={"8px"}
       rounded={"md"}
-      onClick={() => console.log("g")}
+      onClick={() =>
+        useEditCommentStore.getState().startEditing(commentId, textComment)
+      }
     >
       <PencilButton />
       <Text as={"span"}>Изменить</Text>

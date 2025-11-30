@@ -1,3 +1,4 @@
+"use client";
 import { useMyProfileApi } from "@/entities/user";
 import { DeleteCommentButton } from "@/features/comments/delete-comment";
 import { UpdateCommentButton } from "@/features/comments/update-comment";
@@ -8,9 +9,15 @@ type Props = {
   commentId: number;
   userId: string;
   postId: number;
+  textComment: string;
 };
 
-export const CommentMenuActions = ({ commentId, userId, postId }: Props) => {
+export const CommentMenuActions = ({
+  commentId,
+  userId,
+  postId,
+  textComment,
+}: Props) => {
   const { data: profile } = useMyProfileApi();
   const currentUserId = profile?.id;
 
@@ -31,7 +38,10 @@ export const CommentMenuActions = ({ commentId, userId, postId }: Props) => {
               >
                 {userId === currentUserId ? (
                   <>
-                    <UpdateCommentButton />
+                    <UpdateCommentButton
+                      textComment={textComment}
+                      commentId={commentId}
+                    />
                     <DeleteCommentButton
                       commentId={commentId}
                       postId={postId}

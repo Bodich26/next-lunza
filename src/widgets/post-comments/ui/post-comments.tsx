@@ -3,6 +3,10 @@ import { Box, Separator, Text } from "@chakra-ui/react";
 import { PostCommentsSkeleton } from "./post-comments-skeleton";
 import { ShowNotice } from "@/shared";
 import { CommentMenuActions } from "@/widgets/comment-menu-actions";
+import {
+  UpdateCommentForm,
+  useEditCommentStore,
+} from "@/features/comments/update-comment";
 
 type Props = {
   comments: TypePostsComments[];
@@ -10,6 +14,8 @@ type Props = {
   isError?: Error;
 };
 export const PostComments = ({ comments, isLoading, isError }: Props) => {
+  const { editingId, stopEditing } = useEditCommentStore();
+
   return (
     <Box
       display={"flex"}
@@ -71,20 +77,33 @@ export const PostComments = ({ comments, isLoading, isError }: Props) => {
           </Box>
         )}
 
-        {comments.map((item, i) => (
-          <CommentItem
-            avatarUrl={item.user_avatar}
-            userName={item.user_name}
-            content={item.content}
-            key={i}
-          >
-            <CommentMenuActions
-              commentId={item.id}
-              userId={item.user_id}
-              postId={item.post_id}
-            />
-          </CommentItem>
-        ))}
+        {comments.map((item) => {
+          const isEditing = editingId === item.id;
+
+          return (
+            <CommentItem
+              key={item.id}
+              avatarUrl={item.user_avatar}
+              userName={item.user_name}
+              content={item.content}
+            >
+              {isEditing ? (
+                <UpdateCommentForm
+                  commentId={item.id}
+                  postId={item.post_id}
+                  closeForm={stopEditing}
+                />
+              ) : (
+                <CommentMenuActions
+                  commentId={item.id}
+                  userId={item.user_id}
+                  postId={item.post_id}
+                  textComment={item.content}
+                />
+              )}
+            </CommentItem>
+          );
+        })}
       </Box>
     </Box>
   );
