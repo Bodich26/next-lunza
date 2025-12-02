@@ -1,6 +1,5 @@
 import { ElementType } from "react";
 import { Box, Circle, Float } from "@chakra-ui/react";
-import { cn } from "../lib/utils";
 
 type Props = {
   value?: number;

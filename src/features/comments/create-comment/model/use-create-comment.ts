@@ -12,7 +12,7 @@ import { commentsQueryKeys } from "@/entities/comments";
 
 export const useCreateComment = (postId: number) => {
   const [resError, setResError] = React.useState<string>("");
-  const [resSuccess, setResSuccess] = React.useState<string>("");
+  const [resSuccess] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const {

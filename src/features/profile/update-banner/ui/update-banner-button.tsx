@@ -12,8 +12,10 @@ export const UpdateBannerButton = () => {
       <FileUpload.Trigger asChild>
         <Box
           position={"absolute"}
-          right={{ base: "9px", smPlusDown: "12px" }}
-          bottom={{ base: "5px", smPlusDown: "12px" }}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          right={{ base: "9px", smPlusDown: "12px" } as any}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          bottom={{ base: "5px", smPlusDown: "12px" } as any}
         >
           <PencilButton />
         </Box>

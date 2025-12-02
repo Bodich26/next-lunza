@@ -49,7 +49,7 @@ export async function updateName(formData: FormData, userId: string) {
       return { error: "Этот псевдоним уже занят. Введите другой." };
     }
 
-    const { data, error: updateError } = await supabase
+    const { error: updateError } = await supabase
       .from("profiles")
       .update({ username: newName })
       .eq("id", userId);

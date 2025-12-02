@@ -33,7 +33,7 @@ export async function updateAbout(formData: FormData, userId: string) {
       };
     }
 
-    const { data, error: updateError } = await supabase
+    const { error: updateError } = await supabase
       .from("profiles")
       .update({ about: text })
       .eq("id", userId);

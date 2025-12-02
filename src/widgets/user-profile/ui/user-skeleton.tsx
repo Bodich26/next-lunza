@@ -40,12 +40,16 @@ export const UserSkeleton = () => {
             left={{ mdDown: "50%" }}
             transform={{ mdDown: "translateX(-50%)" }}
             zIndex={2}
-            margin={{ smPlusDown: "0 auto" }}
-            width={{ base: "176px", smPlusDown: "154px" }}
-            height={{ base: "176px", smPlusDown: "154px" }}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            margin={{ smPlusDown: "0 auto" } as any}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            width={{ base: "176px", smPlusDown: "154px" } as any}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            height={{ base: "176px", smPlusDown: "154px" } as any}
           >
             <SkeletonCircle
-              size={{ base: "176px", smPlusDown: "154px" }}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              size={{ base: "176px", smPlusDown: "154px" } as any}
               variant={"shine"}
               background={"bg.skeleton"}
             />
@@ -55,7 +59,8 @@ export const UserSkeleton = () => {
             alignItems="center"
             gap={7}
             justifyContent="space-between"
-            flexDirection={{ base: "column", smPlus: "row" }}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            flexDirection={{ base: "column", smPlus: "row" } as any}
             flexBasis={{ base: "100%", md: "80%" }}
             marginLeft={{ base: "0px", md: "200px" }}
             marginTop={{ base: "70px", md: "0px" }}

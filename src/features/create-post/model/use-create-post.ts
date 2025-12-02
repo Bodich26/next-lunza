@@ -5,10 +5,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PostFormData, postSchema } from "./post-schema";
 import { useMyProfileApi } from "@/entities/user";
 import { createPost } from "../api/action";
-import { toaster } from "@/shared";
+import { queryClient, toaster } from "@/shared";
 import { useCreatePostDialogStore } from "./use-create-post-dialog-store";
 import { useRouter } from "next/navigation";
 import { PUBLIC_ROUTES } from "routes";
+import { postsQueryKeys } from "@/entities/posts";
 
 export const useCreatePost = () => {
   const [resError, setResError] = React.useState<string>("");
@@ -55,6 +56,10 @@ export const useCreatePost = () => {
         description: "Новая публикация успешно добавлена.",
         type: "success",
         closable: true,
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: postsQueryKeys.myPosts,
       });
 
       router.push(PUBLIC_ROUTES.PROFILE);

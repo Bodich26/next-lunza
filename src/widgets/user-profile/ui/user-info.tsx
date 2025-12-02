@@ -53,7 +53,8 @@ export const UserInfo = ({
           left={{ mdDown: "50%" }}
           transform={{ mdDown: "translateX(-50%)" }}
           zIndex={2}
-          margin={{ smPlusDown: "0 auto" }}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          margin={{ smPlusDown: "0 auto" } as any}
         >
           <UserAvatar
             altAvatar={avatarAlt}
@@ -70,7 +71,8 @@ export const UserInfo = ({
           gap={7}
           w={"full"}
           justifyContent={"space-between"}
-          flexDirection={{ base: "column", smPlus: "row" }}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          flexDirection={{ base: "column", smPlus: "row" } as any}
           marginLeft={{ base: "0px", md: "200px" }}
           marginTop={{ base: "70px", md: "10px" }}
         >
@@ -79,7 +81,8 @@ export const UserInfo = ({
           <Flex
             flexDirection={"column"}
             gap={"8px"}
-            width={{ base: "54%", smPlusDown: "100%" }}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            width={{ base: "54%", smPlusDown: "100%" } as any}
           >
             <UserName name={username} />
             {about && <UserAbout text={about} />}

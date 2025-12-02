@@ -31,7 +31,8 @@ export const UserAvatar = ({ urlAvatar, altAvatar, isOwner, size }: Props) => {
         src={urlAvatar ?? "/user_default_avatar.svg"}
         alt={altAvatar ?? "Profile Avatar"}
         borderColor={"bg.card"}
-        margin={{ smPlusDown: "0 auto" }}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        margin={{ smPlusDown: "0 auto" } as any}
         className="border-[5px] border-solid shadow-black"
         transition="filter 0.3s ease"
       />
