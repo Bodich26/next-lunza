@@ -36,7 +36,7 @@ export const Header = () => {
               href={PUBLIC_ROUTES.MAIN}
               name="Lunza"
               alt={"Logo"}
-              src={"/logo.svg"}
+              src={"/Logo.svg"}
             />
 
             {/** Separator*/}
