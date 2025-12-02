@@ -61,7 +61,8 @@ export default function RootLayout({
           basis={{ base: "100%", md: "55%", lg: "48%" }}
           height={"full"}
           roundedLeft={{ base: "none", md: "xl" }}
-          padding={{ base: "3", xs: "5" }}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          padding={{ base: "3", xs: "5" } as any}
           justifyContent={"center"}
           alignItems={"center"}
           flexDirection={"column"}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 
@@ -16,7 +17,7 @@ export const TitlesForm = ({ titles, text }: Props) => {
         className="max-[375px]:w-[60px]"
       />
       <Box>
-        <Heading as={"h3"} size={{ base: "2xl", xs: "3xl", sm: "4xl" }}>
+        <Heading as={"h3"} size={{ base: "2xl", xs: "3xl", sm: "4xl" } as any}>
           {titles}
         </Heading>
         <Text as={"p"} fontSize={{ base: "md", sm: "lg" }}>
