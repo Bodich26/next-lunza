@@ -10,7 +10,7 @@ export const TitlesForm = ({ titles, text }: Props) => {
   return (
     <Flex gap={"3"} justifyContent={"center"} alignItems={"center"}>
       <Image
-        src={"/logo.svg"}
+        src={"/Logo.svg"}
         alt={"Logo Lunza"}
         width={69}
         height={64}
